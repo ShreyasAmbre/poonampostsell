@@ -1,0 +1,152 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Payment</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="detailbookingcard">
+    <ion-card-header>
+      <ion-card-subtitle  color="primary">View Booking</ion-card-subtitle>
+      <ion-card-title color="primary">{{get_all_bookings_api["project_name"]}} {{get_all_bookings_api["wingName"]}} {{get_all_bookings_api["flatNo"]}}</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <b>Unit type</b> : {{get_all_bookings_api["unit_type"]}} <br>
+      <b>Floor</b> : {{get_all_bookings_api["floor"]}}<br>
+      <b>Saleable Area</b> : {{get_all_bookings_api["saleableArea"]}} sq. ft<br>
+      <b>Rera Area</b> : {{get_all_bookings_api["reraArea"]}} sq. mt <br>
+      <b>Booking Date</b> : {{get_all_bookings_api["booking_date"]}}<br><br>
+    </ion-card-content>
+  </ion-card>
+
+
+  <mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header style="background-color: #f05363;">
+        <mat-panel-title>
+          <h4 style="color:white">Payment Scheme</h4>
+        </mat-panel-title>
+        <mat-panel-description>
+          <!-- <h6>Plan</h6> -->
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div *ngFor=" let item of booking_payment_detail_master_api; let i = index">
+        <ion-card class="detailbookingcard">
+          <ion-item>
+            <ion-label color="primary">{{item["terms"]}} </ion-label>
+          </ion-item>
+
+          <ion-card-content>
+            <b>Basic Amount</b>: {{item["amount"]}} <br>
+            <b>Amount Received</b>: {{item["amount"]}} <br>
+            <b>Outstanding</b>:  {{item["outstanding"]}} <br>
+            <b>Due</b>:  {{item["due_amount"]}} <br>
+            <b>Due Date</b>:  {{item["due_date"]}} <br>
+            <b>Percentage</b>:  {{item["percentage"]}} <br>
+            <b>Interest Amount</b>:{{item["interest_amount"]}}
+          </ion-card-content>
+        </ion-card>
+      </div>
+    </mat-expansion-panel><br>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header style="background-color: #10b759;">
+        <mat-panel-title>
+          <h4 style="color:white">Payment Receipts</h4>
+        </mat-panel-title>
+        <mat-panel-description>
+          <!-- <h6>Plan</h6> -->
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div *ngFor="let item of get_all_payments_api">
+        <ion-card class="detailbookingcard">
+          <ion-item>
+            <ion-icon name="cash" color='primary' slot="start"></ion-icon>
+            <ion-label color="primary"> ID: <b>{{item["payment_id"]}}</b></ion-label>
+          </ion-item>
+
+          <ion-card-content>
+            <b>Bank Name</b>: {{item["bankName"]}} <br>
+            <b>Bank Branch</b>: {{item["bankBranch"]}} <br>
+            <b>Payment mode</b>: {{item["payment_mode"]}} <br>
+            <b>Receipt Date</b>: {{item["receipt_date"]}} <br>
+            <b>Cheque Date</b>: {{item["cheque_date"]}} <br>
+            <b>Cheque No.</b>: {{item["cheque_number"]}} <br>
+
+            <b>Basic Amount</b>: 49,999.00 <br>
+            <b>CGST</b>: - <br>
+            <b>SGST</b>: - <br>
+            <b>GST Amount</b>:  <br>
+            <b>Print Date</b>: {{item["cheque_number"]}} <br>
+            <b>Note</b>:  {{item["notes"]}}  <br>
+          </ion-card-content>
+        </ion-card>
+      </div>
+    </mat-expansion-panel><br>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header style="background-color: #FD7E17;">
+        <mat-panel-title>
+          <h4 style="color:white">Payment Vouchers</h4>
+        </mat-panel-title>
+        <mat-panel-description>
+          <!-- <h6>Plan</h6> -->
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div>
+        <ion-card class="detailbookingcard">
+          <ion-item>
+            <ion-icon name="cash" color='primary' slot="start"></ion-icon>
+            <ion-label color="primary">Voucher ID : <b>482</b></ion-label>
+            <ion-button fill="outline" slot="end">View</ion-button>
+          </ion-item>
+
+          <ion-card-content>
+            <b>Voucher Date</b>: - <br>
+            <b>Payment mode</b>: - <br>
+            <b>Cheque Date</b>: - <br>
+            <b>Cheque No.</b>: - <br>
+            <b>Bank Name</b>: - <br>
+            <b>Basic Amount</b>: 0.00 <br>
+            <b>CGST</b>: - <br>
+            <b>SGST</b>: - <br>
+            <b>GST Amount</b>: 0.00 <br>
+            <b>Print Date</b>: - <br>
+            <b>Note</b>: - <br>
+          </ion-card-content>
+        </ion-card>
+      </div>
+    </mat-expansion-panel><br>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header style="background-color: #00b8d4;">
+        <mat-panel-title>
+          <h4 style="color:white">Demand Letter</h4>
+        </mat-panel-title>
+        <mat-panel-description>
+          <!-- <h6>Plan</h6> -->
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div>
+        <ion-card class="detailbookingcard">
+          <ion-item>
+            <ion-icon name="cash" color='primary' slot="start"></ion-icon>
+            <ion-label color="primary">Demand ID : <b>482</b></ion-label>
+            <ion-button fill="outline" slot="end">View</ion-button>
+          </ion-item>
+
+          <ion-card-content>
+            <b>Demand Date</b>: - <br>
+            <b>Percentage</b>: - <br>
+            <b>Outstanding </b>: - <br>
+            <b>Received</b>: - <br>
+            <b>Total Due</b>: - <br>
+            <b>Action</b>: 0.00 <br>
+          </ion-card-content>
+        </ion-card>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+</ion-content>

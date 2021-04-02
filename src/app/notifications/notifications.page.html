@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar  color="primary" slots="start">
+    <ion-buttons slot="start">
+      <ion-menu-button autoHide="false"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Notifications</ion-title>
+    <app-notification></app-notification>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngFor="let noti of noti_data;">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-subtitle>Alert</ion-card-subtitle>
+        <ion-card-title>Notification</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        {{noti}}
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

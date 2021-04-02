@@ -1,0 +1,43 @@
+.nextbutton{
+  background-color: #3880ff;
+  color:black;
+  border-radius: 15%;
+  // float: right;
+  margin:2%;
+  height:40px;
+  width:80px;
+  color:white
+}
+
+.backbutton{
+  background-color: #3880ff;
+  border-radius: 15%;
+  // float: left;
+  margin:2%;
+  height:40px;
+  width:80px;
+  color:white
+}
+
+.addbutton{
+  border-radius: 15%;
+  // float: left;
+  border: 1px solid #3880ff;
+  margin:2%;
+  height:40px;
+  width:80px;
+  color:black
+}
+ion-input.ng-invalid{
+  border-left: 2px solid red;
+}
+.error{
+  color:red;
+  margin-left:25px;
+}
+.inp_table{
+  width: 100px;
+  // background:rgb(188, 216, 242);
+  // border: red;
+  border-bottom: 2px solid #3880ff;
+}

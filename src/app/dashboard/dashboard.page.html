@@ -1,0 +1,336 @@
+<ion-header>
+  <ion-toolbar color="primary" slots="start">
+    <ion-buttons slot="start" >
+      <ion-menu-button autoHide="false"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Dashboard</ion-title>
+    <app-notification></app-notification>
+  </ion-toolbar>
+</ion-header>
+
+
+
+<ion-content>
+  <ion-card style=" margin: 0px !important;">
+    <ion-card-content>
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title >
+            <h2><b>Select Property</b></h2>
+          </mat-panel-title>
+          <mat-panel-description>
+            <!-- <h6>Complete Deal Info</h6> -->
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div>
+          <ion-item>
+            <ion-label><b>Select Project</b></ion-label>
+            <ion-select interface="popover" [(ngModel)]="selected_project" name="selected_project" (ionChange)="getApartment(selected_project)">
+              <ion-select-option *ngFor="let item of project_master" [value]="item.project_id">{{item.project_name}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-item>
+            <ion-label><b>Select Wing</b></ion-label>
+            <ion-select interface="popover" [(ngModel)]="selected_wing" name="selected_wing" >
+              <ion-select-option *ngFor="let item of wing_apidata" [value]="item.wingName">{{item.wingName}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-item>
+            <ion-label><b>Select Floor</b></ion-label>
+            <ion-select interface="popover" [(ngModel)]="selected_floor" name="selected_floor">
+              <ion-select-option *ngFor="let item of floor_apidata" [value]="item.floor">{{item.floor}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-item>
+            <ion-label><b>Select Unit</b></ion-label>
+            <ion-select interface="popover" [(ngModel)]="selected_unit" name="selected_unit">
+              <ion-select-option *ngFor="let item of unit_apidata" [value]="item.unit_type">{{item.unit_type}}</ion-select-option>
+            </ion-select>
+          </ion-item><br>
+
+          <ion-button expand="block" (click)="getSummary()">Fetch</ion-button>
+        </div>
+      </mat-expansion-panel><br>
+    </mat-accordion>
+    </ion-card-content>
+  </ion-card><br>
+
+  <!-- <ion-card>
+    <ion-card-content>
+      <ion-item>
+        <ion-label><b>Select Project</b></ion-label>
+        <ion-select interface="popover" [(ngModel)]="selected_project" name="selected_project" (ionChange)="getApartment(selected_project)">
+          <ion-select-option *ngFor="let item of project_master" [value]="item.project_id">{{item.project_name}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label><b>Select Wing</b></ion-label>
+        <ion-select interface="popover" [(ngModel)]="selected_wing" name="selected_wing" >
+          <ion-select-option *ngFor="let item of wing_apidata" [value]="item.wingName">{{item.wingName}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label><b>Select Floor</b></ion-label>
+        <ion-select interface="popover" [(ngModel)]="selected_floor" name="selected_floor">
+          <ion-select-option *ngFor="let item of floor_apidata" [value]="item.floor">{{item.floor}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label><b>Select Unit</b></ion-label>
+        <ion-select interface="popover" [(ngModel)]="selected_unit" name="selected_unit">
+          <ion-select-option *ngFor="let item of unit_apidata" [value]="item.unit_type">{{item.unit_type}}</ion-select-option>
+        </ion-select>
+      </ion-item><br>
+
+      <ion-button expand="block" (click)="getSummary()">Fetch</ion-button>
+    </ion-card-content>
+  </ion-card> -->
+
+  <!-- <ion-slides pager="true" [options]="sliderConfig">
+    <ion-slide>
+      <ion-card class="deshboardbookingcard">
+        <ion-card-header>
+          <ion-card-subtitle style="color: whitesmoke;">BOOKINGS</ion-card-subtitle>
+          <ion-card-title style="color: whitesmoke;">Today</ion-card-title><br>
+          <ion-card-title style="color: whitesmoke;">0</ion-card-title><br>
+          <ion-card-subtitle style="color: whitesmoke;">14/03/2021 - 20/03/2021</ion-card-subtitle>
+        </ion-card-header>
+
+      </ion-card>
+    </ion-slide>
+    <ion-slide>
+      <ion-card class="deshboardbookingcard">
+        <ion-card-header>
+          <ion-card-subtitle style="color: whitesmoke;">BOOKINGS</ion-card-subtitle>
+          <ion-card-title style="color: whitesmoke;">This Week</ion-card-title><br>
+          <ion-card-title style="color: whitesmoke;">5</ion-card-title><br>
+          <ion-card-subtitle style="color: whitesmoke;">14/03/2021 - 20/03/2021</ion-card-subtitle>
+        </ion-card-header>
+
+      </ion-card>
+    </ion-slide>
+    <ion-slide>
+      <ion-card class="deshboardbookingcard">
+        <ion-card-header>
+          <ion-card-subtitle style="color: whitesmoke;">BOOKINGS</ion-card-subtitle>
+          <ion-card-title style="color: whitesmoke;">This Month</ion-card-title><br>
+          <ion-card-title style="color: whitesmoke;">14</ion-card-title><br>
+          <ion-card-subtitle style="color: whitesmoke;">01/03/2021 - 31/03/2021</ion-card-subtitle>
+        </ion-card-header>
+
+      </ion-card>
+    </ion-slide>
+    <ion-slide>
+      <ion-card class="deshboardbookingcard">
+        <ion-card-header>
+          <ion-card-subtitle style="color: whitesmoke;">BOOKINGS</ion-card-subtitle>
+          <ion-card-title style="color: whitesmoke;">Last Month</ion-card-title><br>
+          <ion-card-title style="color: whitesmoke;">1</ion-card-title><br>
+          <ion-card-subtitle style="color: whitesmoke;">01/02/2021 - 28/02/2021</ion-card-subtitle>
+        </ion-card-header>
+
+      </ion-card>
+    </ion-slide>
+    <ion-slide>
+      <ion-card class="deshboardbookingcard">
+        <ion-card-header>
+          <ion-card-subtitle style="color: whitesmoke;">BOOKINGS</ion-card-subtitle>
+          <ion-card-title style="color: whitesmoke;">This Year</ion-card-title><br>
+          <ion-card-title style="color: whitesmoke;">25</ion-card-title><br>
+          <ion-card-subtitle style="color: whitesmoke;">01/01/2021 - 31/12/2021</ion-card-subtitle>
+
+        </ion-card-header>
+
+      </ion-card>
+    </ion-slide>
+    <ion-slide>
+      <ion-card class="deshboardbookingcard">
+        <ion-card-header>
+          <ion-card-subtitle style="color: whitesmoke;">BOOKINGS</ion-card-subtitle>
+          <ion-card-title style="color: whitesmoke;">Total</ion-card-title><br>
+          <ion-card-title style="color: whitesmoke;">41</ion-card-title><br>
+          <ion-card-subtitle style="color: whitesmoke;">Broker: 23 - Direct: 18</ion-card-subtitle>
+
+        </ion-card-header>
+
+      </ion-card>
+    </ion-slide>
+  </ion-slides> -->
+
+  <!-- <ion-slides pager="true" [options]="sliderConfig">
+    <ion-slide>
+      <ion-card class="deshboardpaymentcard">
+        <ion-card-header>
+          <ion-card-subtitle style="color: whitesmoke;">PAYMENTS</ion-card-subtitle>
+          <ion-card-title style="color: whitesmoke;">Today</ion-card-title><br>
+          <ion-card-title style="color: whitesmoke;">0</ion-card-title><br>
+          <ion-card-subtitle style="color: whitesmoke;">&nbsp;&nbsp;&nbsp;&nbsp;Basic: 0.00 - GST:00&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><br> </ion-card-subtitle>
+        </ion-card-header>
+      </ion-card>
+    </ion-slide>
+
+    <ion-slide>
+      <ion-card class="deshboardpaymentcard">
+        <ion-card-header>
+          <ion-card-subtitle style="color: whitesmoke;">PAYMENTS</ion-card-subtitle>
+          <ion-card-title style="color: whitesmoke;">This Week</ion-card-title><br>
+          <ion-card-title style="color: whitesmoke;">7,55,622</ion-card-title><br>
+          <ion-card-subtitle style="color: whitesmoke;">Basic: 6,60,997.00 - GST:94,625.00</ion-card-subtitle>
+        </ion-card-header>
+      </ion-card>
+    </ion-slide>
+
+    <ion-slide>
+      <ion-card class="deshboardpaymentcard">
+        <ion-card-header>
+          <ion-card-subtitle style="color: whitesmoke;">PAYMENTS</ion-card-subtitle>
+          <ion-card-title style="color: whitesmoke;">This Month</ion-card-title><br>
+          <ion-card-title style="color: whitesmoke;">34,37,372</ion-card-title><br>
+          <ion-card-subtitle style="color: whitesmoke;">Basic: 33,42,747.00 - GST:94,625.00</ion-card-subtitle>
+        </ion-card-header>
+      </ion-card>
+    </ion-slide>
+
+    <ion-slide>
+      <ion-card class="deshboardpaymentcard">
+        <ion-card-header>
+          <ion-card-subtitle style="color: whitesmoke;">PAYMENTS</ion-card-subtitle>
+          <ion-card-title style="color: whitesmoke;">Last Month</ion-card-title><br>
+          <ion-card-title style="color: whitesmoke;">13,15,292</ion-card-title><br>
+          <ion-card-subtitle style="color: whitesmoke;">Basic: 9,88,000.00 - GST: 3,27,292.00</ion-card-subtitle>
+        </ion-card-header>
+      </ion-card>
+    </ion-slide>
+
+    <ion-slide>
+      <ion-card class="deshboardpaymentcard">
+        <ion-card-header>
+          <ion-card-subtitle style="color: whitesmoke;">PAYMENTS</ion-card-subtitle>
+          <ion-card-title style="color: whitesmoke;">This Year</ion-card-title><br>
+          <ion-card-title style="color: whitesmoke;">1,04,66,490</ion-card-title><br>
+          <ion-card-subtitle style="color: whitesmoke;">BASIC: 97,75,315.00 - GST: 6,91,175.00</ion-card-subtitle>
+        </ion-card-header>
+      </ion-card>
+    </ion-slide>
+
+    <ion-slide>
+      <ion-card class="deshboardpaymentcard">
+        <ion-card-header>
+          <ion-card-subtitle style="color: whitesmoke;">PAYMENTS</ion-card-subtitle>
+          <ion-card-title style="color: whitesmoke;">Total</ion-card-title><br>
+          <ion-card-title style="color: whitesmoke;">1,23,08,016</ion-card-title><br>
+          <ion-card-subtitle style="color: whitesmoke;">BASIC: 1,15,86,003.00 - BASIC: 1,15,86,003.00</ion-card-subtitle>
+        </ion-card-header>
+      </ion-card>
+    </ion-slide>
+  </ion-slides> -->
+
+  <!-- <ion-slides pager="true" [options]="sliderConfig">
+    <ion-slide>
+      <ion-card class="deshboardregistercard">
+        <ion-card-header>
+          <ion-card-subtitle style="color: whitesmoke;">REGISTRATION</ion-card-subtitle>
+          <ion-card-title style="color: whitesmoke;">Registered</ion-card-title><br>
+          <ion-card-title style="color: whitesmoke;">11</ion-card-title><br>
+        </ion-card-header>
+      </ion-card>
+    </ion-slide>
+    <ion-slide>
+      <ion-card class="deshboardregistercard">
+        <ion-card-header>
+          <ion-card-subtitle style="color: whitesmoke;">REGISTRATION</ion-card-subtitle>
+          <ion-card-title style="color: whitesmoke;">Not Registered</ion-card-title><br>
+          <ion-card-title style="color: whitesmoke;">30</ion-card-title><br>
+        </ion-card-header>
+      </ion-card>
+    </ion-slide>
+    <ion-slide>
+      <ion-card class="deshboardregistercard">
+        <ion-card-header>
+          <ion-card-subtitle style="color: whitesmoke;">REGISTRATION</ion-card-subtitle>
+          <ion-card-title style="color: whitesmoke;">> 30 Days</ion-card-title><br>
+          <ion-card-title style="color: whitesmoke;">9</ion-card-title><br>
+        </ion-card-header>
+      </ion-card>
+    </ion-slide>
+    <ion-slide>
+      <ion-card class="deshboardregistercard">
+        <ion-card-header>
+          <ion-card-subtitle style="color: whitesmoke;">REGISTRATION</ion-card-subtitle>
+          <ion-card-title style="color: whitesmoke;"> > 90 Days</ion-card-title><br>
+          <ion-card-title style="color: whitesmoke;">7</ion-card-title><br>
+        </ion-card-header>
+      </ion-card>
+    </ion-slide>
+    <ion-slide>
+      <ion-card class="deshboardregistercard">
+        <ion-card-header>
+          <ion-card-subtitle style="color: whitesmoke;">REGISTRATION</ion-card-subtitle>
+          <ion-card-title style="color: whitesmoke;"> > 180 Days</ion-card-title><br>
+          <ion-card-title style="color: whitesmoke;">0</ion-card-title><br>
+        </ion-card-header>
+      </ion-card>
+    </ion-slide>
+    <ion-slide>
+      <ion-card class="deshboardregistercard">
+        <ion-card-header>
+          <ion-card-subtitle style="color: whitesmoke;">REGISTRATION</ion-card-subtitle>
+          <ion-card-title style="color: whitesmoke;"> > 360 Days</ion-card-title><br>
+          <ion-card-title style="color: whitesmoke;">0</ion-card-title><br>
+        </ion-card-header>
+      </ion-card>
+    </ion-slide>
+  </ion-slides> -->
+
+  <!-- <ion-slides pager="true" [options]="sliderConfig">
+    <ion-slide>
+      <ion-card class="deshboardinventorycard">
+        <ion-card-header>
+          <ion-card-subtitle style="color: whitesmoke;">INVENTORY</ion-card-subtitle>
+          <ion-card-title style="color: whitesmoke;">All</ion-card-title><br>
+          <ion-card-title style="color: whitesmoke;">176</ion-card-title><br>
+        </ion-card-header>
+      </ion-card>
+    </ion-slide>
+    <ion-slide>
+      <ion-card class="deshboardinventorycard">
+        <ion-card-header>
+          <ion-card-subtitle style="color: whitesmoke;">INVENTORY</ion-card-subtitle>
+          <ion-card-title style="color: whitesmoke;">Available</ion-card-title><br>
+          <ion-card-title style="color: whitesmoke;">125</ion-card-title><br>
+        </ion-card-header>
+      </ion-card>
+    </ion-slide>
+    <ion-slide>
+      <ion-card class="deshboardinventorycard">
+        <ion-card-header>
+          <ion-card-subtitle style="color: whitesmoke;">INVENTORY</ion-card-subtitle>
+          <ion-card-title style="color: whitesmoke;">SOLD</ion-card-title><br>
+          <ion-card-title style="color: whitesmoke;">41</ion-card-title><br>
+        </ion-card-header>
+      </ion-card>
+    </ion-slide>
+    <ion-slide>
+      <ion-card class="deshboardinventorycard">
+        <ion-card-header>
+          <ion-card-subtitle style="color: whitesmoke;">INVENTORY</ion-card-subtitle>
+          <ion-card-title style="color: whitesmoke;">Block</ion-card-title><br>
+          <ion-card-title style="color: whitesmoke;">0</ion-card-title><br>
+        </ion-card-header>
+      </ion-card>
+    </ion-slide>
+  </ion-slides> -->
+
+  <div  [chart]="chart"></div>
+  <div  [chart]="chart2"></div>
+  <div  [chart]="chart3"></div>
+  <div  [chart]="chart4"></div>
+
+</ion-content>

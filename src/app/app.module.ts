@@ -6,11 +6,18 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import {HttpClientModule} from '@angular/common/http';
+import {NgxWebstorageModule} from 'ngx-webstorage';
+import {NavmenuModule} from './component/navmenu/navmenu.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {ChartModule} from 'angular-highcharts'
+
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
+  imports: [ChartModule, BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule,
+            NgxWebstorageModule.forRoot(), NavmenuModule, BrowserAnimationsModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })

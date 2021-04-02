@@ -1,0 +1,706 @@
+<ion-header>
+  <ion-toolbar  color="primary" slots="start">
+    <ion-buttons slot="start">
+      <ion-menu-button autoHide="false"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Booking</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+      <!-- <h3>{{sampledata}}
+        {{broker_errors}}</h3> -->
+  <form #bookingForm="ngForm" (ngSubmit)="bookingdetails(bookingForm.value);">
+    <mat-horizontal-stepper labelPosition="bottom" linear>
+
+      <mat-step label="Applicant" completed="true">
+        <div>
+          <ion-item-divider>
+            <ion-label>
+              Applicant Details
+            </ion-label>
+          </ion-item-divider>
+          <ion-item>
+            <ion-input  type="text" #fname="ngModel" [pattern]="'[a-zA-Z]*'" ngModel name="fname" placeholder="First  Name *"></ion-input>
+            <span *ngIf="fname.invalid" class="error"><b>Only Alphabet</b></span>
+          </ion-item>
+          <ion-item>
+            <ion-input type="text" #mname="ngModel" [pattern]="'[a-zA-Z]*'"  ngModel name="mname" placeholder="Middle  Name *"></ion-input>
+            <span *ngIf="mname.invalid" class="error"><b>Only Alphabet</b></span>
+          </ion-item>
+          <ion-item>
+            <ion-input type="text" #lname="ngModel" [pattern]="'[a-zA-Z]*'" ngModel name="lname" placeholder="Last  Name *"></ion-input>
+            <span *ngIf="lname.invalid" class="error"><b>Only Alphabet</b></span>
+          </ion-item>
+          <ion-item>
+            <ion-input type="tel"  #mobileno="ngModel" [pattern]="'[0-9]{10}'" [(ngModel)]="mobile_no" name="mobile_no" (keyup)="checkContact()"   placeholder="Mobile No.*"></ion-input>
+            <span *ngIf="mobileno.invalid" class="error"><b>Enter Valid Number</b></span>
+            <span ></span>
+          </ion-item>
+          <ion-item>
+            <ion-input type="tel" #whatsapp_no="ngModel" [pattern]="'[0-9]{10}'" ngModel name="whatsapp_no" placeholder="WhatsApp No. *"></ion-input>
+
+            <span *ngIf="whatsapp_no.invalid" class="error"><b>Only Numbers</b></span>
+          </ion-item>
+          <ion-item>
+            <ion-input type="email" ngModel name="email" placeholder="Email "></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input type="text" ngModel name="pan" placeholder="Pan Card Number  "></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input type="text" ngModel name="aadhar" placeholder="Aadhar Card Number  "></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-datetime value="1900-01-1" ngModel name="dob" placeholder="Enter DOB"></ion-datetime>
+            <ion-icon slot="end" name="calendar-number-outline"></ion-icon>
+          </ion-item>
+          <ion-item>
+            <ion-input type="text" #profession="ngModel" [pattern]="'[a-zA-Z]*'" ngModel name="profession" placeholder="Enter Profession  "></ion-input>
+            <span *ngIf="profession.invalid" class="error"><b>Only Alphabet</b></span>
+          </ion-item>
+          <ion-item>
+            <ion-input type="number" ngModelname="age" placeholder="Enter Age  "></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>Residential Status:-</ion-label>
+            <ion-select [(ngModel)]="residential_status" name="residential_status" okText="Okay" cancelText="Dismiss">
+              <ion-select-option value="residential">Residential</ion-select-option>
+              <ion-select-option value="non-residential">Non Residential</ion-select-option>
+              <ion-select-option value="fni">Foreign National of India</ion-select-option>
+              <ion-select-option value="nri">NRI</ion-select-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-item-divider>
+            <ion-label>
+              Permanent Address
+            </ion-label>
+          </ion-item-divider>
+          <ion-item>
+            <ion-textarea type="text" ngModelname="address" placeholder="Enter Address *"></ion-textarea>
+          </ion-item>
+          <ion-item>
+            <ion-input type="text" ngModel name="city" placeholder="Enter City *"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input type="text"  #state="ngModel" [pattern]="'[a-zA-Z]*'" ngModel name="state" placeholder="Enter State *"></ion-input>
+            <span *ngIf="state.invalid" class="error"><b>Only Alphabet</b></span>
+          </ion-item>
+          <ion-item>
+            <ion-input type="number" ngModel name="zipcode" placeholder="Enter Zip Code *"></ion-input>
+          </ion-item>
+
+          <ion-item-divider>
+            <ion-label>
+              Correspondence Address
+            </ion-label>
+          </ion-item-divider>
+          <ion-item>
+            <ion-textarea type="text" ngModelname="caddress" placeholder="Enter Address *"></ion-textarea>
+          </ion-item>
+          <ion-item>
+            <ion-input type="text" ngModelname="ccity" placeholder="Enter City *"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input type="text" #cstate="ngModel" [pattern]="'[a-zA-Z]*'" ngModel name="cstate" placeholder="Enter State *"></ion-input>
+            <span *ngIf="cstate.invalid" class="error"><b>Only Alphabet</b></span>
+          </ion-item>
+          <ion-item>
+            <ion-input type="number" ngModel name="czipcode" placeholder="Enter Zip Code *"></ion-input>
+          </ion-item><br>
+        </div>
+        <!-- <div> -->
+          <button class="nextbutton" mat-raised-button color="primary" [disabled]="bookingForm.invalid"
+          mat-button matStepperNext type="button">Next</button>
+        <!-- </div> -->
+      </mat-step>
+
+      <mat-step label="Co-Applicant" completed="true">
+        <form #co_applicantForm="ngForm" (ngSubmit)="addcoapplicant(co_applicantForm);">
+          <div>
+            <ion-item-divider>
+              <ion-label>
+                Co-Applicant Details
+              </ion-label>
+            </ion-item-divider>
+            <ion-item>
+              <ion-input type="text" #cfname="ngModel" [pattern]="'[a-zA-Z]*'"  ngModel name="cfname" placeholder="First  Name *"></ion-input>
+              <span *ngIf="cfname.invalid" class="error"><b>Only Alphabet</b></span>
+            </ion-item>
+            <ion-item>
+              <ion-input type="text" #cmname="ngModel" [pattern]="'[a-zA-Z]*'" ngModel name="cmname" placeholder="Middle  Name *"></ion-input>
+              <span *ngIf="cmname.invalid" class="error"><b>Only Alphabet</b></span>
+            </ion-item>
+            <ion-item>
+              <ion-input type="text" #clname="ngModel" [pattern]="'[a-zA-Z]*'" ngModel name="clname" placeholder="Last  Name *"></ion-input>
+              <span *ngIf="clname.invalid" class="error"><b>Only Alphabet</b></span>
+            </ion-item>
+            <ion-item>
+              <ion-input type="tel" #cmobile_no="ngModel" [pattern]="'[0-9]*'" ngModel name="cmobile_no" placeholder="Mobile No.*"></ion-input>
+              <span *ngIf="cmobile_no.invalid" class="error"><b>Only Numbers</b></span>
+            </ion-item>
+            <ion-item>
+              <ion-input type="tel" #cwhatsapp_no="ngModel" [pattern]="'[0-9]*'" ngModel name="cwhatsapp_no" placeholder="WhatsApp No. *"></ion-input>
+              <span *ngIf="cwhatsapp_no.invalid" class="error"><b>Only Numbers</b></span>
+            </ion-item>
+            <ion-item>
+              <ion-input type="email" ngModel name="cemail" placeholder="Email "></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input type="text" ngModel name="cpan" placeholder="Pan Card Number  "></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input type="text" ngModel name="caadhar" placeholder="Aadhar Card Number  "></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-datetime value="1900-01-1" ngModel name="cdob" placeholder="Enter DOB"></ion-datetime>
+              <ion-icon slot="end" name="calendar-number-outline"></ion-icon>
+            </ion-item>
+            <ion-item>
+              <ion-input type="text" #cprofession="ngModel" [pattern]="'[a-zA-Z]*'" ngModel name="cprofession" placeholder="Enter Profession  "></ion-input>
+              <span *ngIf="cprofession.invalid" class="error"><b>Only Alphabets</b></span>
+            </ion-item>
+            <ion-item>
+              <ion-input type="number" ngModelname="cage" placeholder="Enter Age  "></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label>Residential Status:-</ion-label>
+              <ion-select [(ngModel)]="residential_status" name="cresidential_status" okText="Okay" cancelText="Dismiss">
+                <ion-select-option value="cresidential">Residential</ion-select-option>
+                <ion-select-option value="cnon-residential">Non Residential</ion-select-option>
+                <ion-select-option value="cfni">Foreign National of India</ion-select-option>
+                <ion-select-option value="cnri">NRI</ion-select-option>
+              </ion-select>
+            </ion-item>
+
+            <ion-item-divider>
+              <ion-label>
+                Permanent Address
+              </ion-label>
+            </ion-item-divider>
+            <ion-item>
+              <ion-textarea type="text" ngModelname="caddress" placeholder="Enter Address *"></ion-textarea>
+            </ion-item>
+            <ion-item>
+              <ion-input type="text" ngModel name="ccity" placeholder="Enter City *"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input type="text" #ccstate="ngModel" [pattern]="'[a-zA-Z]*'" ngModel name="ccstate" placeholder="Enter State *"></ion-input>
+              <span *ngIf="ccstate.invalid" class="error"><b>Only Alphabets</b></span>
+            </ion-item>
+            <ion-item>
+              <ion-input type="number" ngModel name="czipcode" placeholder="Enter Zip Code *"></ion-input>
+            </ion-item>
+
+            <ion-item-divider>
+              <ion-label>
+                Correspondence Address
+              </ion-label>
+            </ion-item-divider>
+            <ion-item>
+              <ion-textarea type="text" ngModel name="ccaddress" placeholder="Enter Address *"></ion-textarea>
+            </ion-item>
+            <ion-item>
+              <ion-input type="text" ngModelcname="ccity" placeholder="Enter City *"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input type="text" #cccstate="ngModel" [pattern]="'[a-zA-Z]*'" ngModel name="cccstate" placeholder="Enter State *"></ion-input>
+              <span *ngIf="cccstate.invalid" class="error"><b>Only Alphabets</b></span>
+            </ion-item>
+            <ion-item>
+              <ion-input type="number" ngModel name="czipcode" placeholder="Enter Zip Code *"></ion-input>
+            </ion-item><br>
+          </div>
+
+          <div style="text-align: center;">
+            <button class="backbutton" mat-button matStepperPrevious type="button">Back</button>
+            <button class="addbutton" type="submit"  [disabled]="bookingForm.invalid" >Add</button>
+            <button class="nextbutton" mat-button matStepperNext type="button"  [disabled]="bookingForm.invalid">Next</button>
+          </div>
+      </form>
+
+        <div *ngFor="let co_applicant of co_applicants;  let c = index">
+
+          <ion-card id="bookingcard" style="margin:5px 0px; padding:0px;">
+            <ion-item>
+              <ion-avatar slot="start">
+                <img src="../../assets/icon/avatar.png">
+              </ion-avatar>
+              <ion-label><b>{{co_applicant.cfname}} {{co_applicant.clname}} {{c}}</b></ion-label>
+              <ion-icon (click)="edit_co_applicant(c, co_applicantForm)" name="pencil-outline" slot="end" style="color: blue;"></ion-icon>
+              <ion-icon (click)="delete_co_applicant(c)" name="trash" slot="end" style="color: red;"></ion-icon>
+            </ion-item>
+
+            <ion-card-content>
+              <li>
+                <b>
+                  {{co_applicant.caddress}}
+                </b>
+              </li>
+              <li>
+                <b>
+                  <ion-icon name="call" style="color: blue;"></ion-icon>
+                  {{co_applicant.cmobile_no}}
+                </b><br>
+              </li>
+              <li>
+                <b>
+                  <ion-icon name="logo-whatsapp" style="color: #25D366;"></ion-icon>
+                  {{co_applicant.cwhatsapp_no}}
+                </b><br>
+              </li>
+              <li>
+                <b>
+                  <ion-icon name="id-card" style="color:#AEC4EB;"></ion-icon>
+                  {{co_applicant.cpan}}
+                </b><br>
+              </li>
+              <li>
+                <b>
+                  <ion-icon name="calendar" style="color:rgb(106, 255, 0);"></ion-icon>
+                  {{co_applicant.cdob}}
+                </b><br>
+              </li>
+            </ion-card-content>
+
+            <ion-item>
+              <ion-icon style="padding: 10px; color:red" name="mail-outline"></ion-icon>
+              <ion-label><b> {{co_applicant.cemail}}</b></ion-label>
+
+            </ion-item>
+          </ion-card>
+        </div>
+
+      </mat-step>
+
+      <mat-step label="Payment" completed="true">`
+
+        <div>
+          <ion-item-divider>
+            <ion-label>
+              Rate Details
+            </ion-label>
+          </ion-item-divider>
+          <ion-item>
+            <ion-label>Package:-</ion-label>
+            <ion-select [(ngModel)]="package_type" name="package_type" okText="Okay" cancelText="Dismiss">
+            <ion-select-option value="package">Package</ion-select-option>
+            <ion-select-option value="manual">Manual</ion-select-option>
+            </ion-select>
+            </ion-item>
+
+            <div *ngIf="package_type== 'package'">
+              <ion-item>
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">RERA Area</th>
+                      <th scope="col">RERA Per Sq. ft.</th>
+                      <th scope="col">Sq. ft.</th>
+                      <th scope="col">Per Sq. ft.</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th>421</th>
+                      <td>0.00</td>
+                      <td>625</td>
+                      <td>0.00</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </ion-item>
+            </div>
+
+            <ion-item-divider>
+              <ion-label>
+                Property Details
+              </ion-label>
+            </ion-item-divider>
+
+            <ion-item>
+              <ion-label>Select Property</ion-label>
+              <ionic-selectable [(ngModel)]="selected_property" name="selected_property"  [items]="properties"
+              itemVaueField="apartment_id" itemTextField="flatNo" [canSearch]="true" headerColor="primary" >
+                <ng-template ionicSelectableCloseButtonTemplate>
+                  <ion-icon name="close-circle"></ion-icon>
+                </ng-template>
+
+                <ng-template ionicSelectableItemTemplate let-properties="item">
+                  {{properties.apartment_id}} - {{properties.projectName}} - {{properties.flatNo}}
+                </ng-template>
+              </ionic-selectable>
+            </ion-item>
+
+            <div *ngIf="selected_property">
+              <ion-item>
+                <h2>{{selected_property.projectName}} F{{selected_property.floor}} {{selected_property.wingName}} {{selected_property.flatNo}}</h2>
+              </ion-item>
+            </div>
+
+            <ion-item>
+            <ion-label>Payment Mode:-</ion-label>
+            <ion-select [(ngModel)]="paymentmode" name="paymentmode" okText="Okay" cancelText="Dismiss">
+            <ion-select-option value="outright">Outright</ion-select-option>
+            <ion-select-option value="selfloan">Self Loan</ion-select-option>
+            <ion-select-option value="lfb">Loan From Builder</ion-select-option>
+            </ion-select>
+            </ion-item>
+
+            <ion-item-divider>
+              <ion-label>
+                Payment Details
+              </ion-label>
+            </ion-item-divider>
+
+            <ion-item>
+            <ion-label>Payment Schedule:-</ion-label>
+            <ion-select [(ngModel)]="payment_schedule" name="payment_schedule" okText="Okay" cancelText="Dismiss" (click)="getAllApi()">
+            <ion-select-option value="regular">Regular</ion-select-option>
+            <ion-select-option value="customised">Customised</ion-select-option>
+            </ion-select>
+            </ion-item>
+
+
+            <div *ngIf="payment_schedule== 'regular'">
+            <ion-item>
+            <ion-label>Payment Terms:-</ion-label>
+            <ion-select [(ngModel)]="payment_terms" name="payment_terms" okText="Okay" cancelText="Dismiss">
+              <div *ngFor="let p_term of payment_terms_api">
+                <ion-select-option value="p_term.paymentTermsName">{{p_term.paymentTermsName}}</ion-select-option>
+              </div>
+            <!-- <ion-select-option value="agreement">Agreement Value</ion-select-option>
+            <ion-select-option value="consideration">Total Consideration</ion-select-option> -->
+            </ion-select>
+            </ion-item>
+
+            <ion-item>
+            <ion-label>Demand On:-</ion-label>
+            <ion-select [(ngModel)]="demand_on" name="demand_on" okText="Okay" cancelText="Dismiss">
+            <ion-select-option value="flatcost">Basic Flat Cost 0</ion-select-option>
+            <ion-select-option value="agreement">Agreement Value</ion-select-option>
+            <ion-select-option value="consideration">Total Consideration</ion-select-option>
+            </ion-select>
+            </ion-item>
+            </div>
+
+            <div *ngIf="payment_schedule== 'customised'">
+              <ion-item>
+              <ion-label>Demand On:-</ion-label>
+              <ion-select [(ngModel)]="cdemand_on" name="cdemand_on" okText="Okay" cancelText="Dismiss">
+              <ion-select-option value="cflatcost">Basic Flat Cost 0</ion-select-option>
+              <ion-select-option value="cagreement">Agreement Value</ion-select-option>
+              <ion-select-option value="cconsideration">Total Consideration</ion-select-option>
+              </ion-select>
+              </ion-item>
+
+              <ion-item>
+              <ion-input type="text" [(ngModel)]="terms" name="terms" placeholder="Enter Terms *"></ion-input>
+              </ion-item>
+              <ion-item>
+              <ion-input type="number" [(ngModel)]="percentage" name="percentage" placeholder="Enter Percentage *"></ion-input>
+              <ion-button (click)="addterms()">Add</ion-button>
+              <ion-button color="danger">clear</ion-button>
+              </ion-item>
+              <ion-item>
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Terms</th>
+                      <th scope="col">Total Percentage</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let t of terms_arr">
+                      <th>{{t.t}}</th>
+                      <td>{{t.p}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </ion-item>
+            </div>
+
+            <ion-item-divider>
+              <ion-label>
+                TAX Details
+              </ion-label>
+            </ion-item-divider>
+
+            <ion-item>
+              <ion-input type="text" ngModel name="gst" placeholder="GSTIN Number"></ion-input>
+            </ion-item>
+
+            <ion-item-divider>
+              <ion-label>
+                Extra
+              </ion-label>
+            </ion-item-divider>
+
+            <ion-item>
+            <ion-textarea type="text" ngModel name="description" placeholder="Additional Description"></ion-textarea>
+            </ion-item>
+
+            <ion-item-divider>
+              <ion-label>
+                Deal Details
+              </ion-label>
+            </ion-item-divider>
+
+            <ion-item>
+              <div *ngIf="package_deal_api[0]">
+                <div *ngIf="package_deal_api[0]['project_id'] == '1' || undefined">
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th scope="col">Particulars</th>
+                        <th scope="col">Custom Deals</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">Package Deal</th>
+                        <td><ion-input type="text"  class="inp_table" (ionBlur)="calculate()"></ion-input></td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Basic Flat Cost </th>
+                        <td><ion-input type="text"  class="inp_table" (ionBlur)="calculate()"></ion-input></td>
+                      </tr>
+                      <tr>
+                        <th scope="row">GST</th>
+                        <td><ion-input type="text"  class="inp_table" (ionBlur)="calculate()"></ion-input></td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Stamp Duty</th>
+                        <td><ion-input type="text"  class="inp_table" (ionBlur)="calculate()"></ion-input></td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Registration</th>
+                        <td><ion-input type="text"  class="inp_table" (ionBlur)="calculate()"></ion-input></td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Service Charges</th>
+                        <td><ion-input type="text"  class="inp_table" (ionBlur)="calculate()"></ion-input></td>
+                      </tr>
+                      <tr>
+                        <th scope="row">RoundOff  </th>
+                        <td><ion-input type="text"  class="inp_table" (ionBlur)="calculate()"></ion-input></td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Other Charges  </th>
+                        <td><ion-input type="text"  class="inp_table" (ionBlur)="calculate()"></ion-input></td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Total Consideration </th>
+                        <td><ion-input type="text"  class="inp_table" (ionBlur)="calculate()"></ion-input></td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Agreement Value  </th>
+                        <td><ion-input type="text"  class="inp_table" (ionBlur)="calculate()"></ion-input></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div *ngIf="package_deal_api[0]['project_id'] == '2' || undefined">
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th scope="col">Particulars</th>
+                        <th scope="col">Custom Deals</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">Package Deal</th>
+                        <td><ion-input type="text"  class="inp_table" (ionBlur)="calculate()"></ion-input></td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Basic Flat Cost </th>
+                        <td><ion-input type="text"  class="inp_table" (ionBlur)="calculate()"></ion-input></td>
+                      </tr>
+                      <tr>
+                        <th scope="row">GST</th>
+                        <td><ion-input type="text"  class="inp_table" (ionBlur)="calculate()"></ion-input></td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Stamp Duty</th>
+                        <td><ion-input type="text"  class="inp_table" (ionBlur)="calculate()"></ion-input></td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Registration</th>
+                        <td><ion-input type="text"  class="inp_table" (ionBlur)="calculate()"></ion-input></td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Service Charges</th>
+                        <td><ion-input type="text"  class="inp_table" (ionBlur)="calculate()"></ion-input></td>
+                      </tr>
+                      <tr>
+                        <th scope="row">RoundOff  </th>
+                        <td><ion-input type="text"  class="inp_table" (ionBlur)="calculate()"></ion-input></td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Other Charges  </th>
+                        <td><ion-input type="text"  class="inp_table" (ionBlur)="calculate()"></ion-input></td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Genrator Charges  </th>
+                        <td><ion-input type="text"  class="inp_table" (ionBlur)="calculate()"></ion-input></td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Total Consideration </th>
+                        <td><ion-input type="text"  class="inp_table" (ionBlur)="calculate()"></ion-input></td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Agreement Value  </th>
+                        <td><ion-input type="text"  class="inp_table" (ionBlur)="calculate()"></ion-input></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+            </ion-item>
+
+
+        </div>
+        <div>
+          <button class="backbutton" mat-button matStepperPrevious type="button">Back</button>
+          <button class="nextbutton" mat-button matStepperNext type="button">Next</button>
+        </div>
+      </mat-step>
+
+      <mat-step label="Broker"  completed="true">
+          <div>
+            <ion-item-divider>
+              <ion-label>
+                Broker Details
+              </ion-label>
+            </ion-item-divider>
+
+            <ion-item>
+              <ion-label>Select Broker:-</ion-label>
+              <ion-select [(ngModel)]="select_broker" name="select_broker" okText="Okay" cancelText="Dismiss">
+                <ion-select-option value="choose_one">Choose One</ion-select-option>
+                <ion-select-option value="no_broker">No Broker</ion-select-option>
+                <ion-select-option value="create_new">Create New</ion-select-option>
+                <!-- <div *ngFor="let broker of brokers">
+                  <ion-select-option  value=broker.broker_name>{{broker.broker_name}}</ion-select-option>
+                </div> -->
+              </ion-select>
+            </ion-item><br>
+
+            <div *ngIf="(select_broker === 'choose_one')">
+              <ion-item>
+                <ion-label>Choose Broker</ion-label>
+                <ionic-selectable [(ngModel)]="selected_broker" name="selected_broker"  [items]="brokers"
+                itemVaueField="broker_id" itemTextField="brokerName" [canSearch]="true" headerColor="primary">
+                  <ng-template ionicSelectableCloseButtonTemplate>
+                    <ion-icon name="close-circle"></ion-icon>
+                  </ng-template>
+
+                  <ng-template ionicSelectableItemTemplate let-brokers="item">
+                    {{brokers.choose_one}}  {{brokers.create_new}}  {{brokers.brokerName}}
+                  </ng-template>
+                </ionic-selectable>
+              </ion-item>
+
+              <ion-item>
+                <ion-label>Broker Type:-</ion-label>
+                <ion-select [(ngModel)]="broker_type" name="broker_type" okText="Okay" cancelText="Dismiss">
+                  <ion-select-option value="lumpsum">Lumpsum</ion-select-option>
+                  <ion-select-option value="percentage">Percentage</ion-select-option>
+                  <ion-select-option value="sqft">Sq. Ft.</ion-select-option>
+                </ion-select>
+              </ion-item>
+
+              <div *ngIf="broker_type === 'lumpsum'">
+                <ion-item>
+                  <ion-input type="number" [(ngModel)]="brokerage_value" name="brokerage_value" placeholder="Brokerage Value *"></ion-input>
+
+                  <ion-button (click)="addbrokervalue()">Add</ion-button>
+                </ion-item>
+                <ion-item>
+                  <ion-label>Total Brokerage : {{total_brokerage_value}}%</ion-label>
+                </ion-item>
+              </div>
+
+
+              <div *ngIf="broker_type === 'percentage'">
+                <ion-item>
+                  <ion-label>Brokerage On:-</ion-label>
+                  <ion-select [(ngModel)]="brokerage_on" name="broker_on" okText="Okay" cancelText="Dismiss">
+                    <ion-select-option value="basic_cost">Basic Flat Cost 0</ion-select-option>
+                    <ion-select-option value="total_consideration">Total Consideration</ion-select-option>
+                    <ion-select-option value="agreement_value">Agreement Value</ion-select-option>
+                  </ion-select>
+                </ion-item>
+                <ion-item>
+                  <ion-input type="text" ngModel name="brokerage_value" placeholder="Brokerage Value *"></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-input type="number" [(ngModel)]="brokerage_percentage" name="brokerage_percentage" placeholder="Brokerage Percentage *"></ion-input>
+                  <ion-button (click)="addpercentage()">Add</ion-button>
+                </ion-item>
+              </div>
+
+              <div *ngIf="broker_type === 'sqft'">
+                <ion-item>
+                  <ion-label>Brokerage On:-</ion-label>
+                  <ion-select [(ngModel)]="brokerage_on" name="broker_on" okText="Okay" cancelText="Dismiss">
+                    <ion-select-option value="rera_area_421">RERA Area 421</ion-select-option>
+                    <ion-select-option value="saleable_area">Salesable Area</ion-select-option>
+                  </ion-select>
+                </ion-item>
+                <ion-item>
+                  <ion-input type="text" ngModel name="sqft_amount" placeholder="SQ. Ft. Amount *"></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-input type="text" ngModel name="brokerage_value" placeholder="Brokerage Value *"></ion-input>
+                  <ion-button (click)="addpercentage()">Add</ion-button>
+                </ion-item>
+              </div>
+            </div>
+
+
+
+            <div *ngIf="select_broker === 'create_new'">
+              <ion-item>
+                <ion-input type="text" [(ngModel)]="broker_name" name="broker_name" placeholder="Broker  Name *"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-input type="tel" [(ngModel)]="bmob" name="bmob" placeholder="Mobile No. *"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-input type="text" [(ngModel)]="broker_rera_no" name="broker_rera_no" placeholder="Broker RERA No. *"></ion-input>
+                <ion-button (click)="addbroker()">Add</ion-button>
+              </ion-item>
+            </div>
+
+            <ion-item-divider>
+              <ion-label>
+                Booking Details
+              </ion-label>
+            </ion-item-divider>
+            <ion-item>
+              <ion-label>Booking By:-</ion-label>
+              <ion-select [(ngModel)]="booking_by" name="booking_by" okText="Okay" cancelText="Dismiss">
+                <div *ngFor="let broker of brokers">
+                  <ion-select-option  value=broker.broker_name>{{broker.broker_name}}</ion-select-option>
+                </div>
+              </ion-select>
+            </ion-item>
+
+            <ion-item>
+              <ion-datetime value="1900-01-1" ngModel name="booking_date" placeholder="Enter Booking Date"></ion-datetime>
+              <ion-icon slot="end" name="calendar-number-outline"></ion-icon>
+            </ion-item>
+          </div>
+          <div>
+            <button class="backbutton" mat-button matStepperPrevious type="button">Back</button>
+            <button class="nextbutton" type="submit">Submit</button>
+          </div>
+      </mat-step>
+    </mat-horizontal-stepper>
+  </form>
+
+</ion-content>
