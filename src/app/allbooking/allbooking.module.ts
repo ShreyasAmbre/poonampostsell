@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { AllbookingPageRoutingModule } from './allbooking-routing.module';
+import {NotificationModule} from '../component/notification/notification.module';
 
 import { AllbookingPage } from './allbooking.page';
 
@@ -18,7 +19,8 @@ import {SearchmodalPageModule} from './searchmodal/searchmodal.module'
     IonicModule,
     AllbookingPageRoutingModule,
     MatBottomSheetModule,
-    SearchmodalPageModule
+    SearchmodalPageModule,
+    NotificationModule
   ],
   declarations: [AllbookingPage]
 })

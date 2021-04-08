@@ -1,9 +1,16 @@
-<ion-header>
-  <ion-toolbar  color="primary" slots="start">
-    <ion-buttons slot="start">
-      <ion-menu-button autoHide="false"></ion-menu-button>
+<ion-header class="ion-no-border">
+  <ion-toolbar class="toolbar" slots="start" >
+    <ion-buttons slot="start" size="large">
+      <ion-menu-button autoHide="false">
+        <ion-icon src="../../assets/icon/menu.svg"></ion-icon>
+      </ion-menu-button>
     </ion-buttons>
-    <ion-title>Booking</ion-title>
+    <ion-buttons slot="end" size="large">
+      <ion-menu-button auto-hide="false">
+        <app-notification></app-notification>
+      </ion-menu-button>
+    </ion-buttons>
+    <ion-title>Deal Information</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -15,13 +22,10 @@
 
       <mat-step label="Applicant" completed="true">
         <div>
-          <ion-item-divider>
-            <ion-label>
-              Applicant Details
-            </ion-label>
-          </ion-item-divider>
+          <h4 style="color:#0077BD; text-align: center;"><u>Applicant Details</u></h4>
+
           <ion-item>
-            <ion-input  type="text" #fname="ngModel" [pattern]="'[a-zA-Z]*'" ngModel name="fname" placeholder="First  Name *"></ion-input>
+            <ion-input  type="text" #fname="ngModel" [pattern]="'[a-zA-Z]*'" ngModel name="fname" placeholder="First  Name *" ></ion-input>
             <span *ngIf="fname.invalid" class="error"><b>Only Alphabet</b></span>
           </ion-item>
           <ion-item>
@@ -33,7 +37,7 @@
             <span *ngIf="lname.invalid" class="error"><b>Only Alphabet</b></span>
           </ion-item>
           <ion-item>
-            <ion-input type="tel"  #mobileno="ngModel" [pattern]="'[0-9]{10}'" [(ngModel)]="mobile_no" name="mobile_no" (keyup)="checkContact()"   placeholder="Mobile No.*"></ion-input>
+            <ion-input type="tel"  #mobileno="ngModel" [pattern]="'[0-9]{10}'" [(ngModel)]="mobile_no" name="mobile_no" (keyup)="checkContact()"   placeholder="Mobile No.*" ></ion-input>
             <span *ngIf="mobileno.invalid" class="error"><b>Enter Valid Number</b></span>
             <span ></span>
           </ion-item>
@@ -72,43 +76,41 @@
             </ion-select>
           </ion-item>
 
-          <ion-item-divider>
-            <ion-label>
-              Permanent Address
-            </ion-label>
-          </ion-item-divider>
+          <h4 class="customdivider"><u>Permanent Address</u></h4>
+
           <ion-item>
-            <ion-textarea type="text" ngModelname="address" placeholder="Enter Address *"></ion-textarea>
+            <ion-textarea type="text" [(ngModel)]="address" name="address" placeholder="Enter Address *"></ion-textarea>
           </ion-item>
           <ion-item>
-            <ion-input type="text" ngModel name="city" placeholder="Enter City *"></ion-input>
+            <ion-input type="text" [(ngModel)]="city" name="city" placeholder="Enter City *"></ion-input>
           </ion-item>
           <ion-item>
-            <ion-input type="text"  #state="ngModel" [pattern]="'[a-zA-Z]*'" ngModel name="state" placeholder="Enter State *"></ion-input>
-            <span *ngIf="state.invalid" class="error"><b>Only Alphabet</b></span>
+            <ion-input type="text"  #vstate="ngModel" [pattern]="'[a-zA-Z]*'" [(ngModel)]="state" name="state" placeholder="Enter State *"></ion-input>
+            <span *ngIf="vstate.invalid" class="error"><b>Only Alphabet</b></span>
           </ion-item>
           <ion-item>
-            <ion-input type="number" ngModel name="zipcode" placeholder="Enter Zip Code *"></ion-input>
+            <ion-input type="number" [(ngModel)]="zipcode" name="zipcode" placeholder="Enter Zip Code *"></ion-input>
           </ion-item>
 
-          <ion-item-divider>
-            <ion-label>
-              Correspondence Address
-            </ion-label>
-          </ion-item-divider>
+          <h4 class="customdivider"><u>Correspondence Address</u></h4>
+
           <ion-item>
-            <ion-textarea type="text" ngModelname="caddress" placeholder="Enter Address *"></ion-textarea>
+            <ion-textarea type="text" [(ngModel)]="caddress" name="caddress" placeholder="Enter Address *"></ion-textarea>
           </ion-item>
           <ion-item>
-            <ion-input type="text" ngModelname="ccity" placeholder="Enter City *"></ion-input>
+            <ion-input type="text" [(ngModel)]="ccity" name="ccity" placeholder="Enter City *"></ion-input>
           </ion-item>
           <ion-item>
-            <ion-input type="text" #cstate="ngModel" [pattern]="'[a-zA-Z]*'" ngModel name="cstate" placeholder="Enter State *"></ion-input>
-            <span *ngIf="cstate.invalid" class="error"><b>Only Alphabet</b></span>
+            <ion-input type="text" #vcstate="ngModel" [pattern]="'[a-zA-Z]*'" [(ngModel)]="cstate" name="cstate" placeholder="Enter State *"></ion-input>
+            <span *ngIf="vcstate.invalid" class="error"><b>Only Alphabet</b></span>
           </ion-item>
           <ion-item>
-            <ion-input type="number" ngModel name="czipcode" placeholder="Enter Zip Code *"></ion-input>
-          </ion-item><br>
+            <ion-input type="number" [(ngModel)]="czipcode" name="czipcode" placeholder="Enter Zip Code *"></ion-input>
+          </ion-item>
+          <ion-item lines="none">
+            <ion-label>Same as Permanent Address</ion-label>
+            <ion-checkbox color="primary" (click)="same_as_permnent()" slot="start"></ion-checkbox>
+          </ion-item>
         </div>
         <!-- <div> -->
           <button class="nextbutton" mat-raised-button color="primary" [disabled]="bookingForm.invalid"
@@ -119,11 +121,8 @@
       <mat-step label="Co-Applicant" completed="true">
         <form #co_applicantForm="ngForm" (ngSubmit)="addcoapplicant(co_applicantForm);">
           <div>
-            <ion-item-divider>
-              <ion-label>
-                Co-Applicant Details
-              </ion-label>
-            </ion-item-divider>
+            <h4 style="color:#0077BD; text-align: center;"><u>Co-Applicant Details</u></h4>
+
             <ion-item>
               <ion-input type="text" #cfname="ngModel" [pattern]="'[a-zA-Z]*'"  ngModel name="cfname" placeholder="First  Name *"></ion-input>
               <span *ngIf="cfname.invalid" class="error"><b>Only Alphabet</b></span>
@@ -174,11 +173,8 @@
               </ion-select>
             </ion-item>
 
-            <ion-item-divider>
-              <ion-label>
-                Permanent Address
-              </ion-label>
-            </ion-item-divider>
+            <h4 class="customdivider"><u>Permanent Address</u></h4>
+
             <ion-item>
               <ion-textarea type="text" ngModelname="caddress" placeholder="Enter Address *"></ion-textarea>
             </ion-item>
@@ -193,11 +189,8 @@
               <ion-input type="number" ngModel name="czipcode" placeholder="Enter Zip Code *"></ion-input>
             </ion-item>
 
-            <ion-item-divider>
-              <ion-label>
-                Correspondence Address
-              </ion-label>
-            </ion-item-divider>
+            <h4 class="customdivider"><u>Correspondence Address</u></h4>
+
             <ion-item>
               <ion-textarea type="text" ngModel name="ccaddress" placeholder="Enter Address *"></ion-textarea>
             </ion-item>
@@ -277,11 +270,8 @@
       <mat-step label="Payment" completed="true">`
 
         <div>
-          <ion-item-divider>
-            <ion-label>
-              Rate Details
-            </ion-label>
-          </ion-item-divider>
+          <h4 style="color:#0077BD; text-align: center;"><u>Applicant Details</u></h4>
+
           <ion-item>
             <ion-label>Package:-</ion-label>
             <ion-select [(ngModel)]="package_type" name="package_type" okText="Okay" cancelText="Dismiss">
@@ -313,16 +303,13 @@
               </ion-item>
             </div>
 
-            <ion-item-divider>
-              <ion-label>
-                Property Details
-              </ion-label>
-            </ion-item-divider>
+            <h4 class="customdivider"><u>Property Details</u></h4>
+           
 
             <ion-item>
               <ion-label>Select Property</ion-label>
-              <ionic-selectable [(ngModel)]="selected_property" name="selected_property"  [items]="properties"
-              itemVaueField="apartment_id" itemTextField="flatNo" [canSearch]="true" headerColor="primary" >
+              <ionic-selectable [(ngModel)]="selected_property"  name="selected_property"  [items]="properties"
+               itemVaueField="apartment_id" itemTextField="flatNo" [canSearch]="true" headerColor="primary" >
                 <ng-template ionicSelectableCloseButtonTemplate>
                   <ion-icon name="close-circle"></ion-icon>
                 </ng-template>
@@ -348,11 +335,7 @@
             </ion-select>
             </ion-item>
 
-            <ion-item-divider>
-              <ion-label>
-                Payment Details
-              </ion-label>
-            </ion-item-divider>
+            <h4 class="customdivider"><u>Payment Details</u></h4>
 
             <ion-item>
             <ion-label>Payment Schedule:-</ion-label>
@@ -421,31 +404,19 @@
               </ion-item>
             </div>
 
-            <ion-item-divider>
-              <ion-label>
-                TAX Details
-              </ion-label>
-            </ion-item-divider>
+            <h4 class="customdivider"><u>TAX Details</u></h4>
 
             <ion-item>
               <ion-input type="text" ngModel name="gst" placeholder="GSTIN Number"></ion-input>
             </ion-item>
 
-            <ion-item-divider>
-              <ion-label>
-                Extra
-              </ion-label>
-            </ion-item-divider>
+            <h4 class="customdivider"><u>Extra</u></h4>
 
             <ion-item>
             <ion-textarea type="text" ngModel name="description" placeholder="Additional Description"></ion-textarea>
             </ion-item>
 
-            <ion-item-divider>
-              <ion-label>
-                Deal Details
-              </ion-label>
-            </ion-item-divider>
+            <h4 class="customdivider"><u>Deal Details</u></h4>
 
             <ion-item>
               <div *ngIf="package_deal_api[0]">
@@ -460,43 +431,43 @@
                     <tbody>
                       <tr>
                         <th scope="row">Package Deal</th>
-                        <td><ion-input type="text"  class="inp_table" (ionBlur)="calculate()"></ion-input></td>
+                        <td><ion-input type="text"  class="inp_table" ></ion-input></td>
                       </tr>
                       <tr>
                         <th scope="row">Basic Flat Cost </th>
-                        <td><ion-input type="text"  class="inp_table" (ionBlur)="calculate()"></ion-input></td>
+                        <td><ion-input type="text" [(ngModel)]="basicFlatCost" name="basicFlatCost" class="inp_table" ></ion-input></td>
                       </tr>
                       <tr>
-                        <th scope="row">GST</th>
-                        <td><ion-input type="text"  class="inp_table" (ionBlur)="calculate()"></ion-input></td>
+                        <th scope="row">GST </th>
+                        <td><ion-input type="text" [(ngModel)]="gst" name="gst"  class="inp_table" ></ion-input></td>
                       </tr>
                       <tr>
-                        <th scope="row">Stamp Duty</th>
-                        <td><ion-input type="text"  class="inp_table" (ionBlur)="calculate()"></ion-input></td>
+                        <th scope="row">Stamp Duty </th>
+                        <td><ion-input type="text"  [(ngModel)]="sd" name="sd" class="inp_table" ></ion-input></td>
                       </tr>
                       <tr>
-                        <th scope="row">Registration</th>
-                        <td><ion-input type="text"  class="inp_table" (ionBlur)="calculate()"></ion-input></td>
+                        <th scope="row">Registration </th>
+                        <td><ion-input type="text" [(ngModel)]="reg" name="red" class="inp_table" ></ion-input></td>
                       </tr>
                       <tr>
                         <th scope="row">Service Charges</th>
-                        <td><ion-input type="text"  class="inp_table" (ionBlur)="calculate()"></ion-input></td>
+                        <td><ion-input type="text" [(ngModel)]="service_charge" name="service_charge"  class="inp_table" ></ion-input></td>
                       </tr>
                       <tr>
                         <th scope="row">RoundOff  </th>
-                        <td><ion-input type="text"  class="inp_table" (ionBlur)="calculate()"></ion-input></td>
+                        <td><ion-input type="text" [(ngModel)]="round_off" name="round_off"   class="inp_table" ></ion-input></td>
                       </tr>
                       <tr>
                         <th scope="row">Other Charges  </th>
-                        <td><ion-input type="text"  class="inp_table" (ionBlur)="calculate()"></ion-input></td>
+                        <td><ion-input type="text" [(ngModel)]="other_charges" name="other_charges" class="inp_table" ></ion-input></td>
                       </tr>
                       <tr>
                         <th scope="row">Total Consideration </th>
-                        <td><ion-input type="text"  class="inp_table" (ionBlur)="calculate()"></ion-input></td>
+                        <td><ion-input type="text" [(ngModel)]="customerTotalConsideration" name="customerTotalConsideration" class="inp_table" ></ion-input></td>
                       </tr>
                       <tr>
                         <th scope="row">Agreement Value  </th>
-                        <td><ion-input type="text"  class="inp_table" (ionBlur)="calculate()"></ion-input></td>
+                        <td><ion-input type="text" [(ngModel)]="customerAgreementValue" name="customerAgreementValue" (ionBlur)="customerCalculate()" class="inp_table" ></ion-input></td>
                       </tr>
                     </tbody>
                   </table>
@@ -511,54 +482,49 @@
                     </thead>
                     <tbody>
                       <tr>
-                        <th scope="row">Package Deal</th>
-                        <td><ion-input type="text"  class="inp_table" (ionBlur)="calculate()"></ion-input></td>
-                      </tr>
-                      <tr>
                         <th scope="row">Basic Flat Cost </th>
-                        <td><ion-input type="text"  class="inp_table" (ionBlur)="calculate()"></ion-input></td>
+                        <td><ion-input type="text" [(ngModel)]="basicFlatCost" name="basicFlatCost" class="inp_table" ></ion-input></td>
                       </tr>
                       <tr>
-                        <th scope="row">GST</th>
-                        <td><ion-input type="text"  class="inp_table" (ionBlur)="calculate()"></ion-input></td>
+                        <th scope="row">GST </th>
+                        <td><ion-input type="text" [(ngModel)]="gst" name="gst"  class="inp_table" ></ion-input></td>
                       </tr>
                       <tr>
-                        <th scope="row">Stamp Duty</th>
-                        <td><ion-input type="text"  class="inp_table" (ionBlur)="calculate()"></ion-input></td>
+                        <th scope="row">Stamp Duty </th>
+                        <td><ion-input type="text"  [(ngModel)]="sd" name="sd" class="inp_table" ></ion-input></td>
                       </tr>
                       <tr>
-                        <th scope="row">Registration</th>
-                        <td><ion-input type="text"  class="inp_table" (ionBlur)="calculate()"></ion-input></td>
+                        <th scope="row">Registration </th>
+                        <td><ion-input type="text" [(ngModel)]="reg" name="red" class="inp_table" ></ion-input></td>
                       </tr>
                       <tr>
                         <th scope="row">Service Charges</th>
-                        <td><ion-input type="text"  class="inp_table" (ionBlur)="calculate()"></ion-input></td>
+                        <td><ion-input type="text" [(ngModel)]="service_charge" name="service_charge"  class="inp_table" ></ion-input></td>
                       </tr>
                       <tr>
                         <th scope="row">RoundOff  </th>
-                        <td><ion-input type="text"  class="inp_table" (ionBlur)="calculate()"></ion-input></td>
+                        <td><ion-input type="text" [(ngModel)]="round_off" name="round_off"   class="inp_table" ></ion-input></td>
                       </tr>
                       <tr>
                         <th scope="row">Other Charges  </th>
-                        <td><ion-input type="text"  class="inp_table" (ionBlur)="calculate()"></ion-input></td>
+                        <td><ion-input type="text" [(ngModel)]="other_charges" name="other_charges" class="inp_table" ></ion-input></td>
                       </tr>
                       <tr>
                         <th scope="row">Genrator Charges  </th>
-                        <td><ion-input type="text"  class="inp_table" (ionBlur)="calculate()"></ion-input></td>
+                        <td><ion-input type="text" [(ngModel)]="generator_charges" name="generator_charges"  class="inp_table" ></ion-input></td>
                       </tr>
                       <tr>
                         <th scope="row">Total Consideration </th>
-                        <td><ion-input type="text"  class="inp_table" (ionBlur)="calculate()"></ion-input></td>
+                        <td><ion-input type="text" [(ngModel)]="customerTotalConsideration" name="customerTotalConsideration" class="inp_table" ></ion-input></td>
                       </tr>
                       <tr>
                         <th scope="row">Agreement Value  </th>
-                        <td><ion-input type="text"  class="inp_table" (ionBlur)="calculate()"></ion-input></td>
+                        <td><ion-input type="text" [(ngModel)]="customerAgreementValue" name="customerAgreementValue" (ionBlur)="customerCalculate()" class="inp_table" ></ion-input></td>
                       </tr>
                     </tbody>
                   </table>
                 </div>
               </div>
-
             </ion-item>
 
 
@@ -571,11 +537,8 @@
 
       <mat-step label="Broker"  completed="true">
           <div>
-            <ion-item-divider>
-              <ion-label>
-                Broker Details
-              </ion-label>
-            </ion-item-divider>
+            <h4 style="color:#0077BD; text-align: center;"><u>Broker Details</u></h4>
+
 
             <ion-item>
               <ion-label>Select Broker:-</ion-label>
@@ -606,7 +569,7 @@
 
               <ion-item>
                 <ion-label>Broker Type:-</ion-label>
-                <ion-select [(ngModel)]="broker_type" name="broker_type" okText="Okay" cancelText="Dismiss">
+                <ion-select [(ngModel)]="broker_type" name="broker_type" (ionChange)="brokerage_arr(broker_type)" okText="Okay" cancelText="Dismiss">
                   <ion-select-option value="lumpsum">Lumpsum</ion-select-option>
                   <ion-select-option value="percentage">Percentage</ion-select-option>
                   <ion-select-option value="sqft">Sq. Ft.</ion-select-option>
@@ -628,18 +591,17 @@
               <div *ngIf="broker_type === 'percentage'">
                 <ion-item>
                   <ion-label>Brokerage On:-</ion-label>
-                  <ion-select [(ngModel)]="brokerage_on" name="broker_on" okText="Okay" cancelText="Dismiss">
-                    <ion-select-option value="basic_cost">Basic Flat Cost 0</ion-select-option>
-                    <ion-select-option value="total_consideration">Total Consideration</ion-select-option>
-                    <ion-select-option value="agreement_value">Agreement Value</ion-select-option>
+                  <ion-select [(ngModel)]="brokerage_on"  name="broker_on" okText="Okay" cancelText="Dismiss">
+                      <ion-select-option *ngFor="let brokers_on_item of brokerage_on_arr"  [value]="brokers_on_item.name">
+                        {{brokers_on_item.name}} - {{brokers_on_item.office}}</ion-select-option>
                   </ion-select>
                 </ion-item>
                 <ion-item>
-                  <ion-input type="text" ngModel name="brokerage_value" placeholder="Brokerage Value *"></ion-input>
+                  <ion-input type="text" [(ngModel)]="brokerage_value" (ionBlur)="calculate_brokerage(brokerage_value)" name="brokerage_value" placeholder="Brokerage Value *"></ion-input>
                 </ion-item>
                 <ion-item>
                   <ion-input type="number" [(ngModel)]="brokerage_percentage" name="brokerage_percentage" placeholder="Brokerage Percentage *"></ion-input>
-                  <ion-button (click)="addpercentage()">Add</ion-button>
+                  <ion-button (click)="add_percentage_broker_list()">Add</ion-button>
                 </ion-item>
               </div>
 
@@ -647,20 +609,39 @@
                 <ion-item>
                   <ion-label>Brokerage On:-</ion-label>
                   <ion-select [(ngModel)]="brokerage_on" name="broker_on" okText="Okay" cancelText="Dismiss">
-                    <ion-select-option value="rera_area_421">RERA Area 421</ion-select-option>
-                    <ion-select-option value="saleable_area">Salesable Area</ion-select-option>
+                    <ion-select-option *ngFor="let sqft_brokerage_on_item of sqft_rera_and_saleable_sqft | keyvalue"  [value]="sqft_brokerage_on_item.value">{{sqft_brokerage_on_item.key}} -{{sqft_brokerage_on_item.value}}</ion-select-option>
                   </ion-select>
                 </ion-item>
                 <ion-item>
-                  <ion-input type="text" ngModel name="sqft_amount" placeholder="SQ. Ft. Amount *"></ion-input>
+                  <ion-input type="text" [(ngModel)]="sqft_amount" (ionBlur)="cal_sqft_brokerage(sqft_amount)" name="sqft_amount" placeholder="SQ. Ft. Amount *"></ion-input>
                 </ion-item>
                 <ion-item>
-                  <ion-input type="text" ngModel name="brokerage_value" placeholder="Brokerage Value *"></ion-input>
-                  <ion-button (click)="addpercentage()">Add</ion-button>
+                  <ion-input type="text" [(ngModel)]="sqft_brokerage_value" name="sqft_brokerage_value" placeholder="Brokerage Value *"></ion-input>
+                  <ion-button (click)="add_percentage_broker_list()">Add</ion-button>
                 </ion-item>
               </div>
             </div>
 
+            <!-- <ion-item> -->
+              <ion-list *ngFor="let brokerage_item of brokerage_sqft_per_arr; let i = index">  
+                <ion-item>
+                  <ion-row>
+                    <ion-col size="11">
+                      <ion-label>
+                        <h2><b>{{brokerage_item.brokername}}</b></h2>
+                        <h3>{{brokerage_item.broker_type}}</h3>
+                        <p>{{brokerage_item.brokerage_value}}</p>
+                      </ion-label>
+                    </ion-col>
+                    <ion-col size="1">
+                      <ion-item lines="none" class="ion-float-right">
+                          <ion-icon (click)="delete_brokereage_item(i)" name="trash" slot="end" style="color: red;"></ion-icon>
+                      </ion-item>
+                    </ion-col>
+                  </ion-row>
+                </ion-item>
+              </ion-list>
+            <!-- </ion-item> -->
 
 
             <div *ngIf="select_broker === 'create_new'">
@@ -676,11 +657,8 @@
               </ion-item>
             </div>
 
-            <ion-item-divider>
-              <ion-label>
-                Booking Details
-              </ion-label>
-            </ion-item-divider>
+            <h4 class="customdivider"><u>Booking Details</u></h4>
+
             <ion-item>
               <ion-label>Booking By:-</ion-label>
               <ion-select [(ngModel)]="booking_by" name="booking_by" okText="Okay" cancelText="Dismiss">

@@ -44,6 +44,26 @@ export class NavmenuComponent implements OnInit {
         ]
       },
       {
+        title : "Reports",
+        children: [
+          {
+            title : "Summary Report",
+            url   : "/summaryreport",
+            icon  : "file-tray-full-outline"
+          },
+          {
+            title : "Availability Report",
+            url   : "/availabilityreport",
+            icon  : "bed-outline"
+          },
+          {
+            title : "Sold/UnSold Report",
+            url   : "/soldunsoldreport",
+            icon  : "swap-horizontal-outline"
+          },
+        ]
+      },
+      {
         title : "Login",
         url   : "/login",
         icon  : "log-in-outline"

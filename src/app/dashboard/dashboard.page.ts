@@ -9,6 +9,7 @@ import {HttpClient} from '@angular/common/http';
 
 import { Chart } from 'angular-highcharts';
 import {donutChartOptions, donutChartOptions2, donutChartOptions3, donutChartOptions4} from '../helper/donutChartOptions';
+
 import {NotificationService} from '../services/notification.service';
 import { Observable, forkJoin } from 'rxjs';
 
@@ -20,6 +21,7 @@ const { PushNotifications } = Plugins;
   styleUrls: ['./dashboard.page.scss'],
 })
 export class DashboardPage implements OnInit {
+  
   chart = new Chart(donutChartOptions);
   chart2 = new Chart(donutChartOptions2);
   chart3 = new Chart(donutChartOptions3);
@@ -57,6 +59,11 @@ export class DashboardPage implements OnInit {
   constructor(private noti:NotificationService, private http:HttpClient) { }
 
   ngOnInit() {
+    donutChartOptions.series[0]["data"][0]["y"] = 4
+    donutChartOptions.series[0]["data"][3]["y"] = 1
+
+    console.log(donutChartOptions.series[0]["data"][1]["y"], "DN VALUE Y: IS ")
+    console.log(donutChartOptions.series[0]["data"][3]["y"], "DN VALUE Y: IS ")
     // this.getProjectMaster()
     console.log('Initializing HomePage');
     // // this.setValue()

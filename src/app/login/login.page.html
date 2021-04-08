@@ -5,7 +5,36 @@
 </ion-header> -->
 
 <ion-content>
-  <div id="container">
+
+  <div class="container">
+    <img src="../../assets/login.jpg" alt="">
+  </div>
+  <div class="loginsection">
+    <ion-grid>
+      <ion-row class="ion-margin">
+        <ion-col >
+          <form #loginForm="ngForm" (ngSubmit)="login(loginForm.value)">
+
+              <ion-input class="inputfield" size="small" type="text" ngModel name="name" placeholder="Usernmae *"></ion-input>
+
+              <ion-input class="inputfield" size="large"  type="password" ngModel name="password" placeholder="Password *"></ion-input>
+              <br>
+              
+              <ion-button type="submit"  size="large" id="sign-in-button" expand="block"
+              solid large ion-margin-vertical="20px">Login</ion-button><br>
+
+            <div  class="ion-text-center">
+              <p style="color:#002D47">Don't have a Account? <b style="color:white">Sign Up</b></p>
+              <a routerLink="/dashboard">Dashboard</a>
+            </div>
+          </form>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+
+  <!-- <div id="container">
     <ion-grid class="ion-margin">
       <ion-row >
         <ion-col>
@@ -34,7 +63,13 @@
         </ion-col>
       </ion-row>
     </ion-grid>
-  </div>
+  </div> -->
+
+
+
+
+
+
 
   <!-- Below is Signup Code -->
   <!-- <ion-card style="margin-top:100px">

@@ -5,6 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { Tab3PageRoutingModule } from './tab3-routing.module';
+import {NotificationModule} from '../../component/notification/notification.module';
+
 
 import { Tab3Page } from './tab3.page';
 
@@ -13,7 +15,9 @@ import { Tab3Page } from './tab3.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    Tab3PageRoutingModule
+    Tab3PageRoutingModule,
+    NotificationModule
+    
   ],
   declarations: [Tab3Page]
 })

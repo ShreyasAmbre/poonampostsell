@@ -5,6 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { BookingPageRoutingModule } from './booking-routing.module';
+import {NotificationModule} from '../component/notification/notification.module';
+
 
 import { BookingPage } from './booking.page';
 import {MatStepperModule} from '@angular/material/stepper';
@@ -21,6 +23,7 @@ import {IonicSelectableModule} from 'ionic-selectable';
     MatStepperModule,
     MatDividerModule,
     IonicSelectableModule,
+    NotificationModule
   ],
   declarations: [BookingPage]
 })

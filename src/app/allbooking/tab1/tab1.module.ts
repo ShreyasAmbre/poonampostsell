@@ -5,6 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { Tab1PageRoutingModule } from './tab1-routing.module';
+import {NotificationModule} from '../../component/notification/notification.module';
+
 
 import { Tab1Page } from './tab1.page';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -19,7 +21,8 @@ import {MatButtonModule} from '@angular/material/button';
     Tab1PageRoutingModule,
     MatExpansionModule,
     MatStepperModule,
-    MatButtonModule
+    MatButtonModule,
+    NotificationModule
   ],
   declarations: [Tab1Page]
 })

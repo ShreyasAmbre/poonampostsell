@@ -1,15 +1,13 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary" slots="start">
     <ion-title>Search Property</ion-title>
-    <ion-icon name='close-circle' (click)='dismiss()' style='float: right;'></ion-icon>
+    <ion-icon name='close-circle' size="medium" (click)='dismiss()' style='float: right;'></ion-icon>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-card id="search_form_container">
-    <ion-card-header>
-      <ion-card-title class="ion-text-center">Search Form</ion-card-title>
-    </ion-card-header>
+    
 
     <ion-card-content>
       <ion-item>
@@ -48,7 +46,6 @@
       </ion-item><br> -->
 
       <ion-button type="button" (click)="fetchallbookings()" expand="block" solid large >Fetch</ion-button><br>
-      <ion-button type="button" expand="block" solid large >Analytics</ion-button><br>
     </ion-card-content>
   </ion-card>
 </ion-content>

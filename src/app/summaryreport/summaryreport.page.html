@@ -1,0 +1,152 @@
+<ion-header>
+  <ion-toolbar color="primary" slots="start">
+    <ion-buttons slot="start" >
+      <ion-menu-button autoHide="false"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Summary Report</ion-title>
+    <app-notification></app-notification>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card style=" margin: 0px !important;">
+    <ion-card-content>
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title >
+            <h2><b>Select Project</b></h2>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div>
+          <ion-item>
+            <ion-select interface="popover" [(ngModel)]="selected_project" name="selected_project" placeholder="Select Project">
+              <ion-select-option *ngFor="let item of project_master" [value]="item">{{item.project_name}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-button expand="block" (click)="getSummary()">Fetch</ion-button>
+        </div>
+      </mat-expansion-panel><br>
+    </mat-accordion>
+    </ion-card-content>
+  </ion-card><br>
+
+  <!-- <div style="overflow-x:auto"> -->
+    <ion-card style=" margin: 0px !important; overflow-x:auto">
+      <ion-card-content>
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">Wing</th>
+              <th scope="col">Unit Type</th>
+              <th scope="col">Total Unit</th>
+              <th scope="col">Saleable Area</th>
+              <th scope="col">Unit Sold</th>
+              <th scope="col">Unit Block</th>
+              <th scope="col">Unit Vacant</th>
+              <th scope="col">Area Sold</th>
+              <th scope="col">Area Block</th>
+              <th scope="col">Area Vacant</th>
+              <th scope="col">CAS</th>
+              <th scope="col">Amount Due</th>
+              <th scope="col">Amount Received</th>
+              <th scope="col">Balance Due</th>
+              <th scope="col">Balance Receivable</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th rowspan="3">A</th>
+              <td> - </td>
+              <td> - </td>
+              <td> - </td>
+              <td> - </td>
+              <td> - </td>
+              <td> - </td>
+              <td> - </td>
+              <td> - </td>
+              <td> - </td>
+              <td> - </td>
+              <td> - </td>
+              <td> - </td>
+              <td> - </td>
+              <td> - </td>
+            </tr>
+            <tr>
+              <th>1BHK</th>
+              <td>25.00</td>
+              <td>15,925.00</td>
+              <td>7.00</td>
+              <td>14.00</td>
+              <td>4.00</td>
+              <td>4,500.00</td>
+              <td>8,875.00</td>
+              <td>2,550.00</td>
+              <td>160.21</td>
+              <td>9.50</td>
+              <td>3.00</td>
+              <td>6.50</td>
+              <td>157.21</td>
+            </tr>
+            <tr>
+              <th>2BHK</th>
+              <td>28.00</td>
+              <td>22,680.00</td>
+              <td>7.00</td>
+              <td>13.00</td>
+              <td>8.00</td>
+              <td>5,670.00</td>
+              <td>10,530.00</td>
+              <td>6,480.00</td>
+              <td>209.79</td>
+              <td>11.84</td>
+              <td>11.84</td>
+              <td>-</td>
+              <td>197.95</td>
+            </tr>
+            <tr>
+              <th>Total-(A)</th>
+              <td>-</td>
+              <td>164.00</td>
+              <td>1,43,550.00</td>
+              <td>47.00</td>
+              <td>4.00</td>
+              <td>113.00</td>
+              <td>36,900.00</td>
+              <td>3,290.00 	</td>
+              <td>1,03,360.00</td>
+              <td>1798.34</td>
+              <td>6.24</td>
+              <td>6.24</td>
+              <td>-</td>
+              <td>1792.10</td>
+            </tr>
+            <tr>
+              <th>Total</th>
+              <td>-</td>
+              <td>164.00</td>
+              <td>1,43,550.00</td>
+              <td>47.00</td>
+              <td>4.00</td>
+              <td>113.00</td>
+              <td>36,900.00</td>
+              <td>3,290.00 	</td>
+              <td>1,03,360.00</td>
+              <td>1798.34</td>
+              <td>6.24</td>
+              <td>6.24</td>
+              <td>-</td>
+              <td>1792.10</td>
+            </tr>
+          </tbody>
+        </table>
+      </ion-card-content>
+    </ion-card><br>
+  <!-- </div> -->
+  
+  
+
+  <!-- <div  [chart]="barChart"></div> -->
+
+</ion-content>

@@ -1,28 +1,28 @@
 .nextbutton{
-  background-color: #3880ff;
+  background-color: #0077BD;
   color:black;
-  border-radius: 15%;
-  // float: right;
+  border-radius: 20px;
+  float: right;
   margin:2%;
   height:40px;
-  width:80px;
+  width:90px;
   color:white
 }
 
 .backbutton{
-  background-color: #3880ff;
-  border-radius: 15%;
-  // float: left;
+  background-color: #0077BD;
+  border-radius: 20px;
+  float: left;
   margin:2%;
   height:40px;
-  width:80px;
+  width:90px;
   color:white
 }
 
 .addbutton{
-  border-radius: 15%;
-  // float: left;
-  border: 1px solid #3880ff;
+  border-radius: 20px;
+  float: center;
+  border: 1px solid #0077BD;
   margin:2%;
   height:40px;
   width:80px;
@@ -40,4 +40,42 @@ ion-input.ng-invalid{
   // background:rgb(188, 216, 242);
   // border: red;
   border-bottom: 2px solid #3880ff;
+}
+
+// ReDesign Code  Below
+.toolbar{
+  border-bottom-left-radius:20px;
+  border-bottom-right-radius:20px;
+
+}
+ion-toolbar{
+  --background: #0077BD;
+  --color: white;
+}
+
+ion-input{
+  --background: #f6fafd;
+  --color: #002D47;
+  --padding-top: 5%;
+  --padding-bottom: 5%;
+  --placeholder-color: #002D47;
+}
+ion-item{
+  --background: #f6fafd;
+  --border-color: #002D47;
+  --border-width: 1px;
+  --border-radius: 10px;
+  margin-bottom:20px;
+}
+.cuslabel{
+  position: relative;
+  z-index: -10000000000;
+  bottom: 25px;
+  font-weight: bold;
+}
+.customdivider{
+  color:#0077BD; 
+  text-align: center; 
+  margin-top:35px; 
+  margin-bottom: 20px;
 }

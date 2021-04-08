@@ -12,6 +12,8 @@ import {NotificationModule} from '../component/notification/notification.module'
 import { MatExpansionModule } from '@angular/material/expansion';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatButtonModule} from '@angular/material/button';
+import { GoogleChartsModule } from 'angular-google-charts';
+
 
 @NgModule({
   imports: [
@@ -23,7 +25,8 @@ import {MatButtonModule} from '@angular/material/button';
     NotificationModule,
     MatExpansionModule,
     MatStepperModule,
-    MatButtonModule
+    MatButtonModule,
+    GoogleChartsModule
   ],
   declarations: [DashboardPage]
 })

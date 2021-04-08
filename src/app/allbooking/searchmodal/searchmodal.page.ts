@@ -62,11 +62,11 @@ export class SearchmodalPage implements OnInit {
     this.http.post("https://software.poonamdevelopers.in/Apis/getAllBookings", all_booking_params)
     .subscribe((response:any)=>{
 
-    this.all_bookings = response.data
-    this.filter_all_booking = response.data
+    this.datastoreservice.all_bookings = response.data
+    this.datastoreservice.filter_all_booking = response.data
 
-    this.send_all_bookings_data_to_bookingpage(this.all_bookings)
-    console.log(this.all_bookings, "ALL BOOKING DATA")
+    // this.send_all_bookings_data_to_bookingpage(this.all_bookings)
+    console.log(this.datastoreservice.all_bookings, "ALL BOOKING DATA")
     }, (errors) => {
     console.log("Server Issue", errors.message)
     })
@@ -81,12 +81,12 @@ export class SearchmodalPage implements OnInit {
     this.dismiss()
   }
 
-  send_all_bookings_data_to_bookingpage(bookings_data){
-    console.log("**************************************************")
-    let myCompOneObj = new AllbookingPage(this.http,this.alert, this.datastoreservice, this.modalCtrl);
-    myCompOneObj.fetchallbookings(bookings_data)
+  // send_all_bookings_data_to_bookingpage(bookings_data){
+  //   console.log("**************************************************")
+  //   let myCompOneObj = new AllbookingPage(this.http,this.alert, this.datastoreservice, this.modalCtrl);
+  //   myCompOneObj.fetchallbookings(bookings_data)
 
-  }
+  // }
 
 
   get_wing_floor_unit(id){

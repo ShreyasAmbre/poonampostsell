@@ -1,11 +1,21 @@
-<ion-header>
-  <ion-toolbar color="primary">
-    <ion-title >Applicants</ion-title>
+<ion-header class="ion-no-border">
+  <ion-toolbar class="toolbar" slots="start" >
+    <ion-buttons slot="start" size="large">
+      <ion-menu-button autoHide="false">
+        <ion-icon src="../../assets/icon/menu.svg"></ion-icon>
+      </ion-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="end" size="large">
+      <ion-menu-button auto-hide="false">
+        <app-notification></app-notification>
+      </ion-menu-button>
+    </ion-buttons>
+    <ion-title>Applicant</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-card class="detailbookingcard">
+  <!-- <ion-card class="detailbookingcard">
     <ion-card-header>
       <ion-card-subtitle  color="primary">View Booking</ion-card-subtitle>
       <ion-card-title color="primary">{{get_all_bookings_api["project_name"]}} {{get_all_bookings_api["wingName"]}} {{get_all_bookings_api["flatNo"]}}</ion-card-title>
@@ -18,8 +28,6 @@
       <b>Rera Area</b> : {{get_all_bookings_api["reraArea"]}} sq. mt <br>
       <b>Booking Date</b> : {{get_all_bookings_api["booking_date"]}}<br><br>
 
-      <!-- <ion-list-header></ion-list-header> -->
-      <!-- <p> -->
         <ion-chip color="primary">
           <ion-label> Allotment Letter</ion-label>
         </ion-chip>
@@ -41,15 +49,12 @@
         <ion-chip color="warning">
           <ion-label>Tax Invoice</ion-label>
         </ion-chip>
-
-      <!-- </p> -->
     </ion-card-content>
-  </ion-card>
+  </ion-card> -->
 
-  <ion-card class="detailbookingcard">
+  <!-- <ion-card class="detailbookingcard">
     <ion-card-header>
       <ion-card-subtitle  color="primary">Payment Summary</ion-card-subtitle>
-      <!-- <ion-card-title color="primary">Poonam Vista A-403</ion-card-title> -->
     </ion-card-header>
 
     <ion-card-content>
@@ -98,15 +103,13 @@
         </tbody>
       </table>
     </ion-card-content>
-  </ion-card>
+  </ion-card> -->
 
-  <ion-card class="detailbookingcard">
+  <!--<ion-card class="detailbookingcard">
     <ion-card-header>
-      <ion-card-subtitle  color="primary">Deal</ion-card-subtitle>
-      <!-- <ion-card-title color="primary">Poonam Vista A-403</ion-card-title> -->
     </ion-card-header>
 
-    <ion-card-content>
+     <ion-card-content>
       <mat-accordion>
         <mat-expansion-panel>
           <mat-expansion-panel-header style="background-color: #5693ee ;">
@@ -114,7 +117,6 @@
               <h4 style="color:white">Deal Information</h4>
             </mat-panel-title>
             <mat-panel-description>
-              <!-- <h6>Complete Deal Info</h6> -->
             </mat-panel-description>
           </mat-expansion-panel-header>
           <div>
@@ -136,9 +138,9 @@
         </mat-expansion-panel><br>
       </mat-accordion>
     </ion-card-content>
-  </ion-card>
+  </ion-card> -->
 
-  <ion-card class="detailbookingcard">
+  <!-- <ion-card class="detailbookingcard">
     <ion-card-content >
       <ion-list *ngFor="let item of booking_applicant_api">
 
@@ -157,5 +159,117 @@
         </ion-item>
       </ion-list>
     </ion-card-content>
-  </ion-card>
+  </ion-card> -->
+
+  <div class="conatiner" >
+    <ion-card *ngFor="let item of booking_applicant_api" >
+      <div style="text-align: right;">  
+        <img src="../../../assets/icon/avatar2.jpg" alt="" width="50px" height="50px" >
+      </div>
+      <ion-card-content>
+        <p style="font-size: 12px"><b>Applicant</b></p>
+        <p style="font-size: 12px"><b>{{item.salutation}} {{item.first_name}} {{item.last_name}}</b></p>
+        <p style="font-size: 10px"><b>+91 8956309443</b></p>
+        <p style="font-size: 10px">{{item.permanent_address_line_1}}</p>
+        <p style="font-size: 10px">Pancard: {{item.pancard}}</p>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <ion-item>
+    <h4 style="color:#0077BD"><u>{{get_all_bookings_api["project_name"]}} {{get_all_bookings_api["wingName"]}} {{get_all_bookings_api["flatNo"]}}</u></h4>
+  </ion-item>
+
+  <div>
+    <table class="table table-borderless customtablestyle">
+      <tbody>
+        <tr>
+          <th>Unit Type:</th>
+          <td>{{get_all_bookings_api["unit_type"]}}</td>
+        </tr>
+        <tr>
+          <th>Floor:</th>
+          <td>{{get_all_bookings_api["floor"]}}</td>
+        </tr>
+        <tr>
+          <th>Saleable Area:</th>
+          <td>{{get_all_bookings_api["saleableArea"]}} sq. ft.</td>
+        </tr>
+        <tr>
+          <th>Rera Area:/th>
+          <td>{{get_all_bookings_api["reraArea"]}} sq. mt.</td>
+        </tr>
+        <tr>
+          <th>Booking Date:/th>
+          <td>{{get_all_bookings_api["booking_date"]}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+  <ion-item>
+    <h4 style="color:#0077BD"><u>Payment Summary</u></h4>
+  </ion-item>
+
+  <div>
+    <table class="table table-borderless customtablestyle">
+      <tbody>
+        <tr>
+          <th>Rate:</th>
+          <td>4,990.00</td>
+        </tr>
+        <tr>
+          <th>Agreement Value:</th>
+          <td>31,18,750.00</td>
+        </tr>
+        <tr>
+          <th>Received:</th>
+          <td>6,23,750.00</td>
+        </tr>
+        <tr>
+          <th>Total Balance:</th>
+          <td>24,95,000.00</td>
+        </tr>
+        <tr>
+          <th>Total Due:</th>
+          <td>6,23,750.00</td>
+        </tr>
+        <tr>
+          <th>Balance Due:</th>
+          <td>0.00</td>
+        </tr>
+        <tr>
+          <th>GST Received:</th>
+          <td>31,180,00</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div style="margin:5%">
+    <ion-chip color="primary">
+      <ion-label> Allotment Letter</ion-label>
+    </ion-chip>
+    <ion-chip color="warning">
+      <ion-label>NOC</ion-label>
+    </ion-chip>
+    <ion-chip color="success">
+      <ion-label>Cost Sheet</ion-label>
+    </ion-chip>
+    <ion-chip color="danger">
+      <ion-label>Agreement Intimation</ion-label>
+    </ion-chip>
+    <ion-chip color="tertiary">
+      <ion-label>Agreement</ion-label>
+    </ion-chip>
+    <ion-chip color="secondary">
+      <ion-label>Demand Print</ion-label>
+    </ion-chip>
+    <ion-chip color="warning">
+      <ion-label>Tax Invoice</ion-label>
+    </ion-chip>
+  </div>
+
+ 
 </ion-content>

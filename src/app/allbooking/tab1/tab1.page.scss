@@ -1,8 +1,48 @@
-#detailbookingimg{
-  margin-top:10px;
-  border-bottom: 5px rgb(103, 103, 232) solid; ;
+// #detailbookingimg{
+//   margin-top:10px;
+//   border-bottom: 5px rgb(103, 103, 232) solid; ;
+// }
+// .detailbookingcard{
+//   border-left: 5px rgb(103, 103, 232) solid;
+//   border-right: 5px rgb(103, 103, 232) solid;
+// }
+// ReDesign Code Below
+
+.toolbar{
+  border-bottom-left-radius:20px;
+  border-bottom-right-radius:20px;
+
 }
-.detailbookingcard{
-  border-left: 5px rgb(103, 103, 232) solid;
-  border-right: 5px rgb(103, 103, 232) solid;
+ion-toolbar{
+  --background: #0077BD;
+  --color: white;
+}
+
+.conatiner{
+  columns: 2;
+  column-gap: 5px;
+  padding: 5%;
+
+  ion-card{
+    width: 90%;
+    border: 2px solid #0077BD;
+    box-shadow: 3px 3px 3px #0077BD;
+
+  }
+}
+
+.customtablestyle{
+  margin-top: 2%;
+  margin-bottom: 5%;
+  margin-right: 5%;
+  margin-left: 5%;
+
+  th{
+    font-weight: normal;
+  }
+
+  td{
+    font-weight: bold;
+  }
+  
 }

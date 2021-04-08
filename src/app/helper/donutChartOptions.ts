@@ -10,6 +10,7 @@ export const donutChartOptions: Options = {
   credits:{
     enabled: false
   },
+  
   plotOptions:{
     pie:{
       innerSize: '90%',
@@ -17,8 +18,11 @@ export const donutChartOptions: Options = {
       borderColor: null,
       slicedOffset: 20,
       dataLabels: {
+        enabled: false, 
         connectorWidth:0
       },
+      showInLegend: true
+
     }
   },
   title:{
@@ -38,6 +42,10 @@ export const donutChartOptions: Options = {
       ]
     }
   ],
+  legend: {
+    align:'center',
+    itemDistance: 50
+  },
 }
 
 export const donutChartOptions2: Options = {
@@ -47,6 +55,7 @@ export const donutChartOptions2: Options = {
     width: 350,
     height: 250
   },
+  
   credits:{
     enabled: false
   },
@@ -57,8 +66,10 @@ export const donutChartOptions2: Options = {
       borderColor: null,
       slicedOffset: 20,
       dataLabels: {
+        enabled: false, 
         connectorWidth:0
       },
+      showInLegend: true
     }
   },
   title:{
@@ -78,6 +89,11 @@ export const donutChartOptions2: Options = {
       ]
     }
   ],
+
+  legend: {
+    align:'center',
+    itemDistance: 50
+},
 }
 
 export const donutChartOptions3: Options = {
@@ -97,8 +113,10 @@ export const donutChartOptions3: Options = {
       borderColor: null,
       slicedOffset: 20,
       dataLabels: {
+        enabled: false, 
         connectorWidth:0
       },
+      showInLegend: true
     }
   },
   title:{
@@ -118,6 +136,10 @@ export const donutChartOptions3: Options = {
       ]
     }
   ],
+  legend: {
+    align:'center',
+    itemDistance: 50
+  },
 }
 export const donutChartOptions4: Options = {
   chart:{
@@ -136,8 +158,10 @@ export const donutChartOptions4: Options = {
       borderColor: null,
       slicedOffset: 20,
       dataLabels: {
+        enabled: false, 
         connectorWidth:0
       },
+      showInLegend: true
     }
   },
   title:{
@@ -157,5 +181,9 @@ export const donutChartOptions4: Options = {
       ]
     }
   ],
+  legend: {
+    align:'center',
+    itemDistance: 50
+  },
 }
 
