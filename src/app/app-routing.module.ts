@@ -6,11 +6,11 @@ const routes: Routes = [
   //   path: 'home',
   //   loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   // },
-  // {
-  //   path: '',
-  //   redirectTo: 'login',
-  //   pathMatch: 'full'
-  // },
+  {
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full'
+  },
   {
     path: 'login',
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
@@ -35,11 +35,6 @@ const routes: Routes = [
     path: 'summaryreport',
     loadChildren: () => import('./summaryreport/summaryreport.module').then( m => m.SummaryreportPageModule)
   },
-  {
-    path: 'splash',
-    loadChildren: () => import('./splash/splash.module').then( m => m.SplashPageModule)
-  },
-
 ];
 
 @NgModule({
