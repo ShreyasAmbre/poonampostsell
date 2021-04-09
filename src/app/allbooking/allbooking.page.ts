@@ -60,6 +60,14 @@ export class AllbookingPage implements OnInit {
   constructor(public http:HttpClient, public alertController: AlertController, public datastoreservice: DatastoreService,
     public modalCtrl: ModalController) { }
 
+    async showModal() {
+      const modal = await this.modalCtrl.create({
+        component: SearchmodalPage,
+        cssClass: 'my-custom-modal-css'
+      });
+      return await modal.present();
+    }
+
 
 
   ngOnInit(all_bookings_data?) {

@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: DashboardPage
+  },
+  {
+    path: 'filtermodal',
+    loadChildren: () => import('./filtermodal/filtermodal.module').then( m => m.FiltermodalPageModule)
   }
 ];
 

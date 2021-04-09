@@ -1,34 +1,16 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import {
-  Plugins,
-  PushNotification,
-  PushNotificationToken,
-  PushNotificationActionPerformed,
-} from '@capacitor/core';
-import {HttpClient} from '@angular/common/http';
-
-import { Chart } from 'angular-highcharts';
-import {donutChartOptions, donutChartOptions2, donutChartOptions3, donutChartOptions4} from '../helper/donutChartOptions';
-
-import {NotificationService} from '../services/notification.service';
-import { Observable, forkJoin } from 'rxjs';
 import { ModalController } from '@ionic/angular';
-import {FiltermodalPage} from './filtermodal/filtermodal.page'
+import { DatastoreService } from 'src/app/datastore.service';
+import { Observable, forkJoin } from 'rxjs';
 
-const { PushNotifications } = Plugins;
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.page.html',
-  styleUrls: ['./dashboard.page.scss'],
+  selector: 'app-filtermodal',
+  templateUrl: './filtermodal.page.html',
+  styleUrls: ['./filtermodal.page.scss'],
 })
-export class DashboardPage implements OnInit {
-  
-  chart = new Chart(donutChartOptions);
-  chart2 = new Chart(donutChartOptions2);
-  chart3 = new Chart(donutChartOptions3);
-  chart4 = new Chart(donutChartOptions4);
-
+export class FiltermodalPage implements OnInit {
   project_master = []
   wing_apidata = []
   floor_apidata = []
@@ -49,87 +31,15 @@ export class DashboardPage implements OnInit {
   selected_floor: string = ""
   selected_unit: string = ""
 
-  sliderConfig = {
-    spaceBetween: 1,
-    centeredSlides: false,
-    slidesPerView: 1.6,
-    pager: false
-  }
-
-  noti_data;
-
-  constructor(private noti:NotificationService, private http:HttpClient, public modalCtrl: ModalController) { }
-
-  async showFilterModal() {
-    const modal = await this.modalCtrl.create({
-      component: FiltermodalPage,
-      cssClass: 'my-customfilter-modal'
-    });
-    return await modal.present();
-  }
+  constructor(public modalCtrl: ModalController, public http:HttpClient, public datastoreservice: DatastoreService,) { }
 
   ngOnInit() {
-    donutChartOptions.series[0]["data"][0]["y"] = 4
-    donutChartOptions.series[0]["data"][3]["y"] = 1
-
-    console.log(donutChartOptions.series[0]["data"][1]["y"], "DN VALUE Y: IS ")
-    console.log(donutChartOptions.series[0]["data"][3]["y"], "DN VALUE Y: IS ")
-    // this.getProjectMaster()
-    console.log('Initializing HomePage');
-    // // this.setValue()
-    // // this.getNotiCount()
-
-
-
-
-    
-
-    // // Request permission to use push notifications
-    // // iOS will prompt user and return if they granted permission or not
-    // // Android will just grant without prompting
-    // PushNotifications.requestPermission().then( result => {
-    //   if (result.granted) {
-    //     // Register with Apple / Google to receive push via APNS/FCM
-    //     PushNotifications.register();
-    //   } else {
-    //     // Show some error
-    //   }
-    // });
-
-    // // On success, we should be able to receive notifications
-    // PushNotifications.addListener('registration',
-    //   (token: PushNotificationToken) => {
-    //     alert('Push registration success, token: ' + token.value);
-    //   }
-    // );
-
-    // // Some issue with our setup and push will not work
-    // PushNotifications.addListener('registrationError',
-    //   (error: any) => {
-    //     alert('Error on registration: ' + JSON.stringify(error));
-    //   }
-    // );
-
-    // // Show us the notification payload if the app is open on our device
-    // PushNotifications.addListener('pushNotificationReceived',
-    //   (notification: PushNotification) => {
-    //     alert('Push received: ' + JSON.stringify(notification));
-    //     this.noti.setNotification(JSON.stringify(notification));
-    //   }
-    // );
-
-    // // Method called when tapping on a notification
-    // PushNotifications.addListener('pushNotificationActionPerformed',
-    //   (notification: PushNotificationActionPerformed) => {
-    //     alert('Push action performed: ' + JSON.stringify(notification));
-    //     // this.noti.setNotification(JSON.stringify(notification));
-    //   }
-    // );
+    this.getProjectMaster()
   }
 
-  // getNoti(){
-  //   this.noti_data = this.noti.getNotification()
-  // }
+  dismiss() {
+    this.modalCtrl.dismiss();
+  }
 
   getProjectMaster(){
     let data = {
@@ -139,12 +49,34 @@ export class DashboardPage implements OnInit {
     }
     this.http.post("https://software.poonamdevelopers.in/Apis/read/project_master", data)
     .subscribe((response:any)=>{
-      console.log(response.data)
 
       this.project_master = response.data
+      console.log(this.project_master)
+
     }, (errors) => {
       console.log("Server Issue", errors.message)
     })
+  }
+
+  getApartment(id){
+
+    let wing_params = { _s: "wingName", _w: {status: 1}, _g: "wingName", _wi: [{name: "project_id", values: [id]}] }
+    let floor_data = {_s: "floor", _w: {status: 1}, _g: "floor", _wi: [{name: "project_id", values: [id]}] }
+    let unit_data = {_s: "unit_type", _w: {status: 1}, _g: "unit_type", _wi: [{name: "project_id", values: [id]}]}
+
+
+    var wingData = this.http.post('https://software.poonamdevelopers.in/Apis/read/apartments', wing_params);
+    var floorData = this.http.post('https://software.poonamdevelopers.in/Apis/read/apartments', floor_data);
+    var unitData = this.http.post('https://software.poonamdevelopers.in/Apis/read/apartments', unit_data);
+
+    forkJoin([wingData, floorData, unitData]).subscribe(results => {
+      this.wing_apidata = results[0]["data"]
+      this.floor_apidata = results[1]["data"]
+      this.unit_apidata = results[2]["data"]
+      console.log( this.wing_apidata, "WING DATA")
+      console.log( this.floor_apidata, "FLOOR API DATA")
+      console.log( this.unit_apidata, "UNIT API DATA")
+    });
   }
 
   getSummary(){
@@ -246,7 +178,7 @@ export class DashboardPage implements OnInit {
     }
     var summary_params = {project_id: [id], wingName: [], floor: [], broker_id: [], unit_type: []}
 
-    var ProjectDashBoardData = this.http.post('https://software.poonamdevelopers.in/DashboardApi/projectDashboard', {dates, filters});
+    var ProjectDashBoardData = this.http.post('https://software.poonamdevelopers.in/DashboardApi/projectDashboard', {dates: dates, filters: filters});
     var projectSummaryData = this.http.post('https://software.poonamdevelopers.in/ReportsApi/summary', summary_params);
 
     forkJoin([ProjectDashBoardData, projectSummaryData]).subscribe(results => {
@@ -257,25 +189,6 @@ export class DashboardPage implements OnInit {
     });
   }
 
-  getApartment(id){
-
-    let wing_params = { _s: "wingName", _w: {status: 1}, _g: "wingName", _wi: [{name: "project_id", values: [id]}] }
-    let floor_data = {_s: "floor", _w: {status: 1}, _g: "floor", _wi: [{name: "project_id", values: [id]}] }
-    let unit_data = {_s: "unit_type", _w: {status: 1}, _g: "unit_type", _wi: [{name: "project_id", values: [id]}]}
-
-
-    var wingData = this.http.post('https://software.poonamdevelopers.in/Apis/read/apartments', wing_params);
-    var floorData = this.http.post('https://software.poonamdevelopers.in/Apis/read/apartments', floor_data);
-    var unitData = this.http.post('https://software.poonamdevelopers.in/Apis/read/apartments', unit_data);
-
-    forkJoin([wingData, floorData, unitData]).subscribe(results => {
-      this.wing_apidata = results[0]["data"]
-      this.floor_apidata = results[1]["data"]
-      this.unit_apidata = results[2]["data"]
-      console.log( this.wing_apidata, "WING DATA")
-      console.log( this.floor_apidata, "FLOOR API DATA")
-      console.log( this.unit_apidata, "UNIT API DATA")
-    });
-  }
+  
 
 }

@@ -215,7 +215,7 @@
 
         <div *ngFor="let co_applicant of co_applicants;  let c = index">
 
-          <ion-card id="bookingcard" style="margin:5px 0px; padding:0px;">
+          <ion-card id="bookingcard" style="margin:5px 0px; padding:0px; border: 1px solid #002D47; border-radius: 10px;">
             <ion-item>
               <ion-avatar slot="start">
                 <img src="../../assets/icon/avatar.png">
@@ -419,9 +419,9 @@
             <h4 class="customdivider"><u>Deal Details</u></h4>
 
             <ion-item>
-              <div *ngIf="package_deal_api[0]">
+              <div *ngIf="package_deal_api[0]" style="width: 100%;">
                 <div *ngIf="package_deal_api[0]['project_id'] == '1' || undefined">
-                  <table class="table table-striped">
+                  <table class="table table-striped" >
                     <thead>
                       <tr>
                         <th scope="col">Particulars</th>

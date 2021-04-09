@@ -27,7 +27,13 @@
 
 
 .my-custom-modal-css .modal-wrapper {
-  height: 40%;
+  height: 50%;
+  top: 40%;
+  position: absolute;
+  display: block;
+}
+.my-customfilter-modal .modal-wrapper{
+  height: 50%;
   top: 40%;
   position: absolute;
   display: block;

@@ -339,6 +339,10 @@
   <div  [chart]="chart3"></div>
   <div  [chart]="chart4"></div>
 
-
+  <ion-fab class="floating-btn" horizontal="end" vertical="bottom" slot="fixed">
+    <ion-fab-button color="danger" (click)="showFilterModal()">
+      <ion-icon name="funnel"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 
 </ion-content>
