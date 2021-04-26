@@ -7,7 +7,6 @@ import { IonicModule } from '@ionic/angular';
 import { DashboardPageRoutingModule } from './dashboard-routing.module';
 
 import { DashboardPage } from './dashboard.page';
-import {ChartModule} from 'angular-highcharts';
 import {NotificationModule} from '../component/notification/notification.module';
 import { MatExpansionModule } from '@angular/material/expansion';
 import {MatStepperModule} from '@angular/material/stepper';
@@ -21,7 +20,6 @@ import { GoogleChartsModule } from 'angular-google-charts';
     FormsModule,
     IonicModule,
     DashboardPageRoutingModule,
-    ChartModule,
     NotificationModule,
     MatExpansionModule,
     MatStepperModule,

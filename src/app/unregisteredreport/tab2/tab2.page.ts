@@ -9,15 +9,18 @@ import { Observable, forkJoin } from 'rxjs';
   styleUrls: ['./tab2.page.scss'],
 })
 export class Tab2Page implements OnInit {
-
   get_all_bookings_api = []
   get_all_payments_api = []
   get_all_vouchers_api = []
   booking_applicant_api = []
   booking_deal_api = []
   booking_payment_detail_master_api = []
-  demand_letter_api = []
   demand_api = []
+
+  totalBasicAmountOfPaymentScheme:string = "0"
+  totalAmountReceivedPaymentScheme:string = "0"
+  totalDuePaymentScheme:string = "0"
+  totalBasicAmountOfPaymentReceipt:string = "0"
 
 
   constructor(public datastoreservice:DatastoreService, public http:HttpClient) { }
@@ -63,7 +66,39 @@ export class Tab2Page implements OnInit {
       console.log(this.booking_payment_detail_master_api, "BOOKING PAYEMNT DEAL MASTER")
       console.log(this.demand_api, "DEMAND API MASTER")
       // console.log(this.demand_letter_api, "DEMAND LETTER")
+
+
+      this.booking_payment_detail_master_api.forEach((value, index, array) => {
+        this.totalBasicAmountOfPaymentScheme = String(Number(this.totalBasicAmountOfPaymentScheme) +
+                                              Number(value.amount))
+
+        this.totalAmountReceivedPaymentScheme = String(Number(this.totalAmountReceivedPaymentScheme) +
+                                                Number(value.received))
+
+        this.totalDuePaymentScheme = String(Number(this.totalDuePaymentScheme) +
+                                    Number(value.due_amount))
+
+          if(value.amount != null){
+            value.amount = value.amount.replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ',')
+          }
+          if(value.received != null){
+            value.received = value.received.replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ',')
+          }
+          if(value.due_amount != null){
+            value.due_amount = value.due_amount.replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ',')
+          }
+          if(value.outstanding != null){
+            value.outstanding = value.outstanding.replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ',')
+          }
+      });
+
+      this.get_all_payments_api.forEach((value, index, array) => {
+        this.totalBasicAmountOfPaymentReceipt = String(Number(this.totalBasicAmountOfPaymentReceipt) +
+                                              Number(value.amount))
+      });
+
     });
   }
+
 
 }

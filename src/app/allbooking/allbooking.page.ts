@@ -117,7 +117,7 @@ export class AllbookingPage implements OnInit {
       floor: this.selected_floor, unit_type: this.selected_unit, broker_id: this.selected_broker}
 
       let all_booking_initial_load = this.http.post(`https://software.poonamdevelopers.in/Apis/getAllBookings`, all_booking_params)
-  
+
       forkJoin([all_booking_initial_load]).subscribe(results => {
 
         this.datastoreservice.all_bookings = results[0]["data"]
@@ -127,12 +127,12 @@ export class AllbookingPage implements OnInit {
         // this.datastoreservice.filter_all_booking.reverse()
         // this.datastoreservice.sort_data()
 
-  
+
         console.log(this.datastoreservice.all_bookings, "THIS ALL BOOKING")
         this.data_status = true
       });
   }
-  
+
 
   // fetchallbookings(data){
   //   this.all_bookings = data

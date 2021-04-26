@@ -60,20 +60,18 @@ export class SearchmodalPage implements OnInit {
 
   getAllApi(){
     let data = {"_w":{ status: 1}}
-    let all_booking_params = {project_id: this.selected_project, wingName: this.selected_wing,
-      floor: this.selected_floor, unit_type: this.selected_unit, broker_id: this.selected_broker}
 
-    let project_data = this.http.post('http://172.105.253.44/test/Apis/read/project_master', data);
+    let project_data = this.http.post('https://software.poonamdevelopers.in/Apis/read/project_master', data);
     forkJoin([project_data]).subscribe(results => {
       this.project_master = results[0]["data"]
       console.log(this.project_master, "THIS IS PROJECT MASTER")
     });
   }
-  
+
   fetchallbookings(){
     this.presentLoading()
 
-    var pid = this.selected_project
+    var pid = this.datastoreservice.filter_selected_project
     var wing = this.selected_wing
     var floor= this.selected_floor
     var unit_type= this.selected_unit
@@ -82,7 +80,7 @@ export class SearchmodalPage implements OnInit {
     let all_booking_params = {project_id: pid, wingName: wing,
       floor: floor, unit_type: unit_type, broker_id: broker_id}
 
-    this.http.post("http://172.105.253.44/test/Apis/getAllBookings", all_booking_params)
+    this.http.post("https://software.poonamdevelopers.in/Apis/getAllBookings", all_booking_params)
     .subscribe((response:any)=>{
 
     this.datastoreservice.all_bookings = response.data
@@ -98,16 +96,13 @@ export class SearchmodalPage implements OnInit {
 
 
   get_wing_floor_unit(){
+    let wings_params = {_s: "wingName", _w: {status: 1}, _g: "wingName", _wi: [{name: "project_id", values: this.datastoreservice.filter_selected_project}]}
+    let floors_params = {_s: "floor", _w: {status: 1}, _g: "floor", _wi: [{name: "project_id", values: this.datastoreservice.filter_selected_project}]}
+    let units_params = {_s: "unit_type", _w: {status: 1}, _g: "unit_type", _wi: [{name: "project_id", values: this.datastoreservice.filter_selected_project}]}
 
-
-
-    let wings_params = {_s: "wingName", _w: {status: 1}, _g: "wingName", _wi: [{name: "project_id", values: this.selected_project}]}
-    let floors_params = {_s: "floor", _w: {status: 1}, _g: "floor", _wi: [{name: "project_id", values: this.selected_project}]}
-    let units_params = {_s: "unit_type", _w: {status: 1}, _g: "unit_type", _wi: [{name: "project_id", values: this.selected_project}]}
-
-    let wings_data = this.http.post('http://172.105.253.44/test/Apis/read/apartments', wings_params);
-    let floors_data = this.http.post('http://172.105.253.44/test/Apis/read/apartments', floors_params);
-    let units_payment_data = this.http.post('http://172.105.253.44/test/Apis/read/apartments', units_params);
+    let wings_data = this.http.post('https://software.poonamdevelopers.in/Apis/read/apartments', wings_params);
+    let floors_data = this.http.post('https://software.poonamdevelopers.in/Apis/read/apartments', floors_params);
+    let units_payment_data = this.http.post('https://software.poonamdevelopers.in/Apis/read/apartments', units_params);
 
     forkJoin([wings_data, floors_data, units_payment_data]).subscribe(results => {
 
@@ -119,14 +114,14 @@ export class SearchmodalPage implements OnInit {
       console.log(this.floors_api_data, "THIS IS FLOOR DATA")
       console.log(this.units_api_data, "THIS UNIT DATA")
 
-      // this.floors_api_data.forEach((value, index, array) => {
-        
-      // });
+      this.floors_api_data.sort((a, b) => {
+        return a.floor - b.floor;
+      });
 
     });
   }
 
 
-  
+
 
 }

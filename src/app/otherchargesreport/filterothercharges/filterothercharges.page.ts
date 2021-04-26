@@ -77,13 +77,17 @@ export class FilterotherchargesPage implements OnInit {
       console.log( this.floor_apidata, "FLOOR API DATA")
       console.log( this.unit_apidata, "UNIT API DATA")
       console.log( this.broker_apidata, "BROKER API DATA")
+
+      this.floor_apidata.sort((a, b) => {
+        return a.floor - b.floor;
+      });
     });
   }
 
   getData(){
     var id = this.selected_project
 
-    let demand_params = {project_id: [id], wingName: this.selected_wing, floor: this.selected_floor, 
+    let demand_params = {project_id: [id], wingName: this.selected_wing, floor: this.selected_floor,
       broker_id: this.selected_broker, unit_type: this.selected_unit}
 
     var demandData = this.http.post('https://software.poonamdevelopers.in/Apis/getAllDemands', demand_params);
@@ -95,7 +99,7 @@ export class FilterotherchargesPage implements OnInit {
       console.log( this.datastoreservice.othercharges_apidata, "All BOOKING API DATA")
     });
 
-    
+
 
     this.dismiss()
   }

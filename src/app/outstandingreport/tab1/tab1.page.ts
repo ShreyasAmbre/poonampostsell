@@ -3,6 +3,7 @@ import {DatastoreService} from '../../datastore.service';
 import {HttpClient} from '@angular/common/http';
 import { Observable, forkJoin } from 'rxjs';
 
+
 @Component({
   selector: 'app-tab1',
   templateUrl: './tab1.page.html',
@@ -17,6 +18,11 @@ export class Tab1Page implements OnInit {
   booking_payment_detail_master_api = []
   demand_letter_api = []
 
+  sliderConfig = {
+    slidesPerView: 1.6,
+    spaceBetween: 7,
+    centeredSlides: true
+  };
 
   constructor(public datastoreservice:DatastoreService, public http:HttpClient) { }
 
@@ -59,6 +65,11 @@ export class Tab1Page implements OnInit {
       console.log(this.booking_deal_api, "BOOKING DEAL MASTER")
       console.log(this.booking_payment_detail_master_api, "BOOKING PAYEMNT DEAL MASTER")
       // console.log(this.demand_letter_api, "DEMAND LETTER")
+
+       this.get_all_bookings_api["agreementValue"] = this.get_all_bookings_api["agreementValue"].replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ',');
+       this.get_all_bookings_api["received"] = this.get_all_bookings_api["received"].replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ',');
+       this.get_all_bookings_api["totalDues"] = this.get_all_bookings_api["totalDues"].replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ',');
+       this.get_all_bookings_api["gstValue"] = this.get_all_bookings_api["gstValue"] .replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ',');
     });
   }
 

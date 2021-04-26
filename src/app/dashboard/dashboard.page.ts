@@ -7,8 +7,6 @@ import {
 } from '@capacitor/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 
-import { Chart } from 'angular-highcharts';
-import {donutChartOptions, donutChartOptions2, donutChartOptions3, donutChartOptions4} from '../helper/donutChartOptions';
 
 import {NotificationService} from '../services/notification.service';
 import { Observable, forkJoin } from 'rxjs';
@@ -24,11 +22,6 @@ const { PushNotifications } = Plugins;
   styleUrls: ['./dashboard.page.scss'],
 })
 export class DashboardPage implements OnInit {
-  
-  chart = new Chart(donutChartOptions);
-  chart2 = new Chart(donutChartOptions2);
-  chart3 = new Chart(donutChartOptions3);
-  chart4 = new Chart(donutChartOptions4);
 
   project_master = []
   wing_apidata = []
@@ -70,13 +63,8 @@ export class DashboardPage implements OnInit {
   }
 
   ngOnInit() {
-    donutChartOptions.series[0]["data"][0]["y"] = 4
-    donutChartOptions.series[0]["data"][3]["y"] = 1
-
     // this.showDate()
 
-    console.log(donutChartOptions.series[0]["data"][1]["y"], "DN VALUE Y: IS ")
-    console.log(donutChartOptions.series[0]["data"][3]["y"], "DN VALUE Y: IS ")
     // this.getProjectMaster()
     console.log('Initializing HomePage');
     this.getProjectDashboard()
@@ -86,7 +74,7 @@ export class DashboardPage implements OnInit {
 
 
 
-    
+
 
     // // Request permission to use push notifications
     // // iOS will prompt user and return if they granted permission or not
@@ -142,7 +130,7 @@ export class DashboardPage implements OnInit {
       }
     }
     this.http.post("http://172.105.253.44/test/Apis/read/project_master", data)
-    
+
     .subscribe((response:any)=>{
       console.log(response.data)
 
@@ -164,7 +152,7 @@ export class DashboardPage implements OnInit {
     this.week_end = moment(this.today).endOf('week').format('YYYY-MM-DD');
 
     this.week_start = moment(this.today).startOf('week').format('YYYY-MM-DD');
-    
+
     this.year_end = moment(this.today).endOf('year').format('YYYY-MM-DD');
     this.year_start = moment(this.today).startOf('year').format('YYYY-MM-DD');
 
@@ -198,7 +186,7 @@ export class DashboardPage implements OnInit {
                                  .set('Accept', 'application/json');
 
     this.http.post("https://software.poonamdevelopers.in/DashboardApi/projectDashboard", {dates:date, filters:filter}  )
-    
+
     .subscribe((response:any)=>{
       console.log(response.data,"DASHBOARD DATA")
 
@@ -220,7 +208,7 @@ export class DashboardPage implements OnInit {
     this.week_end = moment(this.today).endOf('week').format('YYYY-MM-DD');
 
     this.week_start = moment(this.today).startOf('week').format('YYYY-MM-DD');
-    
+
     this.year_end = moment(this.today).endOf('year').format('YYYY-MM-DD');
     this.year_start = moment(this.today).startOf('year').format('YYYY-MM-DD');
     console.log(this.today, "Cureent Date")

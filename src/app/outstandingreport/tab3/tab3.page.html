@@ -2,7 +2,7 @@
   <ion-toolbar class="toolbar" slots="start" >
     <ion-buttons slot="start" size="large">
       <ion-menu-button autoHide="false">
-        <ion-icon src="../../assets/icon/menu.svg"></ion-icon>
+        <ion-icon src="../../assets/icon/menu.svg" style="color: white;"></ion-icon>
       </ion-menu-button>
     </ion-buttons>
     <ion-buttons slot="end" size="large">
@@ -20,23 +20,27 @@
     <h4 style="color:#0077BD"><u>Deal Record</u></h4>
   </ion-item>
 
-  <div>
-    <table class="table table-borderless customtablestyle">
-      <thead>
-        <tr>
-          <th scope="col">Terms</th>
-          <th scope="col">Total Percentage</th>
-        </tr>
-      </thead>
-      <tbody *ngFor="let item of booking_deal_api">
-        <tr>
-          <th>{{item.name}}</th>
-          <td>{{item.customer}}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+  <ion-card style=" margin: 0px !important; overflow-x:auto">
+    <ion-card-content>
+      <table class="table table-striped">
+        <thead class="bg-primary text-white text-center">
+          <tr>
+            <th scope="col">Particulars                                        </th>
+            <th scope="col">Customer Deal                                    </th>
+            <th scope="col">Narration                                      </th>
+            <th scope="col">Office Deal                                </th>
+          </tr>
+        </thead>
+        <tbody>
+         <tr *ngFor="let item of booking_deal_api">
+          <td>{{item.name}}</td>
+          <td>&#x20B9; {{item.customer}}</td>
+          <td>{{item.narration}}</td>
+          <td>&#x20B9; {{item.office}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </ion-card-content>
+  </ion-card><br>
 
 </ion-content>
-
-

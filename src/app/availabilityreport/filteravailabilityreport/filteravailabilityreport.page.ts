@@ -68,28 +68,32 @@ export class FilteravailabilityreportPage implements OnInit {
       console.log( this.wing_apidata, "WING DATA")
       console.log( this.floor_apidata, "FLOOR API DATA")
       console.log( this.unit_apidata, "UNIT API DATA")
+
+      this.floor_apidata.sort((a, b) => {
+        return a.floor - b.floor;
+      });
     });
   }
 
   getData(){
     var id = this.selected_project
 
-    let availablityParams = {project_id: [id], wingName: this.selected_wing, floor: this.selected_floor, 
+    let availablityParams = {project_id: [id], wingName: this.selected_wing, floor: this.selected_floor,
         unit_type: this.selected_unit}
 
 
     var availabilityData = this.http.post('https://software.poonamdevelopers.in/ReportsApi/availability', availablityParams);
 
     var floors_data = {
-      "1": [], "2": [], "3": [], "4":[], "5":[],  "6": [], "7": [], "8": [], "9":[], "10":[], "11": [], "12": [], "13": [], "14":[], "15":[], 
-      "16": [], "17": [], "18": [], "19":[], "20":[],  "21": [], "22": [], "null": [],  
+      "1": [], "2": [], "3": [], "4":[], "5":[],  "6": [], "7": [], "8": [], "9":[], "10":[], "11": [], "12": [], "13": [], "14":[], "15":[],
+      "16": [], "17": [], "18": [], "19":[], "20":[],  "21": [], "22": [], "null": [],
     }
 
     forkJoin([availabilityData]).subscribe(results => {
       var apiData = results[0]["data"]
       // console.log(apiData)
 
-      
+
 
       // var val = "1"
       // if(val in floors_data){

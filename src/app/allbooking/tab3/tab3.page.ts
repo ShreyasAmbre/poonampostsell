@@ -18,11 +18,11 @@ export class Tab3Page implements OnInit {
     console.log(id, "THIS IS BOOKING ID SELECTED")
     this.getAllApi(id)
   }
-  
+
 
   getAllApi(id){
     let booking_deal_params= {_w: {booking_id: id, status: 1}}
-    let booking_deal = this.http.post('http://172.105.253.44/test/Apis/read/bookings_deal_master', booking_deal_params);
+    let booking_deal = this.http.post('https://software.poonamdevelopers.in/Apis/read/bookings_deal_master', booking_deal_params);
 
     forkJoin([ booking_deal]).subscribe(results => {
 

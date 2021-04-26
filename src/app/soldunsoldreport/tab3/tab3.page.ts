@@ -18,7 +18,7 @@ export class Tab3Page implements OnInit {
     console.log(id, "THIS IS BOOKING ID SELECTED")
     this.getAllApi(id)
   }
-  
+
 
   getAllApi(id){
     let booking_deal_params= {_w: {booking_id: id, status: 1}}
@@ -28,6 +28,11 @@ export class Tab3Page implements OnInit {
 
       this.booking_deal_api = results[0]["data"]
       console.log(this.booking_deal_api, "BOOKING DEAL MASTER")
+
+
+      this.booking_deal_api.forEach((value, index, array) => {
+        value.customer = value.customer.replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ',')
+      });
     });
   }
 }

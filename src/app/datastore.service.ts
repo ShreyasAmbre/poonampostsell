@@ -22,13 +22,12 @@ export class DatastoreService {
   brokers = []
 
 
-  // Filter Input Fields Variable
-  // all_booking_selected_project = [];
-  // all_booking_selected_wing = [];
-  // all_booking_selected_floor = [];
-  // all_booking_selected_unit = [];
-  // all_booking_selected_broker = [];
-  
+  // Filter Variables
+  filter_selected_project = [];
+  filter_selected_wing = [];
+  filter_selected_floor = [];
+  filter_selected_unit = [];
+  filter_selected_broker = [];
 
 
   totalDue = ""
@@ -98,8 +97,8 @@ export class DatastoreService {
       this.balanceDue = String(Number(this.totalDue) - Number(totalAmount))
       return this.balanceDue.replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ',')
     }
-    
-    
+
+
   }
   // For Outstanding Report
   calgstBalance(agreementValue, totalAmount){
@@ -110,7 +109,7 @@ export class DatastoreService {
       this.gstBalance = String(Number(onepercentAgreementValue) - Number(totalAmount))
       return this.gstBalance.replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ',')
     }
-    
+
   }
 
 
@@ -125,14 +124,14 @@ export class DatastoreService {
   calFromDays(bookinDate){
     var today= new Date()
     var now  =today.getFullYear()  +'/'+ (today.getMonth()+1) +'/'+ today.getDate();
-    var date1 = new Date(now);  
-    var date2 = new Date(bookinDate);  
+    var date1 = new Date(now);
+    var date2 = new Date(bookinDate);
 
-    //calculate time difference  
-    var time_difference = date1.getTime() - date2.getTime();    
-  
-    //calculate days difference by dividing total milliseconds in a day  
-    var days_difference = Math.round( time_difference / (1000 * 60 * 60 * 24));  
+    //calculate time difference
+    var time_difference = date1.getTime() - date2.getTime();
+
+    //calculate days difference by dividing total milliseconds in a day
+    var days_difference = Math.round( time_difference / (1000 * 60 * 60 * 24));
 
     return days_difference
   }
@@ -156,7 +155,7 @@ export class DatastoreService {
     if(gstValue != undefined ){
       gstValue = gstValue.replace(/,/g, "")
       this.gstBalanceDetailBooking = String(Number(gstValue) - Number(gstAmount))
-      console.log(this.gstBalanceDetailBooking, "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
+      // console.log(this.gstBalanceDetailBooking, "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
       return this.gstBalanceDetailBooking.replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ',')
     }
   }
@@ -213,5 +212,5 @@ export class DatastoreService {
 
 
 
-  
+
 }

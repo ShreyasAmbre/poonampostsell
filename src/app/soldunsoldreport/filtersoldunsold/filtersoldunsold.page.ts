@@ -53,7 +53,7 @@ export class FiltersoldunsoldPage implements OnInit {
   }
 
   getApartment(id){
-    
+
 
     let wing_params = { _s: "wingName", _w: {status: 1}, _g: "wingName", _wi: [{name: "project_id", values: [id]}] }
     let floor_data = {_s: "floor", _w: {status: 1}, _g: "floor", _wi: [{name: "project_id", values: [id]}] }
@@ -75,13 +75,17 @@ export class FiltersoldunsoldPage implements OnInit {
       console.log( this.floor_apidata, "FLOOR API DATA")
       console.log( this.unit_apidata, "UNIT API DATA")
       console.log( this.broker_apidata, "BROKER API DATA")
+
+      this.floor_apidata.sort((a, b) => {
+        return a.floor - b.floor;
+      });
     });
   }
 
   getData(){
     var id = this.selected_project
 
-    let booking_params = {project_id: [id], wingName: this.selected_wing, floor: this.selected_floor, 
+    let booking_params = {project_id: [id], wingName: this.selected_wing, floor: this.selected_floor,
       broker_id: this.selected_broker, unit_type: this.selected_unit}
 
 

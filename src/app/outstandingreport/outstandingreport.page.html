@@ -2,7 +2,7 @@
   <ion-toolbar class="toolbar" slots="start" >
     <ion-buttons slot="start" size="large">
       <ion-menu-button autoHide="false">
-        <ion-icon src="../../assets/icon/menu.svg"></ion-icon>
+        <ion-icon src="../../assets/icon/menu.svg" style="color: white;"></ion-icon>
       </ion-menu-button>
     </ion-buttons>
     <ion-buttons slot="end" size="large">
@@ -30,7 +30,7 @@
             <!-- <th scope="col">From Days                              </th> -->
             <th scope="col">Customer Name                                </th>
             <th scope="col">Contact No.                               </th>
-            
+
             <th scope="col">Booking Date                                </th>
             <th scope="col">Payment Plan                                </th>
             <th scope="col">Agreement Value                                </th>
@@ -60,7 +60,7 @@
 
             <td> {{ datastoreservice.add(item.totalDues, item.totalAmount) }} </td>
             <!-- <td> {{ datastoreservice.sub(item.totalDues) }} </td> -->
-            
+
             <td> {{item.gstAmount}} </td>
             <td> {{ datastoreservice.calgstBalance(item.agreementValue, item.gstAmount) }} </td>
             <td> {{ datastoreservice.calbalanceDue(item.totalAmount) }} </td>

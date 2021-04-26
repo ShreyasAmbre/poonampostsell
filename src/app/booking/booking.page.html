@@ -2,7 +2,7 @@
   <ion-toolbar class="toolbar" slots="start" >
     <ion-buttons slot="start" size="large">
       <ion-menu-button autoHide="false">
-        <ion-icon src="../../assets/icon/menu.svg"></ion-icon>
+        <ion-icon src="../../assets/icon/menu.svg" style="color: white;"></ion-icon>
       </ion-menu-button>
     </ion-buttons>
     <ion-buttons slot="end" size="large">
@@ -298,7 +298,7 @@
             </ion-select>
             </ion-item>
 
-            <div *ngIf="package_type== 'package'">
+            <div *ngIf="type == 'package'">
               <ion-item class="formfields">
                 <table class="table">
                   <thead>
@@ -322,7 +322,7 @@
             </div>
 
             <h4 class="customdivider"><u>Property Details</u></h4>
-           
+
 
             <ion-item class="formfields">
               <ion-label>Select Property</ion-label>
@@ -406,7 +406,7 @@
               <ion-item class="formfields">
               <ion-input type="number" [(ngModel)]="percentage" name="percentage" placeholder="Enter Percentage *"></ion-input>
               <ion-button (click)="addterms()">Add</ion-button>
-              
+
               </ion-item>
               <ion-item class="formfields">
                 <table class="table">
@@ -467,15 +467,15 @@
                         <td><ion-input type="text" [(ngModel)]="basicFlatCost" name="basicFlatCost" class="inp_table" ></ion-input></td>
                       </tr>
                       <tr>
-                        <th scope="row">GST {{project_master_api.gst}} %</th>
+                        <th scope="row">GST {{project_master_api["gst"]}} %</th>
                         <td><ion-input type="text" [(ngModel)]="gst" name="gst"  class="inp_table" ></ion-input></td>
                       </tr>
                       <tr>
-                        <th scope="row">Stamp Duty {{project_master_api.stampduty}} %</th>
+                        <th scope="row">Stamp Duty {{project_master_api["stampduty"]}} %</th>
                         <td><ion-input type="text"  [(ngModel)]="sd" name="sd" class="inp_table" ></ion-input></td>
                       </tr>
                       <tr>
-                        <th scope="row">Registration {{project_master_api.registrationy}} %</th>
+                        <th scope="row">Registration {{project_master_api["registrationy"]}} %</th>
                         <td><ion-input type="text" [(ngModel)]="reg" name="red" class="inp_table" ></ion-input></td>
                       </tr>
                       <tr>
@@ -519,15 +519,15 @@
                         <td><ion-input type="text" [(ngModel)]="basicFlatCost" name="basicFlatCost" class="inp_table" ></ion-input></td>
                       </tr>
                       <tr>
-                        <th scope="row">GST {{project_master_api.gst}} %</th>
+                        <th scope="row">GST {{project_master_api["gst"]}} %</th>
                         <td><ion-input type="text" [(ngModel)]="gst" name="gst"  class="inp_table" ></ion-input></td>
                       </tr>
                       <tr>
-                        <th scope="row">Stamp Duty {{project_master_api.stampduty}} % </th>
+                        <th scope="row">Stamp Duty {{project_master_api["stampduty"]}} % </th>
                         <td><ion-input type="text"  [(ngModel)]="sd" name="sd" class="inp_table" ></ion-input></td>
                       </tr>
                       <tr>
-                        <th scope="row">Registration {{project_master_api.registrationy}} %</th>
+                        <th scope="row">Registration {{project_master_api["registrationy"]}} %</th>
                         <td><ion-input type="text" [(ngModel)]="reg" name="red" class="inp_table" ></ion-input></td>
                       </tr>
                       <tr>
@@ -573,22 +573,22 @@
             </ion-item>
 
             <ion-item class="formfields">
-              <ion-input type="text" [(ngModel)]="additionalPropertyFreeCount" name="additionalPropertyFreeCount" 
+              <ion-input type="text" [(ngModel)]="additionalPropertyFreeCount" name="additionalPropertyFreeCount"
               placeholder="Free Count"></ion-input>
             </ion-item>
 
             <ion-item class="formfields">
-              <ion-input type="text" [(ngModel)]="additionalPropertyPaidCount" name="additionalPropertyPaidCount" 
+              <ion-input type="text" [(ngModel)]="additionalPropertyPaidCount" name="additionalPropertyPaidCount"
               placeholder="Paid Count"></ion-input>
             </ion-item>
 
             <ion-item class="formfields">
-              <ion-input type="text" [(ngModel)]="additionalPropertyAmount" (ionChange)="caladditionalrate()" name="additionalPropertyAmount" 
+              <ion-input type="text" [(ngModel)]="additionalPropertyAmount" (ionChange)="caladditionalrate()" name="additionalPropertyAmount"
               placeholder="Amount"></ion-input>
             </ion-item>
 
             <ion-item class="formfields">
-              <ion-input type="text" [(ngModel)]="additionalPropertyRate" name="additionalPropertyRate" 
+              <ion-input type="text" [(ngModel)]="additionalPropertyRate" name="additionalPropertyRate"
               placeholder="Rate"></ion-input>
               <ion-button (click)="addadditionalproperty()">Add</ion-button>
             </ion-item>
@@ -720,7 +720,7 @@
             </div>
 
             <!-- <ion-item class="formfields"> -->
-              <ion-list *ngFor="let brokerage_item of brokerage_sqft_per_arr; let i = index">  
+              <ion-list *ngFor="let brokerage_item of brokerage_sqft_per_arr; let i = index">
                 <ion-item class="formfields">
                   <ion-row>
                     <ion-col size="11">

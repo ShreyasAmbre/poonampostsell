@@ -75,13 +75,17 @@ export class FilterunregisteredreportPage implements OnInit {
       console.log( this.floor_apidata, "FLOOR API DATA")
       console.log( this.unit_apidata, "UNIT API DATA")
       console.log( this.broker_apidata, "BROKER API DATA")
+
+      this.floor_apidata.sort((a, b) => {
+        return a.floor - b.floor;
+      });
     });
   }
 
   getData(){
     var id = this.selected_project
 
-    let booking_params = {project_id: [id], wingName: this.selected_wing, floor: this.selected_floor, 
+    let booking_params = {project_id: [id], wingName: this.selected_wing, floor: this.selected_floor,
       broker_id: this.selected_broker, unit_type: this.selected_unit}
 
     var bookingData = this.http.post('https://software.poonamdevelopers.in/Apis/getAllBookings', booking_params);
@@ -92,7 +96,7 @@ export class FilterunregisteredreportPage implements OnInit {
 
       console.log( this.datastoreservice.outstandingbooking_apidata, "All BOOKING API DATA")
     });
-    
+
     this.dismiss()
   }
 

@@ -2,7 +2,7 @@
   <ion-toolbar class="toolbar" slots="start" >
     <ion-buttons slot="start" size="large">
       <ion-menu-button autoHide="false">
-        <ion-icon src="../../assets/icon/menu.svg"></ion-icon>
+        <ion-icon src="../../assets/icon/menu.svg" style="color: white;"></ion-icon>
       </ion-menu-button>
     </ion-buttons>
     <ion-buttons slot="end" size="large">
@@ -27,12 +27,12 @@
             <th scope="col">Customer Name                                </th>
             <th scope="col">Agreement Value                                </th>
             <th scope="col">Total Received                                </th>
-            
+
             <th scope="col">Due                                </th>
             <th scope="col">Stage                                </th>
 
             <th scope="col">Payment Plan                                </th>
-            
+
             <th scope="col">Registration Number                                </th>
 
             <th scope="col">Booking Date                                </th>
@@ -43,7 +43,7 @@
 
             <th scope="col">Wing                                        </th>
             <th scope="col">Flat No.                                    </th>
-            
+
             <th scope="col">Unit                                    </th>
             <th scope="col">Saleable                                    </th>
             <th scope="col">Rera Area                                    </th>
@@ -53,10 +53,10 @@
             <th scope="col">Total Consideration                                    </th>
 
             <th scope="col">GST Value                                </th>
-            
+
             <th scope="col">Registration Value                                </th>
             <th scope="col">Broker Detail                                </th>
-            
+
 
             <th scope="col">GST Received                                </th>
             <th scope="col">Balance                                </th>
@@ -68,8 +68,8 @@
            <td [routerLink]="['detailothercharges']" style="color: blue;" (click)="sendId(item.bid)"> {{ item.salutation }} {{ item.first_name }} {{ item.last_name }}</td>
            <td> {{ item.agreementValue }} </td>
            <td> {{ item.totalAmount }} </td>
-           
-           
+
+
            <td> Due </td>
            <td> Stage </td>
 
@@ -78,7 +78,7 @@
            <td> {{ item.registration_number }} </td>
 
            <td> {{ item.booking_date }} </td>
-           
+
            <td> {{ item.projectName }} </td>
            <td> {{ item.buildingName }} </td>
 
@@ -98,7 +98,7 @@
            <td> {{ item.brokerName }} </td>
            <td> {{ item.gstAmount }} </td>
            <td> GST :- {{ datastoreservice.calgstBalance(item.agreementValue, item.gstAmount) }} <br>
-                Base :- {{ datastoreservice.calotherchargesbalance(item.totalAmount, item.basicFlatCost) }}       
+                Base :- {{ datastoreservice.calotherchargesbalance(item.totalAmount, item.basicFlatCost) }}
           </td>
          </tr>
         </tbody>

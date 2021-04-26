@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import { Observable, forkJoin } from 'rxjs';
 
-import { Chart } from 'angular-highcharts';
-import {barChartOptions} from '../helper/barChartOpotions';
 import { ModalController } from '@ionic/angular';
 import {FiltersummaryPage} from './filtersummary/filtersummary.page'
 
@@ -23,7 +21,7 @@ export class SummaryreportPage implements OnInit {
     ["Pending", 0, 360, 0, 0],
     ["Deployed", 0, 0, 410, 0],
   ];
-  
+
   columns = ['Status', 'Ready', 'Pending', 'Deployed', 'Other'];
 
   //  columns = ['count', 'count', {role: 'style', type: 'string'}];

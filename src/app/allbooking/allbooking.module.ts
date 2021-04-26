@@ -20,7 +20,7 @@ import {SearchmodalPageModule} from './searchmodal/searchmodal.module'
     AllbookingPageRoutingModule,
     MatBottomSheetModule,
     SearchmodalPageModule,
-    NotificationModule
+    NotificationModule,
   ],
   declarations: [AllbookingPage]
 })

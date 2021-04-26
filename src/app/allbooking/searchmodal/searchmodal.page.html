@@ -11,40 +11,40 @@
 
 <ion-content>
   <ion-card id="search_form_container">
-    
+
 
     <ion-card-content>
       <ion-item>
         <ion-label>Select Property:-</ion-label>
-        <ion-select [(ngModel)]="selected_project" multiple="true" name="selected_project" (ionChange)="get_wing_floor_unit()" okText="Okay" cancelText="Dismiss">
+        <ion-select [(ngModel)]="datastoreservice.filter_selected_project" multiple="true" name="datastoreservice.filter_selected_project" (ionChange)="get_wing_floor_unit()" okText="Okay" cancelText="Dismiss">
           <ion-select-option *ngFor="let item of project_master" [value]="item.project_id">{{item.project_name}}</ion-select-option>
         </ion-select>
       </ion-item>
 
       <ion-item>
         <ion-label>Select Wing:-</ion-label>
-        <ion-select [(ngModel)]="selected_wing" multiple="true" name="selected_wing" okText="Okay" cancelText="Dismiss">
+        <ion-select [(ngModel)]="datastoreservice.filter_selected_wing" multiple="true" name="datastoreservice.filter_selected_wing" okText="Okay" cancelText="Dismiss">
           <ion-select-option *ngFor="let item of wings_api_data" [value]="item.wingName">{{item.wingName}}</ion-select-option>
         </ion-select>
       </ion-item>
 
       <ion-item>
         <ion-label>Select Floor:-</ion-label>
-        <ion-select [(ngModel)]="selected_floor" multiple="true" name="selected_floor" okText="Okay" cancelText="Dismiss">
+        <ion-select [(ngModel)]="datastoreservice.filter_selected_floor" multiple="true" name="datastoreservice.filter_selected_floor" okText="Okay" cancelText="Dismiss">
           <ion-select-option *ngFor="let item of floors_api_data" [value]="item.floor">{{item.floor}}</ion-select-option>
         </ion-select>
       </ion-item>
 
       <ion-item>
         <ion-label>Select Unit:-</ion-label>
-        <ion-select [(ngModel)]="selected_unit" multiple="true" name="selected_unit" okText="Okay" cancelText="Dismiss">
+        <ion-select [(ngModel)]="datastoreservice.filter_selected_unit" multiple="true" name="datastoreservice.filter_selected_unit" okText="Okay" cancelText="Dismiss">
           <ion-select-option *ngFor="let item of units_api_data" [value]="item.unit_type">{{item.unit_type}}</ion-select-option>
         </ion-select>
       </ion-item>
 
       <ion-item>
         <ion-label>Select Broker:-</ion-label>
-        <ion-select [(ngModel)]="selected_broker" multiple="true" name="selected_broker" okText="Okay" cancelText="Dismiss">
+        <ion-select [(ngModel)]="datastoreservice.filter_selected_broker" multiple="true" name="datastoreservice.filter_selected_broker" okText="Okay" cancelText="Dismiss">
           <ion-select-option *ngFor="let item of broker_master" [value]="item.broker_id">{{item.brokerName}}</ion-select-option>
         </ion-select>
       </ion-item><br>
