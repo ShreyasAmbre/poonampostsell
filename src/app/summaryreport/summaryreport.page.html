@@ -10,39 +10,16 @@
         <app-notification></app-notification>
       </ion-menu-button>
     </ion-buttons>
-    <ion-title>Deal Information</ion-title>
+    <ion-title>Summary Report</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-card style=" margin: 0px !important;">
-    <ion-card-content>
-    <mat-accordion>
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title >
-            <h2><b>Select Project</b></h2>
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-        <div>
-          <ion-item>
-            <ion-select interface="popover" [(ngModel)]="selected_project" name="selected_project" placeholder="Select Project">
-              <ion-select-option *ngFor="let item of project_master" [value]="item">{{item.project_name}}</ion-select-option>
-            </ion-select>
-          </ion-item>
-
-          <ion-button expand="block" (click)="getSummary()">Fetch</ion-button>
-        </div>
-      </mat-expansion-panel><br>
-    </mat-accordion>
-    </ion-card-content>
-  </ion-card><br>
-
   <!-- <div style="overflow-x:auto"> -->
     <ion-card style=" margin: 0px !important; overflow-x:auto">
       <ion-card-content>
-        <table class="table table-hover">
-          <thead>
+        <table class="table table-striped">
+          <thead class="bg-primary text-white text-center">
             <tr>
               <th scope="col">Wing</th>
               <th scope="col">Unit Type</th>
@@ -151,8 +128,29 @@
     </ion-card><br>
   <!-- </div> -->
   
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <google-chart #chart
+          [title]="title"
+          [type]="type"
+          [data]="data"
+          [columns]="columns"
+          [options]="options"
+          [width]="width"
+          [height]="height">
+        </google-chart>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+
+  <ion-fab class="floating-btn" horizontal="end" vertical="bottom" slot="fixed">
+    <ion-fab-button color="danger" (click)="showFilterSummary()">
+      <ion-icon name="funnel"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
   
-
-  <!-- <div  [chart]="barChart"></div> -->
-
 </ion-content>

@@ -16,24 +16,38 @@
 
 
 <ion-content>
-
   <div *ngIf="data_status">
-    <ion-searchbar [(ngModel)]="searchTerm" (ionChange)="filterItems(searchTerm)" placeholder="Search Bookings"></ion-searchbar>
     
+    <ion-searchbar [(ngModel)]="searchTerm" (ionChange)="filterItems(searchTerm)" placeholder="Search Bookings"></ion-searchbar>
+      <div class="ion-text-center">
+        <h3 style="color:#0077BD">{{datastoreservice.all_bookings[0]["project_name"]}}</h3>
+      </div>
       <div *ngIf="booking_OGList">
-        <div *ngFor="let item of datastoreservice.all_bookings; let i = index">
+        <div *ngFor="let item of datastoreservice.all_bookings.slice().reverse(); let i = index">
           <ion-card class="booking_card" id="bookingcard" [routerLink]="['detailbooking']" (click)="sendId(item.bid)">
-            <img src="../../assets/allbookingcrop2.png" />
+            <!-- <img src="../../assets/allbookingcrop2.png" /> -->
             <ion-card-content style="background-color:rgb(241, 240, 250)">
               <ion-grid>
                 <ion-row>
-                  <ion-col>
+                  <ion-col >
                     <p> <b>{{item.salutation}} {{item.first_name}} {{item.last_name}}</b></p>
                     <p><ion-icon name="business" style="font-size: large;"></ion-icon>&nbsp; {{item.buildingName}}</p>
                   </ion-col>
                   <ion-col>
-                    <p><b>Mob:- 8149421528</b></p>
+                    <p><b>Mob.:{{item.contact_number }}</b></p>
                     <p>{{item.wingName }} - {{item.flatNo}} - {{item.floor}} Floor</p>
+                  </ion-col>
+                </ion-row>
+                <hr>
+                <ion-row>
+                  <ion-col>
+                    
+                    <p>Agreement Value:     <b style="float: right;">{{datastoreservice.commaSeprate(item.agreementValue)}} </b></p>
+                    <p>Payment Scheme:      <b style="float: right;">{{item.paymentTermsName}} </b></p>
+                    <p>Registration Date.:  <b style="float: right;">{{datastoreservice.showZeroForDate(item.registration_date)}} </b></p>
+                    <p>Registration No.:    <b style="float: right;">{{datastoreservice.showZeroForReg(item.registration_number)}} </b></p>
+                    <p>Balance Amt.:        <b style="float: right;">{{datastoreservice.calTotalBalance(item.agreementValue, item.received)}} </b></p>
+                    <p>Broker Name:         <b style="float: right;">{{datastoreservice.showNan(item.brokerName)}} </b></p>
                   </ion-col>
                 </ion-row>
               </ion-grid>
@@ -46,7 +60,7 @@
       <div *ngFor="let item of datastoreservice.filter_all_booking; let i = index" >
 
         <ion-card class="booking_card" id="bookingcard" [routerLink]="['detailbooking']" (click)="sendId(item.bid)">
-          <img src="../../assets/allbookingcrop2.png" />
+          <!-- <img src="../../assets/allbookingcrop2.png" /> -->
           <ion-card-content style="background-color:rgb(241, 240, 250)">
             <ion-grid>
               <ion-row>
@@ -55,8 +69,19 @@
                   <p><ion-icon name="business" style="font-size: large;"></ion-icon>&nbsp; {{item.buildingName}}</p>
                 </ion-col>
                 <ion-col>
-                  <p><b>Mob:- 8149421528</b></p>
+                  <p><b>{{item.projectName }}</b></p>
                   <p>{{item.wingName }} - {{item.flatNo}} - {{item.floor}} Floor</p>
+                </ion-col>
+              </ion-row>
+              <hr>
+              <ion-row>
+                <ion-col>
+                  <p>Agreement Value:     <b style="float: right;">{{item.agreementValue}} </b></p>
+                  <p>Payment Scheme:      <b style="float: right;">{{item.paymentTermsName}} </b></p>
+                  <p>Registration Date.:  <b style="float: right;">{{datastoreservice.showZeroForDate(item.registration_date)}} </b></p>
+                  <p>Registration No.:    <b style="float: right;">{{datastoreservice.showZeroForReg(item.registration_number)}} </b></p>
+                  <p>Balance Amt.:        <b style="float: right;">{{datastoreservice.calTotalBalance(item.agreementValue, item.received)}} </b></p>
+                  <p>Broker Name:         <b style="float: right;">{{datastoreservice.showNan(item.brokerName)}} </b></p>
                 </ion-col>
               </ion-row>
             </ion-grid>

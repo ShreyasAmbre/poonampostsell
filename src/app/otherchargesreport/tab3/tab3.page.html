@@ -1,0 +1,41 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar class="toolbar" slots="start" >
+    <ion-buttons slot="start" size="large">
+      <ion-menu-button autoHide="false">
+        <ion-icon src="../../assets/icon/menu.svg"></ion-icon>
+      </ion-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="end" size="large">
+      <ion-menu-button auto-hide="false">
+        <app-notification></app-notification>
+      </ion-menu-button>
+    </ion-buttons>
+    <ion-title>Deal Information</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-item>
+    <h4 style="color:#0077BD"><u>Deal Record</u></h4>
+  </ion-item>
+
+  <div>
+    <table class="table table-borderless customtablestyle">
+      <thead>
+        <tr>
+          <th scope="col">Terms</th>
+          <th scope="col">Total Percentage</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let item of booking_deal_api">
+        <tr>
+          <th>{{item.name}}</th>
+          <td>{{item.customer}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</ion-content>
+

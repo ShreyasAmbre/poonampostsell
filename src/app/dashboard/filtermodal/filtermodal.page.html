@@ -1,7 +1,11 @@
-<ion-header>
-  <ion-toolbar color="primary" slots="start">
+<ion-header class="ion-no-border">
+  <ion-toolbar class="toolbar" slots="start" >
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()">
+        <ion-icon name="close-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
     <ion-title>Select Project</ion-title>
-    <ion-icon name='close-circle' size="medium" (click)='dismiss()' style='float: right;'></ion-icon>
   </ion-toolbar>
 </ion-header>
 

@@ -6,9 +6,9 @@
       </ion-menu-button>
     </ion-buttons>
     <ion-buttons slot="end" size="large">
-      <ion-menu-button auto-hide="false">
+      <!-- <ion-menu-button auto-hide="false"> -->
         <app-notification></app-notification>
-      </ion-menu-button>
+      <!-- </ion-menu-button> -->
     </ion-buttons>
     <ion-title>Dashboard</ion-title>
   </ion-toolbar>
@@ -17,7 +17,7 @@
 
 
 <ion-content>
-  <ion-card style=" margin: 0px !important;">
+  <!-- <ion-card style=" margin: 0px !important;">
     <ion-card-content>
     <mat-accordion>
       <mat-expansion-panel>
@@ -26,7 +26,7 @@
             <h2><b>Select Property</b></h2>
           </mat-panel-title>
           <mat-panel-description>
-            <!-- <h6>Complete Deal Info</h6> -->
+            
           </mat-panel-description>
         </mat-expansion-panel-header>
         <div>
@@ -63,7 +63,7 @@
       </mat-expansion-panel><br>
     </mat-accordion>
     </ion-card-content>
-  </ion-card><br>
+  </ion-card><br> -->
 
   <!-- <ion-card>
     <ion-card-content>
@@ -334,10 +334,128 @@
     </ion-slide>
   </ion-slides> -->
 
-  <div  [chart]="chart"></div>
+  <!-- <div  [chart]="chart"></div>
   <div  [chart]="chart2"></div>
   <div  [chart]="chart3"></div>
-  <div  [chart]="chart4"></div>
+  <div  [chart]="chart4"></div> -->
+
+  <h1 class="ion-text-center" style="color:rgb(0, 132, 255)" ><u>Poonam Vista</u></h1>
+
+
+
+  <h3 class="ion-text-center" style="color:rgb(0, 132, 255)" >Bookings</h3>
+  <div class="wrapper">
+    <div class="item" style="border: 2px solid blueviolet;"><p><b>Today</b></p> <div>0</div></div>
+    <div class="item" style="border: 2px solid greenyellow;"><p><b>This Week</b></p>0<p></p></div>
+    <div class="item" style="border: 2px solid gold;"><p><b>This Month</b></p> <p>2</p></div>
+    <div class="item" style="border: 2px solid blue;"><p><b>Last Month</b></p> <p>0</p></div>
+    <div class="item" style="border: 2px solid blueviolet;"><p><b>This Year</b></p>2 <p></p></div>
+    <div class="item" style="border: 2px solid green;"><p><b>Total</b></p> <p>2</p></div>
+  </div>
+
+  <h3 class="ion-text-center" style="color:rgb(0, 132, 255)" >Payments</h3>
+  <div class="wrapper">
+    <div class="item" style="border: 2px solid blueviolet;"><p><b>Today</b></p> <p> - </p></div>
+    <div class="item" style="border: 2px solid greenyellow;"><p><b>This Week</b></p> <p> - </p></div>
+    <div class="item" style="border: 2px solid gold;"><p><b>This Month</b></p> <p>5,00,000.00</p></div>
+    <div class="item" style="border: 2px solid blue;"><p><b>Last Month</b></p> <p> - </p></div>
+    <div class="item" style="border: 2px solid blueviolet;"><p><b>This Year</b></p> <p>5,00,000.00</p></div>
+    <div class="item" style="border: 2px solid green;"><p><b>Total</b></p> <p>5,00,000.00</p></div>
+  </div>
+
+  <h3 class="ion-text-center" style="color:rgb(0, 132, 255)" >Inventory</h3>
+  <div class="wrapper">
+    <div class="item" style="border: 2px solid blueviolet;"><p><b>All</b></p> <p>4</p></div>
+    <div class="item" style="border: 2px solid greenyellow;"><p><b>Available</b></p> <p>2</p></div>
+    <div class="item" style="border: 2px solid gold;"><p><b>Sold</b></p> <p>2</p></div>
+    <div class="item" style="border: 2px solid blue;"><p><b>Block</b></p> <p>0</p></div>
+  </div>
+
+  <h3 class="ion-text-center" style="color:rgb(0, 132, 255)" >Registration</h3>
+  <div class="wrapper">
+    <div class="item" style="border: 2px solid blueviolet;"><p><b>Registered</b></p> <p>0</p></div>
+    <div class="item" style="border: 2px solid greenyellow;"><p><b>Not Registered</b></p> <p>2</p></div>
+    <div class="item" style="border: 2px solid gold;"><p><b>> 30 Days</b></p> <p>0</p></div>
+    <div class="item" style="border: 2px solid blue;"><p><b>> 90 Days</b></p> <p>0</p></div>
+    <div class="item" style="border: 2px solid blueviolet;"><p><b>> 180 Days</b></p> <p>0</p></div>
+    <div class="item" style="border: 2px solid green;"><p><b>> 360 Days</b></p> <p>0</p></div>
+  </div>
+
+  <h3 class="ion-text-center" style="color:rgb(0, 132, 255)" >Summary</h3>
+  <div class="wrapper">
+    <div class="item" style="border: 2px solid blueviolet;"><p><b>Cost Sale</b></p> <p>40.00</p></div>
+    <div class="item" style="border: 2px solid greenyellow;"><p><b>Amount Due</b></p> <p>20.00</p></div>
+    <div class="item" style="border: 2px solid gold;"><p><b>Amount Received</b></p> <p>5.00</p></div>
+    <div class="item" style="border: 2px solid blue;"><p><b>Balance Due</b></p> <p>15.00</p></div>
+    <div class="item" style="border: 2px solid blueviolet;"><p><b>Balance Receivable</b></p> <p>35.00</p></div>
+    <div class="item" style="border: 2px solid green;"><p><b>Interest Receivable</b></p> <p> - </p></div>
+  </div>
+
+
+
+  <ion-card style=" margin: 0px !important; overflow-x:auto">
+    <ion-card-content>
+      <table class="table table-striped">
+        <thead class="bg-primary text-white text-center">
+          <tr>
+            <th scope="col">Wing Name                             </th>
+            <th scope="col">Total Units                              </th>
+            <th scope="col">Total Saleable                              </th>
+            <th scope="col">Unit Sold                              </th>
+            <th scope="col">Unit Block                              </th>
+            <th scope="col">Unit Vacant                              </th>
+            <th scope="col">Area Sold                              </th>
+            <th scope="col">Area Block                              </th>
+            <th scope="col">Area Vacant                              </th>
+            <th scope="col">COA Sold                              </th>
+            <th scope="col">Amount Due                              </th>
+            <th scope="col">Amount Received                              </th>
+            <th scope="col">Balance Due                              </th>
+            <th scope="col">Balance Receivable                              </th>
+            <th scope="col">Integrest                              </th>
+          </tr>
+        </thead>
+        <tbody>
+         <tr>
+           <td> A </td>
+           <td> 4 </td>
+           <td> 2520.00 </td>
+           <td> 2.00 </td>
+           <td> - </td>
+           <td> 2.00 </td>
+           <td> 1260.00 </td>
+           <td> - </td>
+           <td> 1260.00 </td>
+           <td> 40.00 </td>
+           <td> 20.00 </td>
+           <td> 5.00 </td>
+           <td> 15.00 </td>
+           <td> 35.00 </td>
+           <td> - </td>
+
+         </tr>
+         <tr>
+          <td> Total </td>
+          <td> 4 </td>
+           <td> 2520.00 </td>
+           <td> 2.00 </td>
+           <td> - </td>
+           <td> 2.00 </td>
+           <td> 1260.00 </td>
+           <td> - </td>
+           <td> 1260.00 </td>
+           <td> 40.00 </td>
+           <td> 20.00 </td>
+           <td> 5.00 </td>
+           <td> 15.00 </td>
+           <td> 35.00 </td>
+           <td> - </td>
+
+        </tr>
+        </tbody>
+      </table>
+    </ion-card-content>
+  </ion-card><br>
 
   <ion-fab class="floating-btn" horizontal="end" vertical="bottom" slot="fixed">
     <ion-fab-button color="danger" (click)="showFilterModal()">

@@ -1,0 +1,130 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar class="toolbar" slots="start" >
+    <ion-buttons slot="start" size="large">
+      <ion-menu-button autoHide="false">
+        <ion-icon src="../../assets/icon/menu.svg"></ion-icon>
+      </ion-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="end" size="large">
+      <ion-menu-button auto-hide="false">
+        <app-notification></app-notification>
+      </ion-menu-button>
+    </ion-buttons>
+    <ion-title>Availability Report</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid id="status">
+    <ion-row >
+      <ion-col>
+        <div class="reportcount" style="border: 2px solid blue; color:blue">
+          <p>100</p>All
+        </div>
+      </ion-col>
+      <ion-col>
+        <div class="reportcount" style="border: 2px solid greenyellow; color:greenyellow">
+          <p>100</p>Sold
+        </div>
+      </ion-col>
+      <ion-col>
+        <div class="reportcount" style="border: 2px solid blueviolet; color:blueviolet">
+          <p>100</p>Avail
+        </div>
+      </ion-col>
+      <ion-col>
+        <div class="reportcount" style="border: 2px solid gold; color:gold">
+          <p>100</p>Hold
+        </div>
+      </ion-col>
+      <ion-col>
+        <div  class="reportcount" style="border: 2px solid red; color:red">
+          <p>100</p>Block
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid><br><br>
+
+  <!-- <h3 class="ion-text-center" style="color:rgb(0, 132, 255)" >Floor 11</h3>
+  <div class="wrapper" >
+    <div class="item" *ngFor="let item of datastoreservice.availability_apiData" style="border: 2px solid blueviolet;">
+      <p><b>{{item.floor}}</b></p> <p>Jai Tiwari <br>{{item.unit_type}}</p>
+    </div>
+  </div> -->
+
+
+  <div *ngIf="datastoreservice.availability_dataStatus">
+
+    <h3 class="ion-text-center" style="color:rgb(0, 132, 255)" >Floor 1</h3>
+    <div class="wrapper">
+      <div  class="item" *ngFor="let item of datastoreservice.availability_floorData['1']">
+        <div *ngIf="item.astatus == 1" style="border: 2px solid red;">
+          <p><b>{{item.floor}} </b></p> <p>{{item.saleableArea}} <br> {{item.unit_type}}</p>
+        </div>
+        <div *ngIf="item.astatus == 2" style="border: 2px solid green;">
+          <p><b>{{item.floor}} </b></p> <p>{{item.saleableArea}} <br> {{item.unit_type}}</p>
+        </div>
+      </div>
+    </div>
+
+
+    <h3 class="ion-text-center" style="color:rgb(0, 132, 255)" >Floor 2</h3>
+    <div class="wrapper">
+      <div  class="item" *ngFor="let item of datastoreservice.availability_floorData['2']">
+        <div *ngIf="item.astatus == 1" style="border: 2px solid red;">
+          <p><b>{{item.floor}} </b></p> <p>{{item.saleableArea}} <br> {{item.unit_type}}</p>
+        </div>
+        <div *ngIf="item.astatus == 2" style="border: 2px solid green;">
+          <p><b>{{item.floor}} </b></p> <p>{{item.saleableArea}} <br> {{item.unit_type}}</p>
+        </div>
+      </div>
+    </div>
+
+
+    <h3 class="ion-text-center" style="color:rgb(0, 132, 255)" >Floor 3</h3>
+    <div class="wrapper">
+      <div  class="item" *ngFor="let item of datastoreservice.availability_floorData['3']">
+        <div *ngIf="item.astatus == 1" style="border: 2px solid red;">
+          <p><b>{{item.floor}} </b></p> <p>{{item.saleableArea}} <br> {{item.unit_type}}</p>
+        </div>
+        <div *ngIf="item.astatus == 2" style="border: 2px solid green;">
+          <p><b>{{item.floor}} </b></p> <p>{{item.saleableArea}} <br> {{item.unit_type}}</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- SKELETO CODE IS HERE -->
+  <!-- <div *ngIf="!datastoreservice.availability_dataStatus">
+
+    <div *ngFor="let item of [].constructor(10)">
+      <div style="width: 100%; height: 100px;">
+        <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+      </div>
+      <div class="wrapper" animated>
+        <div>
+          <div>
+            <p><ion-skeleton-text animated style="width: 100%"></ion-skeleton-text></p>
+          </div>
+          <div>
+            <p><ion-skeleton-text animated style="width: 100%"></ion-skeleton-text></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+  <!-- SKELETON CODE END -->
+
+
+
+
+  <ion-fab class="floating-btn" horizontal="end" vertical="bottom" slot="fixed">
+    <ion-fab-button color="danger" (click)="showFilterAvailability()">
+      <ion-icon name="funnel"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  
+ 
+</ion-content>

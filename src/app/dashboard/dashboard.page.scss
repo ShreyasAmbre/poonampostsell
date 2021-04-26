@@ -33,3 +33,23 @@ ion-toolbar{
   margin: 2.5%;
 }
 
+.wrapper{
+  max-height: auto;
+  
+  display: flex;
+  overflow-x: auto;
+}
+
+.wrapper::-webkit-scrollbar{
+  width: 0;
+}
+
+.wrapper .item{
+  
+  min-width: 110px;
+  height: auto;
+  text-align: center;
+  margin-left: 4%;
+  padding: 2%;
+}
+

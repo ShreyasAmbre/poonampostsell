@@ -28,9 +28,7 @@
   width:80px;
   color:black
 }
-ion-input.ng-invalid{
-  border-left: 2px solid red;
-}
+
 .error{
   color:red;
   margin-left:25px;
@@ -61,7 +59,7 @@ ion-input{
   --padding-bottom: 5%;
   --placeholder-color: #002D47;
 }
-ion-item{
+.formfields{
   --background: #f6fafd;
   --border-color: #002D47;
   --border-width: 1px;
@@ -80,4 +78,11 @@ ion-item{
   text-align: center; 
   margin-top:35px; 
   margin-bottom: 20px;
+}
+
+#bookingcard{
+  // margin:5px 0px; 
+  // padding:0px; 
+  // border: 1px solid #002D47; 
+  // border-radius: 10px;
 }

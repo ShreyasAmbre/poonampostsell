@@ -161,7 +161,7 @@
     </ion-card-content>
   </ion-card> -->
 
-  <div class="conatiner" >
+  <!-- <div class="conatiner" >
     <ion-card *ngFor="let item of booking_applicant_api" >
       <div style="text-align: right;">  
         <img src="../../../assets/icon/avatar2.jpg" alt="" width="50px" height="50px" >
@@ -174,8 +174,60 @@
         <p style="font-size: 10px">Pancard: {{item.pancard}}</p>
       </ion-card-content>
     </ion-card>
-  </div><br>
+  </div><br> -->
 
+  <!-- <ion-grid>
+    <ion-row>
+      <ion-col size="6" *ngFor="let item of booking_applicant_api" style=" margin: 0px !important; overflow-x:auto">
+        <ion-card  style="border: 2px solid #0077BD; box-shadow: 3px 3px 3px #0077BD;">
+          <div style="text-align: right;">  
+            <img src="../../../assets/icon/avatar2.jpg" alt="" width="50px" height="50px" >
+          </div>
+          <ion-card-content>
+            <p style="font-size: 12px"><b>Applicant</b></p>
+            <p style="font-size: 12px"><b>{{item.salutation}} {{item.first_name}} {{item.last_name}}</b></p>
+            <p style="font-size: 10px"><b>{{item.contact_number}}</b></p>
+            <p style="font-size: 10px">{{item.permanent_address_line_1}}</p>
+            <p style="font-size: 10px">Pancard: {{item.pancard}}</p>
+          </ion-card-content>
+        </ion-card>
+        <ion-card  style="border: 2px solid #0077BD; box-shadow: 3px 3px 3px #0077BD;">
+          <div style="text-align: right;">  
+            <img src="../../../assets/icon/avatar2.jpg" alt="" width="50px" height="50px" >
+          </div>
+          <ion-card-content>
+            <p style="font-size: 12px"><b>Applicant</b></p>
+            <p style="font-size: 12px"><b>{{item.salutation}} {{item.first_name}} {{item.last_name}}</b></p>
+            <p style="font-size: 10px"><b>{{item.contact_number}}</b></p>
+            <p style="font-size: 10px">{{item.permanent_address_line_1}}</p>
+            <p style="font-size: 10px">Pancard: {{item.pancard}}</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      
+    </ion-row>
+  </ion-grid><br> -->
+
+  <ion-slides [options]="sliderConfig">
+    <ion-slide *ngFor="let item of booking_applicant_api">
+      <div>
+        <ion-card  style="border: 2px solid #0077BD; box-shadow: 3px 3px 3px #0077BD;">
+          <div style="text-align: right; height: 25%;">  
+            <!--  -->
+          </div>
+          <ion-card-content>
+            <h2>Applicant</h2>
+            <p style="font-size: 12px"><b>{{item.salutation}} {{item.first_name}} {{item.last_name}}</b></p>
+            <p style="font-size: 10px"><b>{{item.contact_number}}</b></p>
+            <p style="font-size: 10px">{{item.permanent_address_line_1}}</p>
+            <p style="font-size: 10px">Pancard: {{item.pancard}}</p>
+          </ion-card-content>
+        </ion-card>
+      </div>
+    </ion-slide>
+  </ion-slides>
+  
+  
   <ion-item>
     <h4 style="color:#0077BD"><u>{{get_all_bookings_api["project_name"]}} {{get_all_bookings_api["wingName"]}} {{get_all_bookings_api["flatNo"]}}</u></h4>
   </ion-item>
@@ -196,12 +248,12 @@
           <td>{{get_all_bookings_api["saleableArea"]}} sq. ft.</td>
         </tr>
         <tr>
-          <th>Rera Area:/th>
+          <th>Rera Area:</th>
           <td>{{get_all_bookings_api["reraArea"]}} sq. mt.</td>
         </tr>
         <tr>
-          <th>Booking Date:/th>
-          <td>{{get_all_bookings_api["booking_date"]}}</td>
+          <th>Booking Date:</th>
+          <td>{{datastoreservice.showZeroForDate(get_all_bookings_api["booking_date"])}}</td>
         </tr>
       </tbody>
     </table>
@@ -216,32 +268,48 @@
     <table class="table table-borderless customtablestyle">
       <tbody>
         <tr>
-          <th>Rate:</th>
-          <td>4,990.00</td>
+          <th>Rate</th>
+          <td> {{ datastoreservice.calRate(get_all_bookings_api.basicFlatCost, get_all_bookings_api.saleableArea) }}</td>
         </tr>
         <tr>
           <th>Agreement Value:</th>
-          <td>31,18,750.00</td>
+          <td>{{get_all_bookings_api.agreementValue}}</td>
         </tr>
         <tr>
           <th>Received:</th>
-          <td>6,23,750.00</td>
+          <td>{{get_all_bookings_api.received}} </td>
         </tr>
         <tr>
           <th>Total Balance:</th>
-          <td>24,95,000.00</td>
+          <td>{{datastoreservice.calTotalBalance(get_all_bookings_api.agreementValue, get_all_bookings_api.received)}}</td>
         </tr>
         <tr>
           <th>Total Due:</th>
-          <td>6,23,750.00</td>
+          <td> {{get_all_bookings_api.totalDues}}</td>
         </tr>
         <tr>
           <th>Balance Due:</th>
-          <td>0.00</td>
+          <!-- Dont Know How To Find -->
+          <td>{{datastoreservice.calBalanceDue(get_all_bookings_api.totalDues)}}</td>
+        </tr>
+        <tr>
+          <th>Total GST:</th>
+          <td> {{get_all_bookings_api.gstValue}}</td>
         </tr>
         <tr>
           <th>GST Received:</th>
-          <td>31,180,00</td>
+          <!-- Dont Where It Is -->
+          <td>{{datastoreservice.showZeroForReg(get_all_bookings_api.gstAmount)}}</td>
+        </tr>
+        <tr>
+          <th>Balance GST:</th>
+          <!-- DOnt Knwo How To Find -->
+          <td>{{datastoreservice.calgstBalanceDetailBooking(get_all_bookings_api.gstValue, get_all_bookings_api.gstAmount)}}</td>
+        </tr>
+        <tr>
+          <th>Excess Received:</th>
+          <!-- DOnt Knwo How To Find -->
+          <td>0.00</td>
         </tr>
       </tbody>
     </table>

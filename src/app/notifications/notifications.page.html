@@ -1,15 +1,21 @@
-<ion-header>
-  <ion-toolbar  color="primary" slots="start">
-    <ion-buttons slot="start">
-      <ion-menu-button autoHide="false"></ion-menu-button>
+<ion-header class="ion-no-border">
+  <ion-toolbar class="toolbar" slots="start" >
+    <ion-buttons slot="start" size="large">
+      <ion-menu-button autoHide="false">
+        <ion-icon src="../../assets/icon/menu.svg"></ion-icon>
+      </ion-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="end" size="large">
+      <ion-menu-button auto-hide="false">
+        <app-notification></app-notification>
+      </ion-menu-button>
     </ion-buttons>
     <ion-title>Notifications</ion-title>
-    <app-notification></app-notification>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <div *ngFor="let noti of noti_data;">
+  <!-- <div *ngFor="let noti of noti_data;">
     <ion-card>
       <ion-card-header>
         <ion-card-subtitle>Alert</ion-card-subtitle>
@@ -20,5 +26,74 @@
         {{noti}}
       </ion-card-content>
     </ion-card>
-  </div>
+  </div> -->
+
+  <ion-grid>
+    <ion-row style="margin: 20px; background-color: #ebffeb; height: auto; border: 1px solid rgb(2, 167, 2); border-radius: 10px;">
+      <ion-col size="2" style="margin: 10px;">
+        <div>
+          <img src="../../assets/icon/checked.png" width="40" height="40">
+        </div>
+      </ion-col>
+      <ion-col size="7">
+        <ion-label>
+          <p><b>260</b></p>
+          <p><b>Narendrakumar Mandviya</b></p>
+          <p><b>2BHK</b></p>
+        </ion-label>
+      </ion-col>
+    </ion-row>
+
+
+
+    <ion-row style="margin: 20px; background-color: #ebebff; height: auto; border: 1px solid rgb(23, 6, 173); border-radius: 10px;">
+      <ion-col size="2" style="margin: 10px;">
+        <div>
+          <img src="../../assets/icon/info.png" width="40" height="40">
+        </div>
+      </ion-col>
+      <ion-col size="7">
+        <ion-label>
+          <p><b>260</b></p>
+          <p><b>Narendrakumar Mandviya</b></p>
+          <p><b>2BHK</b></p>
+        </ion-label>
+      </ion-col>
+    </ion-row>
+
+
+    <ion-row style="margin: 20px; background-color: #fff1df; height: auto; border: 1px solid rgb(173, 153, 6); border-radius: 10px;">
+      <ion-col size="2" style="margin: 10px;">
+        <div>
+          <img src="../../assets/icon/warning.png" width="40" height="40">
+        </div>
+      </ion-col>
+      <ion-col size="7">
+        <ion-label>
+          <p><b>260</b></p>
+          <p><b>Narendrakumar Mandviya</b></p>
+          <p><b>2BHK</b></p>
+        </ion-label>
+      </ion-col>
+    </ion-row>
+
+
+    <ion-row style="margin: 20px; background-color: #ffebeb; height: auto; border: 1px solid rgb(173, 6, 6); border-radius: 10px;">
+      <ion-col size="2" style="margin: 10px;">
+        <div>
+          <img src="../../assets/icon/alarm.png" width="40" height="40">
+        </div>
+      </ion-col>
+      <ion-col size="7">
+        <ion-label>
+          <p><b>260</b></p>
+          <p><b>Narendrakumar Mandviya</b></p>
+          <p><b>2BHK</b></p>
+        </ion-label>
+      </ion-col>
+    </ion-row>
+
+
+
+  </ion-grid>
 </ion-content>

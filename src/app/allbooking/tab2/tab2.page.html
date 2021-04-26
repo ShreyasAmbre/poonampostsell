@@ -34,160 +34,58 @@
     <h4 style="color:#0077BD"><u>Payment Schemes</u></h4>
   </ion-item>
 
-  <mat-accordion>
-    <mat-expansion-panel *ngFor=" let item of booking_payment_detail_master_api; let i = index">
-      <mat-expansion-panel-header>
-        <mat-panel-title style="color: #00778D;">
-          {{item["terms"]}}
-        </mat-panel-title>
-        <mat-panel-description>
-          <!-- <h6>Plan</h6> -->
-        </mat-panel-description>
-      </mat-expansion-panel-header>
-      <div>
-        <table class="table table-borderless customtablestyle">
-          <tbody>
-            <tr>
-              <th>Basic Amount:</th>
-              <td>{{item["amount"]}}</td>
-            </tr>
-            <tr>
-              <th>Amount Received:</th>
-              <td>{{item["amount"]}}</td>
-            </tr>
-            <tr>
-              <th>Outstanding:</th>
-              <td>{{item["outstanding"]}}</td>
-            </tr>
-            <tr>
-              <th>Due:</th>
-              <td>{{item["due_amount"]}}</td>
-            </tr>
-            <tr>
-              <th>Due Date:</th>
-              <td>{{item["due_date"]}}</td>
-            </tr>
-            <tr>
-              <th>Percentage:</th>
-              <td>{{item["percentage"]}}</td>
-            </tr>
-            <tr>
-              <th>Interest Amount:</th>
-              <td>{{item["interest_amount"]}}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </mat-expansion-panel><br>
-
-    <!-- <mat-expansion-panel>
-      <mat-expansion-panel-header style="background-color: #10b759;">
-        <mat-panel-title>
-          <h4 style="color:white">Payment Receipts</h4>
-        </mat-panel-title>
-        <mat-panel-description>
-        </mat-panel-description>
-      </mat-expansion-panel-header>
-      <div *ngFor="let item of get_all_payments_api">
-        <ion-card class="detailbookingcard">
-          <ion-item>
-            <ion-icon name="cash" color='primary' slot="start"></ion-icon>
-            <ion-label color="primary"> ID: <b>{{item["payment_id"]}}</b></ion-label>
-          </ion-item>
-
-          <ion-card-content>
-            <b>Bank Name</b>: {{item["bankName"]}} <br>
-            <b>Bank Branch</b>: {{item["bankBranch"]}} <br>
-            <b>Payment mode</b>: {{item["payment_mode"]}} <br>
-            <b>Receipt Date</b>: {{item["receipt_date"]}} <br>
-            <b>Cheque Date</b>: {{item["cheque_date"]}} <br>
-            <b>Cheque No.</b>: {{item["cheque_number"]}} <br>
-
-            <b>Basic Amount</b>: 49,999.00 <br>
-            <b>CGST</b>: - <br>
-            <b>SGST</b>: - <br>
-            <b>GST Amount</b>:  <br>
-            <b>Print Date</b>: {{item["cheque_number"]}} <br>
-            <b>Note</b>:  {{item["notes"]}}  <br>
-          </ion-card-content>
-        </ion-card>
-      </div>
-    </mat-expansion-panel><br> -->
-
-    <!-- <mat-expansion-panel>
-      <mat-expansion-panel-header style="background-color: #FD7E17;">
-        <mat-panel-title>
-          <h4 style="color:white">Payment Vouchers</h4>
-        </mat-panel-title>
-        <mat-panel-description>
-        </mat-panel-description>
-      </mat-expansion-panel-header>
-      <div>
-        <ion-card class="detailbookingcard">
-          <ion-item>
-            <ion-icon name="cash" color='primary' slot="start"></ion-icon>
-            <ion-label color="primary">Voucher ID : <b>482</b></ion-label>
-            <ion-button fill="outline" slot="end">View</ion-button>
-          </ion-item>
-
-          <ion-card-content>
-            <b>Voucher Date</b>: - <br>
-            <b>Payment mode</b>: - <br>
-            <b>Cheque Date</b>: - <br>
-            <b>Cheque No.</b>: - <br>
-            <b>Bank Name</b>: - <br>
-            <b>Basic Amount</b>: 0.00 <br>
-            <b>CGST</b>: - <br>
-            <b>SGST</b>: - <br>
-            <b>GST Amount</b>: 0.00 <br>
-            <b>Print Date</b>: - <br>
-            <b>Note</b>: - <br>
-          </ion-card-content>
-        </ion-card>
-      </div>
-    </mat-expansion-panel><br> -->
-
-    <!-- <mat-expansion-panel>
-      <mat-expansion-panel-header style="background-color: #00b8d4;">
-        <mat-panel-title>
-          <h4 style="color:white">Demand Letter</h4>
-        </mat-panel-title>
-        <mat-panel-description>
-        </mat-panel-description>
-      </mat-expansion-panel-header>
-      <div>
-        <ion-card class="detailbookingcard">
-          <ion-item>
-            <ion-icon name="cash" color='primary' slot="start"></ion-icon>
-            <ion-label color="primary">Demand ID : <b>482</b></ion-label>
-            <ion-button fill="outline" slot="end">View</ion-button>
-          </ion-item>
-
-          <ion-card-content>
-            <b>Demand Date</b>: - <br>
-            <b>Percentage</b>: - <br>
-            <b>Outstanding </b>: - <br>
-            <b>Received</b>: - <br>
-            <b>Total Due</b>: - <br>
-            <b>Action</b>: 0.00 <br>
-          </ion-card-content>
-        </ion-card>
-      </div> 
-    </mat-expansion-panel>-->
-  </mat-accordion>
+  <ion-card style=" margin: 0px !important; overflow-x:auto">
+    <ion-card-content>
+      <table class="table table-striped">
+        <thead class="bg-primary text-white text-center">
+          <tr>
+            <th scope="col">Terms                                        </th>
+            <th scope="col">Percentage                                    </th>
+            <th scope="col">Basic Amount                                        </th>
+            <th scope="col">Due Date                                 </th>
+            <th scope="col">Amount Received                               </th>
+            <th scope="col">Outstanding                           </th>
+            <th scope="col">Due                               </th>
+            <th scope="col">Interest Amount                               </th>
+          </tr>
+        </thead>
+        <tbody>
+         <tr *ngFor=" let item of booking_payment_detail_master_api; let i = index">
+          <td>{{item["terms"]}}</td>
+          <td>{{item["percentage"]}}%</td>
+          <td>{{item["amount"]}}</td>
+          <td>{{datastoreservice.showZeroForDate(item["due_date"])}}</td>
+          <td>{{item["received"]}}</td>
+          <td>{{datastoreservice.calotherchargesbalance(item["received"], item["amount"])}}</td>
+          <td>{{datastoreservice.showZeroForReg(item["due_amount"])}}</td>
+          <td>{{datastoreservice.showZeroForReg(interest_amount)}}</td>
+         </tr>
+         <tr >
+          <td>Total:- </td>
+          <td></td>
+          <td>{{totalBasicAmountOfPaymentScheme}}</td>
+          <td></td>
+          <td>{{totalAmountReceivedPaymentScheme}}</td>
+          <td></td>
+          <td>{{totalDuePaymentScheme}}</td>
+          <td></td>
+         </tr>
+        </tbody>
+      </table>
+    </ion-card-content>
+  </ion-card><br>
 
   <ion-item>
     <h4 style="color:#0077BD"><u>Payment Receipts</u></h4>
   </ion-item>
 
-  <mat-accordion>
+  <!-- <mat-accordion>
     <mat-expansion-panel class="expansioncard"  *ngFor="let item of get_all_payments_api">
       <mat-expansion-panel-header>
         <mat-panel-title style="color: #00778D;">
           ID: {{item["payment_id"]}}
         </mat-panel-title>
         <mat-panel-description>
-          <!-- <h6>Plan</h6> -->
         </mat-panel-description>
       </mat-expansion-panel-header>
       <div>
@@ -245,14 +143,53 @@
         </table>
       </div>
     </mat-expansion-panel><br>
-  </mat-accordion>
+  </mat-accordion> -->
 
+  <ion-card style=" margin: 0px !important; overflow-x:auto">
+    <ion-card-content>
+      <table class="table table-striped">
+        <thead class="bg-primary text-white text-center">
+          <tr>
+            <th scope="col">Sr. No.                                        </th>
+            <th scope="col">Receipt ID	                                    </th>
+            <th scope="col">Receipt Date	                                       </th>
+            <th scope="col">Payment mode                                </th>
+            <th scope="col">Cheque Date	                               </th>
+            <th scope="col">Cheque No.                           </th>
+            <th scope="col">Bank Name                               </th>
+            <th scope="col">CGST                               </th>
+            <th scope="col">SGST                               </th>
+            <th scope="col">GST Amount                               </th>
+            <th scope="col">Print Date                               </th>
+            <th scope="col">Notes                               </th>
+          </tr>
+        </thead>
+        <tbody>
+         <tr *ngFor="let item of get_all_payments_api.slice().reverse(); let i = index">
+          <td>{{i + 1}}</td>
+          <td>{{item["payment_id"]}}</td>
+          <td>{{datastoreservice.showZeroForDate(item["receipt_date"])}}</td>
+          <td>{{datastoreservice.showNan(item["payment_mode"])}}</td>
+          <td>{{datastoreservice.showZeroForDate(item["cheque_date"])}}</td>
+          <td>{{datastoreservice.showNan(item["cheque_number"])}}</td>
+          <td>{{item["bankName"]}}</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>{{datastoreservice.showZeroForDate(item["printDate"])}}</td>
+          <td>{{datastoreservice.showZeroForDate(item["notes"])}}</td>
+         </tr>
+
+        </tbody>
+      </table>
+    </ion-card-content>
+  </ion-card><br>
 
   <ion-item>
     <h4 style="color:#0077BD"><u>Payment Voucher</u></h4>
   </ion-item>
 
-  <mat-accordion>
+  <mat-accordion *ngFor="let item of get_all_vouchers_api">
     <mat-expansion-panel>
       <mat-expansion-panel-header>
         <mat-panel-title style="color: #00778D;">
@@ -315,11 +252,11 @@
     <h4 style="color:#0077BD"><u>Demand Letter</u></h4>
   </ion-item>
 
-  <mat-accordion>
+  <mat-accordion *ngFor="let item of demand_api">
     <mat-expansion-panel>
       <mat-expansion-panel-header>
         <mat-panel-title style="color: #00778D;">
-          Demand ID : <b>482</b>
+          Demand ID : <b>{{item.demand_id}}</b>
         </mat-panel-title>
         <mat-panel-description>
         </mat-panel-description>
@@ -329,23 +266,23 @@
           <tbody>
             <tr>
               <th>Demand Date:</th>
-              <td>-</td>
+              <td>{{item.created_at}}</td>
             </tr>
             <tr>
               <th>Percentage:</th>
-              <td>-</td>
+              <td>{{item.percentage}}</td>
             </tr>
             <tr>
               <th>Outstanding:</th>
-              <td>-</td>
+              <td>{{item.outstanding}}</td>
             </tr>
             <tr>
               <th>Received.:</th>
-              <td>-</td>
+              <td>{{item.received}}</td>
             </tr>
             <tr>
               <th>Total Due:</th>
-              <td>-</td>
+              <td>{{item.totalDue}}</td>
             </tr>
             <tr>
               <th>Action:</th>

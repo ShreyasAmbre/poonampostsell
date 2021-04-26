@@ -11,11 +11,12 @@
   </div>
   <div class="loginsection">
     <ion-grid>
-      <ion-row class="ion-margin">
+
+      <ion-row class="ion-margin ion-align-items-end">
         <ion-col >
           <form #loginForm="ngForm" (ngSubmit)="login(loginForm.value)">
 
-              <ion-input class="inputfield" size="small" type="text" ngModel name="name" placeholder="Usernmae *"></ion-input>
+              <ion-input class="inputfield" size="small" type="text" ngModel name="username" placeholder="Usernmae *"></ion-input>
 
               <ion-input class="inputfield" size="large"  type="password" ngModel name="password" placeholder="Password *"></ion-input>
               <br>
@@ -23,15 +24,55 @@
               <ion-button type="submit"  size="large" id="sign-in-button" expand="block"
               solid large ion-margin-vertical="20px">Login</ion-button><br>
 
-            <div  class="ion-text-center">
+            <!-- <div  class="ion-text-center">
               <p style="color:#002D47">Don't have a Account? <b style="color:white">Sign Up</b></p>
               <a routerLink="/dashboard">Dashboard</a>
-            </div>
+            </div> -->
           </form>
         </ion-col>
       </ion-row>
     </ion-grid>
   </div>
+
+
+
+  <!-- <div class="container" style="height: 100%; background-color: aqua;">
+    <div class="row align-items-start" style="height: 80px; background-color:azure;">
+      <div class="col">
+        One of three columns
+      </div>
+      <div class="col">
+        One of three columns
+      </div>
+      <div class="col">
+        One of three columns
+      </div>
+    </div>
+
+    <div class="row align-items-center" style="height: 80px; background-color:blanchedalmond">
+      <div class="col">
+        One of three columns
+      </div>
+      <div class="col">
+        One of three columns
+      </div>
+      <div class="col">
+        One of three columns
+      </div>
+    </div>
+
+    <div class="row align-items-end" style="height: 80px; background-color:coral" style="position: fixed; bottom: 0%;">
+      <div class="col">
+        One of three columns
+      </div>
+      <div class="col">
+        One of three columns
+      </div>
+      <div class="col">
+        One of three columns
+      </div>
+    </div>
+  </div> -->
 
 
   <!-- <div id="container">

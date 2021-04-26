@@ -1,0 +1,27 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar class="toolbar" slots="start" >
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()">
+        <ion-icon name="close-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Filter Summary</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <br>
+  <ion-card id="search_form_container">
+    <ion-card-content>
+      <ion-item>
+        <ion-label><b>Select Project</b></ion-label>
+        <ion-select interface="popover" [(ngModel)]="selected_project" name="selected_project">
+          <ion-select-option *ngFor="let item of project_master" [value]="item.project_id">{{item.project_name}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-button expand="block">Fetch</ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

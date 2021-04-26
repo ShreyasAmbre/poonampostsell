@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: SummaryreportPage
+  },
+  {
+    path: 'filtersummary',
+    loadChildren: () => import('./filtersummary/filtersummary.module').then( m => m.FiltersummaryPageModule)
   }
 ];
 

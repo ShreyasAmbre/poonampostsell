@@ -35,6 +35,26 @@ const routes: Routes = [
     path: 'summaryreport',
     loadChildren: () => import('./summaryreport/summaryreport.module').then( m => m.SummaryreportPageModule)
   },
+  {
+    path: 'availabilityreport',
+    loadChildren: () => import('./availabilityreport/availabilityreport.module').then( m => m.AvailabilityreportPageModule)
+  },
+  {
+    path: 'soldunsoldreport',
+    loadChildren: () => import('./soldunsoldreport/soldunsoldreport.module').then( m => m.SoldunsoldreportPageModule)
+  },
+  {
+    path: 'outstandingreport',
+    loadChildren: () => import('./outstandingreport/outstandingreport.module').then( m => m.OutstandingreportPageModule)
+  },
+  {
+    path: 'otherchargesreport',
+    loadChildren: () => import('./otherchargesreport/otherchargesreport.module').then( m => m.OtherchargesreportPageModule)
+  },
+  {
+    path: 'unregisteredreport',
+    loadChildren: () => import('./unregisteredreport/unregisteredreport.module').then( m => m.UnregisteredreportPageModule)
+  },
 ];
 
 @NgModule({

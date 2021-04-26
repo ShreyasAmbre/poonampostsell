@@ -4,6 +4,8 @@ import { Observable, forkJoin } from 'rxjs';
 
 import { Chart } from 'angular-highcharts';
 import {barChartOptions} from '../helper/barChartOpotions';
+import { ModalController } from '@ionic/angular';
+import {FiltersummaryPage} from './filtersummary/filtersummary.page'
 
 
 @Component({
@@ -12,7 +14,33 @@ import {barChartOptions} from '../helper/barChartOpotions';
   styleUrls: ['./summaryreport.page.scss'],
 })
 export class SummaryreportPage implements OnInit {
-  barChart = new Chart(barChartOptions);
+  // barChart = new Chart(barChartOptions);
+
+   type = 'ColumnChart';
+
+   data = [
+    ["Ready", 500, 0, 0, 0],
+    ["Pending", 0, 360, 0, 0],
+    ["Deployed", 0, 0, 410, 0],
+  ];
+  
+  columns = ['Status', 'Ready', 'Pending', 'Deployed', 'Other'];
+
+  //  columns = ['count', 'count', {role: 'style', type: 'string'}];
+   options = {'bars':   'horizontal',
+              'width': 350,
+              'height': 400,
+              'chartArea': {'width': '75%', 'height': '80%'},
+              'legend': {'position': 'bottom' },
+              hAxis: {
+                title: 'Status'
+              },
+              vAxis: {
+                minValue: 0
+              },
+              isStacked: true,
+              colors: ['#5cb85c', '#f0ad4e', '#d9534f']
+            };
 
   project_master = []
   selected_project = []
@@ -21,7 +49,16 @@ export class SummaryreportPage implements OnInit {
   unit_api_data = []
   stage_master_api_data = []
 
-  constructor(public http:HttpClient) { }
+  constructor(public http:HttpClient, public modalCtrl: ModalController) { }
+
+
+  async showFilterSummary() {
+    const modal = await this.modalCtrl.create({
+      component: FiltersummaryPage,
+      cssClass: 'my-customfilter-modal'
+    });
+    return await modal.present();
+  }
 
   ngOnInit() {
     this.getAllApi()

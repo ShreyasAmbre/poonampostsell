@@ -15,10 +15,11 @@ import { GoogleChartsModule } from 'angular-google-charts';
 
 
 
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [GoogleChartsModule, ChartModule, BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule,
+  imports: [ GoogleChartsModule, ChartModule, BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule,
             NgxWebstorageModule.forRoot(), NavmenuModule, BrowserAnimationsModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

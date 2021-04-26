@@ -1,0 +1,55 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar class="toolbar" slots="start" >
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()">
+        <ion-icon name="close-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Filter Outstanding Report</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <ion-card id="search_form_container">
+    <ion-card-content>
+      <ion-item>
+        <ion-label><b>Select Project</b></ion-label>
+        <ion-select interface="popover" [(ngModel)]="selected_project" name="selected_project" (ionChange)="getApartment(selected_project)">
+          <ion-select-option *ngFor="let item of project_master" [value]="item.project_id">{{item.project_name}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label><b>Select Wing</b></ion-label>
+        <ion-select interface="popover" [(ngModel)]="selected_wing" name="selected_wing" >
+          <ion-select-option *ngFor="let item of wing_apidata" [value]="item.wingName">{{item.wingName}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label><b>Select Floor</b></ion-label>
+        <ion-select interface="popover" [(ngModel)]="selected_floor" name="selected_floor">
+          <ion-select-option *ngFor="let item of floor_apidata" [value]="item.floor">{{item.floor}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label><b>Select Unit</b></ion-label>
+        <ion-select interface="popover" [(ngModel)]="selected_unit" name="selected_unit">
+          <ion-select-option *ngFor="let item of unit_apidata" [value]="item.unit_type">{{item.unit_type}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label><b>Select Broker</b></ion-label>
+        <ion-select interface="popover" [(ngModel)]="selected_broker" name="selected_broker">
+          <ion-select-option *ngFor="let item of broker_apidata" [value]="item.broker_id">{{item.brokerName}}</ion-select-option>
+        </ion-select>
+      </ion-item><br>
+
+      <ion-button expand="block" (click)="getData()">Fetch</ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+

@@ -27,14 +27,21 @@
 
 
 .my-custom-modal-css .modal-wrapper {
-  height: 50%;
+  // height: 50%;
   top: 40%;
   position: absolute;
   display: block;
 }
 .my-customfilter-modal .modal-wrapper{
-  height: 50%;
+  // height: 55%;
   top: 40%;
   position: absolute;
   display: block;
+}
+
+.my-loadingcustom-class {
+  --background: #f6fafd;
+  --spinner-color: #0077BD;
+
+  color: #0077BD;
 }

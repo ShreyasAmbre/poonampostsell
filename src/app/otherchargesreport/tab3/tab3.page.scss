@@ -1,0 +1,24 @@
+.toolbar{
+    border-bottom-left-radius:20px;
+    border-bottom-right-radius:20px;
+  
+  }
+  ion-toolbar{
+    --background: #0077BD;
+    --color: white;
+  }
+  .customtablestyle{
+    margin-top: 2%;
+    margin-bottom: 5%;
+    margin-right: 5%;
+    margin-left: 5%;
+  
+    th{
+      font-weight: normal;
+    }
+  
+    td{
+      font-weight: bold;
+    }
+    
+  }

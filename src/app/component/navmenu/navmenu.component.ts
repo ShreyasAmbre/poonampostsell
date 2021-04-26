@@ -61,6 +61,26 @@ export class NavmenuComponent implements OnInit {
             url   : "/soldunsoldreport",
             icon  : "swap-horizontal-outline"
           },
+          {
+            title: "Customers",
+            child : [
+              {
+                title : "OutStanding Report",
+                url   : "/outstandingreport",
+                icon  : "file-tray-stacked-outline"
+              },
+              {
+                title : "Other Charges Report",
+                url   : "/otherchargesreport",
+                icon  : "wallet-outline"
+              },
+              {
+                title : "UnRegistered Report",
+                url   : "/unregisteredreport",
+                icon  : "person-remove-outline"
+              },
+            ]
+          },
         ]
       },
       {

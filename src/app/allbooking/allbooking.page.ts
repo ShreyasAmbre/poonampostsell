@@ -116,12 +116,17 @@ export class AllbookingPage implements OnInit {
     let all_booking_params = {project_id: this.selected_project, wingName: this.selected_wing,
       floor: this.selected_floor, unit_type: this.selected_unit, broker_id: this.selected_broker}
 
-      let all_booking_initial_load = this.http.post(`https://software.poonamdevelopers.in/Apis/getAllBookings?results=10&page=${this.page}`, all_booking_params)
+      let all_booking_initial_load = this.http.post(`https://software.poonamdevelopers.in/Apis/getAllBookings`, all_booking_params)
   
       forkJoin([all_booking_initial_load]).subscribe(results => {
 
         this.datastoreservice.all_bookings = results[0]["data"]
         this.datastoreservice.filter_all_booking = results[0]["data"]
+
+        // this.datastoreservice.all_bookings.reverse()
+        // this.datastoreservice.filter_all_booking.reverse()
+        // this.datastoreservice.sort_data()
+
   
         console.log(this.datastoreservice.all_bookings, "THIS ALL BOOKING")
         this.data_status = true
@@ -129,15 +134,15 @@ export class AllbookingPage implements OnInit {
   }
   
 
-  fetchallbookings(data){
-    this.all_bookings = data
-    console.log(this.all_bookings,"***************")
+  // fetchallbookings(data){
+  //   this.all_bookings = data
+  //   console.log(this.all_bookings,"***************")
 
-    // this.all_bookings = this.datastoreservice.getall_bookings()
-    // this.filter_all_booking = this.all_bookings
-    // console.log(this.all_bookings, "FROM ALL BOOKING FETCH METHOD")
+  //   // this.all_bookings = this.datastoreservice.getall_bookings()
+  //   // this.filter_all_booking = this.all_bookings
+  //   // console.log(this.all_bookings, "FROM ALL BOOKING FETCH METHOD")
 
-  }
+  // }
 
   filterItems(searchTerm) {
     console.log("555555555")
@@ -149,13 +154,10 @@ export class AllbookingPage implements OnInit {
     }else{
       this.datastoreservice.filter_all_booking = this.datastoreservice.all_bookings.filter(item => {
         return item.first_name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1 ||
-        item.flatNo.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
+        item.flatNo.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1 ||
+        item.floor.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1 ;
       });
     }
-  }
-
-  showName(){
-    console.log(this.name)
   }
 }
 

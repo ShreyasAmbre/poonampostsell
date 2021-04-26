@@ -1,0 +1,115 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar class="toolbar" slots="start" >
+    <ion-buttons slot="start" size="large">
+      <ion-menu-button autoHide="false">
+        <ion-icon src="../../assets/icon/menu.svg"></ion-icon>
+      </ion-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="end" size="large">
+      <ion-menu-button auto-hide="false">
+        <app-notification></app-notification>
+      </ion-menu-button>
+    </ion-buttons>
+    <ion-title>Other Charges Reports</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-searchbar [(ngModel)]="searchTerm" (ionChange)="filterItems(searchTerm)" placeholder="Search Bookings"></ion-searchbar>
+
+
+  <ion-card style=" margin: 0px !important; overflow-x:auto">
+    <ion-card-content>
+      <table class="table table-striped">
+        <thead class="bg-primary text-white text-center">
+          <tr>
+            <th scope="col">Sr. No.                                     </th>
+            <th scope="col">Customer Name                                </th>
+            <th scope="col">Agreement Value                                </th>
+            <th scope="col">Total Received                                </th>
+            
+            <th scope="col">Due                                </th>
+            <th scope="col">Stage                                </th>
+
+            <th scope="col">Payment Plan                                </th>
+            
+            <th scope="col">Registration Number                                </th>
+
+            <th scope="col">Booking Date                                </th>
+
+            <th scope="col">Project                                </th>
+            <th scope="col">Building Name                                </th>
+
+
+            <th scope="col">Wing                                        </th>
+            <th scope="col">Flat No.                                    </th>
+            
+            <th scope="col">Unit                                    </th>
+            <th scope="col">Saleable                                    </th>
+            <th scope="col">Rera Area                                    </th>
+            <th scope="col">Payment Mode                                    </th>
+            <th scope="col">Rate                                    </th>
+            <th scope="col">Basic Flat Cost                                    </th>
+            <th scope="col">Total Consideration                                    </th>
+
+            <th scope="col">GST Value                                </th>
+            
+            <th scope="col">Registration Value                                </th>
+            <th scope="col">Broker Detail                                </th>
+            
+
+            <th scope="col">GST Received                                </th>
+            <th scope="col">Balance                                </th>
+          </tr>
+        </thead>
+        <tbody style="text-align: center;">
+         <tr *ngFor="let item of datastoreservice.othercharges_apidata; let i = index">
+           <td> {{i}} </td>
+           <td [routerLink]="['detailothercharges']" style="color: blue;" (click)="sendId(item.bid)"> {{ item.salutation }} {{ item.first_name }} {{ item.last_name }}</td>
+           <td> {{ item.agreementValue }} </td>
+           <td> {{ item.totalAmount }} </td>
+           
+           
+           <td> Due </td>
+           <td> Stage </td>
+
+           <td> {{ item.paymentTermsName }} </td>
+
+           <td> {{ item.registration_number }} </td>
+
+           <td> {{ item.booking_date }} </td>
+           
+           <td> {{ item.projectName }} </td>
+           <td> {{ item.buildingName }} </td>
+
+
+           <td> {{ item.wingName }} </td>
+           <td> {{ item.flatNo }} </td>
+           <td> {{ item.unit_type }} </td>
+           <td> {{ item.saleableArea }} </td>
+           <td> {{ item.reraArea }} </td>
+           <td> {{ item.paymentMode }} </td>
+
+           <td> {{ datastoreservice.calRate(item.basicFlatCost, item.saleableArea) }} </td>
+           <td> {{ item.basicFlatCost }} </td>
+           <td> {{ item.totalConsideration }} </td>
+           <td> {{ item.gstValue }} </td>
+           <td> {{ item.registrationValue }} </td>
+           <td> {{ item.brokerName }} </td>
+           <td> {{ item.gstAmount }} </td>
+           <td> GST :- {{ datastoreservice.calgstBalance(item.agreementValue, item.gstAmount) }} <br>
+                Base :- {{ datastoreservice.calotherchargesbalance(item.totalAmount, item.basicFlatCost) }}       
+          </td>
+         </tr>
+        </tbody>
+      </table>
+    </ion-card-content>
+  </ion-card><br>
+
+
+  <ion-fab class="floating-btn" horizontal="end" vertical="bottom" slot="fixed">
+    <ion-fab-button color="danger" (click)="showFilterOthercharges()">
+      <ion-icon name="funnel"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

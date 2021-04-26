@@ -5,6 +5,7 @@ import { Observable, forkJoin } from 'rxjs';
 import {DatastoreService} from '../../datastore.service';
 import { AllbookingPage } from '../allbooking.page';
 import { AlertController } from '@ionic/angular';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-searchmodal',
@@ -27,9 +28,23 @@ export class SearchmodalPage implements OnInit {
   all_bookings= []
   filter_all_booking = []
 
+
   filterdattaloadstatus = false
   constructor(public modalCtrl: ModalController, public http:HttpClient, public datastoreservice: DatastoreService,
-              public alert: AlertController) { }
+              public alert: AlertController, public loadingController: LoadingController) { }
+
+  async presentLoading() {
+    const loading = await this.loadingController.create({
+      cssClass: 'my-loadingcustom-class',
+      message: 'Please wait...',
+      duration: 4000
+    });
+    await loading.present();
+
+    const { role, data } = await loading.onDidDismiss();
+    console.log('Loading dismissed!');
+  }
+
 
   ngOnInit() {
     this.getAllApi()
@@ -38,18 +53,26 @@ export class SearchmodalPage implements OnInit {
   dismiss() {
     this.modalCtrl.dismiss();
   }
+
+  loadingDismiss(){
+    this.loadingController.dismiss()
+  }
+
   getAllApi(){
     let data = {"_w":{ status: 1}}
     let all_booking_params = {project_id: this.selected_project, wingName: this.selected_wing,
       floor: this.selected_floor, unit_type: this.selected_unit, broker_id: this.selected_broker}
 
-    let project_data = this.http.post('https://software.poonamdevelopers.in/Apis/read/project_master', data);
+    let project_data = this.http.post('http://172.105.253.44/test/Apis/read/project_master', data);
     forkJoin([project_data]).subscribe(results => {
       this.project_master = results[0]["data"]
       console.log(this.project_master, "THIS IS PROJECT MASTER")
     });
   }
+  
   fetchallbookings(){
+    this.presentLoading()
+
     var pid = this.selected_project
     var wing = this.selected_wing
     var floor= this.selected_floor
@@ -59,45 +82,32 @@ export class SearchmodalPage implements OnInit {
     let all_booking_params = {project_id: pid, wingName: wing,
       floor: floor, unit_type: unit_type, broker_id: broker_id}
 
-    this.http.post("https://software.poonamdevelopers.in/Apis/getAllBookings", all_booking_params)
+    this.http.post("http://172.105.253.44/test/Apis/getAllBookings", all_booking_params)
     .subscribe((response:any)=>{
 
     this.datastoreservice.all_bookings = response.data
     this.datastoreservice.filter_all_booking = response.data
 
-    // this.send_all_bookings_data_to_bookingpage(this.all_bookings)
     console.log(this.datastoreservice.all_bookings, "ALL BOOKING DATA")
     }, (errors) => {
     console.log("Server Issue", errors.message)
     })
 
-    // var data = this.datastoreservice.setbookingsdata(pid, wing, floor, unit_type, broker_id)
-    // console.log(data, "DAAAAATAAA")
-    // console.log("**************************************************")
-    // let myCompOneObj = new AllbookingPage(this.http,this.alert, this.datastoreservice, this.modalCtrl);
-    // this.filterdattaloadstatus = true
-    // myCompOneObj.ngOnInit(this.all_bookings)
-
     this.dismiss()
   }
 
-  // send_all_bookings_data_to_bookingpage(bookings_data){
-  //   console.log("**************************************************")
-  //   let myCompOneObj = new AllbookingPage(this.http,this.alert, this.datastoreservice, this.modalCtrl);
-  //   myCompOneObj.fetchallbookings(bookings_data)
 
-  // }
+  get_wing_floor_unit(){
 
 
-  get_wing_floor_unit(id){
 
-    let wings_params = {_s: "wingName", _w: {status: 1}, _g: "wingName", _wi: [{name: "project_id", values: [id]}]}
-    let floors_params = {_s: "floor", _w: {status: 1}, _g: "floor", _wi: [{name: "project_id", values: [id]}]}
-    let units_params = {_s: "unit_type", _w: {status: 1}, _g: "unit_type", _wi: [{name: "project_id", values: ["1"]}]}
+    let wings_params = {_s: "wingName", _w: {status: 1}, _g: "wingName", _wi: [{name: "project_id", values: this.selected_project}]}
+    let floors_params = {_s: "floor", _w: {status: 1}, _g: "floor", _wi: [{name: "project_id", values: this.selected_project}]}
+    let units_params = {_s: "unit_type", _w: {status: 1}, _g: "unit_type", _wi: [{name: "project_id", values: this.selected_project}]}
 
-    let wings_data = this.http.post('https://software.poonamdevelopers.in/Apis/read/apartments', wings_params);
-    let floors_data = this.http.post('https://software.poonamdevelopers.in/Apis/read/apartments', floors_params);
-    let units_payment_data = this.http.post('https://software.poonamdevelopers.in/Apis/read/apartments', units_params);
+    let wings_data = this.http.post('http://172.105.253.44/test/Apis/read/apartments', wings_params);
+    let floors_data = this.http.post('http://172.105.253.44/test/Apis/read/apartments', floors_params);
+    let units_payment_data = this.http.post('http://172.105.253.44/test/Apis/read/apartments', units_params);
 
     forkJoin([wings_data, floors_data, units_payment_data]).subscribe(results => {
 
@@ -108,7 +118,15 @@ export class SearchmodalPage implements OnInit {
       console.log(this.wings_api_data, "THIS IS  WING DATA")
       console.log(this.floors_api_data, "THIS IS FLOOR DATA")
       console.log(this.units_api_data, "THIS UNIT DATA")
+
+      // this.floors_api_data.forEach((value, index, array) => {
+        
+      // });
+
     });
   }
+
+
+  
 
 }
