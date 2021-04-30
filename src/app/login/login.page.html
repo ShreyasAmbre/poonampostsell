@@ -7,20 +7,19 @@
 <ion-content>
 
   <div class="container">
-    <img src="../../assets/login.jpg" alt="">
+    <img src="../../assets/login.png" alt="">
   </div>
   <div class="loginsection">
     <ion-grid>
-
       <ion-row class="ion-margin ion-align-items-end">
         <ion-col >
           <form #loginForm="ngForm" (ngSubmit)="login(loginForm.value)">
 
-              <ion-input class="inputfield" size="small" type="text" ngModel name="username" placeholder="Usernmae *"></ion-input>
+              <ion-input class="inputfield" size="small" type="text" ngModel name="username" placeholder="Username *"></ion-input>
 
               <ion-input class="inputfield" size="large"  type="password" ngModel name="password" placeholder="Password *"></ion-input>
               <br>
-              
+
               <ion-button type="submit"  size="large" id="sign-in-button" expand="block"
               solid large ion-margin-vertical="20px">Login</ion-button><br>
 
@@ -29,9 +28,14 @@
               <a routerLink="/dashboard">Dashboard</a>
             </div> -->
           </form>
+
         </ion-col>
       </ion-row>
+      <ion-row class="loginfooter">
+            <img src="../../assets/loginf.png" alt="">
+      </ion-row>
     </ion-grid>
+
   </div>
 
 

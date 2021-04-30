@@ -49,11 +49,11 @@
          <tr >
           <td>Total:- </td>
           <td></td>
-          <td>&#x20B9; {{totalBasicAmountOfPaymentScheme}}</td>
+          <td>&#x20B9;  {{datastoreservice.totalBasicAmountOfPaymentSchemeCal()}}</td>
           <td></td>
-          <td>&#x20B9; {{totalAmountReceivedPaymentScheme}}</td>
+          <td>&#x20B9;  {{datastoreservice.totalAmountReceivedPaymentSchemeCal()}}</td>
           <td></td>
-          <td>&#x20B9; {{totalDuePaymentScheme}}</td>
+          <td>&#x20B9;  {{datastoreservice.totalDuePaymentSchemeCal()}}</td>
           <td></td>
          </tr>
         </tbody>
@@ -70,26 +70,26 @@
       <table class="table table-striped">
         <thead class="bg-primary text-white text-center">
           <tr>
-            <th scope="col">Sr. No.                                        </th>
-            <th scope="col">Receipt ID	                                    </th>
-            <th scope="col">Receipt Date	                                       </th>
-            <th scope="col">Payment mode                                </th>
-            <th scope="col">Cheque Date	                               </th>
-            <th scope="col">Cheque No.                           </th>
-            <th scope="col">Bank Name                               </th>
-            <th scope="col">Basic Amount                               </th>
-            <th scope="col">CGST                               </th>
-            <th scope="col">SGST                               </th>
-            <th scope="col">GST Amount                               </th>
-            <th scope="col">Print Date                               </th>
-            <th scope="col">Notes                               </th>
+            <th >Sr. No.                                        </th>
+            <th >Receipt ID	                                    </th>
+            <th >Receipt Date	                                       </th>
+            <th >Payment mode                                </th>
+            <th >Cheque Date	                               </th>
+            <th >Cheque No.                           </th>
+            <th >Bank Name                               </th>
+            <th >Basic Amount                               </th>
+            <th >CGST                               </th>
+            <th >SGST                               </th>
+            <th >GST Amount                               </th>
+            <th >Print Date                               </th>
+            <th >Notes                               </th>
           </tr>
         </thead>
         <tbody>
          <tr *ngFor="let item of get_all_payments_api.slice().reverse(); let i = index">
           <td>{{i + 1}}</td>
           <td>{{item["payment_id"]}}</td>
-          <td>{{datastoreservice.showZeroForDate(item["receipt_date"])}}</td>
+          <td class="col-2">{{datastoreservice.showZeroForDate(item["receipt_date"])}}</td>
           <td>{{datastoreservice.showNan(item["payment_mode"])}}</td>
           <td>{{datastoreservice.showZeroForDate(item["cheque_date"])}}</td>
           <td>{{datastoreservice.showNan(item["cheque_number"])}}</td>
@@ -109,7 +109,7 @@
           <td></td>
           <td></td>
           <td>Total:- </td>
-          <td>&#x20B9; {{totalBasicAmountOfPaymentReceipt}}</td>
+          <td>&#x20B9; {{datastoreservice.totalBasicAmountPaymentReceiptCal()}}</td>
           <td></td>
           <td></td>
           <td></td>

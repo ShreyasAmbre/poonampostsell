@@ -8,6 +8,8 @@ import { UnregisteredreportPageRoutingModule } from './unregisteredreport-routin
 
 import { UnregisteredreportPage } from './unregisteredreport.page';
 import {NotificationModule} from '../component/notification/notification.module';
+import {FiltermodalPageModule} from '../component/filtermodal/filtermodal.module';
+
 
 
 @NgModule({
@@ -16,7 +18,8 @@ import {NotificationModule} from '../component/notification/notification.module'
     FormsModule,
     IonicModule,
     UnregisteredreportPageRoutingModule,
-    NotificationModule
+    NotificationModule,
+    FiltermodalPageModule
   ],
   declarations: [UnregisteredreportPage]
 })

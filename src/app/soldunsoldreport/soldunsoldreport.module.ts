@@ -8,6 +8,8 @@ import { SoldunsoldreportPageRoutingModule } from './soldunsoldreport-routing.mo
 
 import { SoldunsoldreportPage } from './soldunsoldreport.page';
 import {NotificationModule} from '../component/notification/notification.module';
+import {FiltermodalPageModule} from '../component/filtermodal/filtermodal.module';
+
 
 
 @NgModule({
@@ -16,7 +18,8 @@ import {NotificationModule} from '../component/notification/notification.module'
     FormsModule,
     IonicModule,
     SoldunsoldreportPageRoutingModule,
-    NotificationModule
+    NotificationModule,
+    FiltermodalPageModule
   ],
   declarations: [SoldunsoldreportPage]
 })

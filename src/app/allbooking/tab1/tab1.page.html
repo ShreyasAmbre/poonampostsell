@@ -16,10 +16,10 @@
 
 <ion-content>
 
-  <ion-slides [options]="sliderConfig">
-    <ion-slide *ngFor="let item of booking_applicant_api">
+  <ion-slides class="slider" [options]="sliderConfig">
+    <ion-slide class="slider-slide" *ngFor="let item of booking_applicant_api">
       <div>
-        <ion-card  style="border: 2px solid #0077BD; box-shadow: 3px 3px 3px #0077BD;">
+        <ion-card  style="border: 2px solid #0077BD; box-shadow: 3px 3px 3px #0077BD; height: 150px;">
           <ion-card-content>
             <h2>Applicant</h2>
             <p style="font-size: 12px"><b>{{item.salutation}} {{item.first_name}} {{item.last_name}}</b></p>

@@ -16,17 +16,20 @@
 
 
 <ion-content>
-  <div *ngIf="data_status">
+  <!-- <div *ngIf="data_status"> -->
 
     <ion-searchbar [(ngModel)]="searchTerm" (ionChange)="filterItems(searchTerm)" placeholder="Search Bookings"></ion-searchbar>
       <div class="ion-text-center">
-        <h3 style="color:#0077BD">{{datastoreservice.filter_all_booking[0]["project_name"]}} {{datastoreservice.filter_selected_wing}}
+        <h3 style="color:#0077BD">{{datastoreservice.filter_projectname}} {{datastoreservice.filter_selected_wing}}
                                     {{datastoreservice.filter_selected_floor}} {{datastoreservice.filter_selected_unit}}</h3>
       </div>
+      <div *ngIf="!this.datastoreservice.all_booking_status">
+        <ion-progress-bar type="indeterminate"></ion-progress-bar>
+      </div>
+
       <div *ngIf="booking_OGList">
-        <div *ngFor="let item of datastoreservice.all_bookings.slice().reverse(); let i = index">
+        <!-- <div *ngFor="let item of datastoreservice.all_bookings.slice().reverse(); let i = index">
           <ion-card class="booking_card" id="bookingcard" [routerLink]="['detailbooking']" (click)="sendId(item.bid)">
-            <!-- <img src="../../assets/allbookingcrop2.png" /> -->
             <ion-card-content style="background-color:rgb(241, 240, 250)">
               <ion-grid>
                 <ion-row>
@@ -54,14 +57,54 @@
               </ion-grid>
             </ion-card-content>
           </ion-card>
-        </div>
+        </div> -->
+
+        <ion-card style=" margin: 0px !important; overflow-x:auto">
+          <ion-card-content>
+            <table class="table table-striped">
+              <thead class="bg-primary text-white text-center">
+                <tr>
+                  <th scope="col">Sr. No.                                     </th>
+                  <th scope="col">Customer Name                                </th>
+                  <th scope="col">Contact No.                               </th>
+                  <th scope="col">Building Name                               </th>
+                  <th scope="col">Wing                                        </th>
+                  <th scope="col">Flat No.                                    </th>
+                  <th scope="col">Floor                                    </th>
+                  <th scope="col">Agreement Value                                </th>
+                  <th scope="col">Booking Date                                </th>
+                  <th scope="col">Payment Plan                                </th>
+                  <th scope="col">Registration No.                                </th>
+                  <th scope="col">Balance Amount                                </th>
+                  <th scope="col">Broker Name                                </th>
+                </tr>
+              </thead>
+              <tbody>
+               <tr *ngFor="let item of datastoreservice.all_bookings.slice().reverse(); let i = index">
+                  <td> {{i + 1}} </td>
+                  <td [routerLink]="['detailbooking']" style="color: blue;" (click)="sendId(item.bid)"> {{ item.salutation }} {{ item.first_name }} {{ item.last_name }}</td>
+                  <td> {{ item.contact_number }} </td>
+                  <td> {{item.buildingName}} </td>
+                  <td> {{ item.wingName }} </td>
+                  <td> {{ item.flatNo }} </td>
+                  <td> {{ item.floor }} </td>
+                  <td> &#x20B9;{{ datastoreservice.commaSeprate(item.agreementValue) }} </td>
+                  <td> {{ item.booking_date }} </td>
+                  <td> {{ item.paymentTermsName }} </td>
+                  <td> {{datastoreservice.showZeroForReg(item.registration_number)}} </td>
+                  <td> &#x20B9;{{datastoreservice.calTotalBalance(item.agreementValue, item.received)}}  </td>
+                  <td> {{datastoreservice.showNan(item.brokerName)}} </td>
+               </tr>
+              </tbody>
+            </table>
+          </ion-card-content>
+        </ion-card><br>
       </div>
 
     <div *ngIf="booking_FList">
-      <div *ngFor="let item of datastoreservice.filter_all_booking; let i = index" >
+      <!-- <div *ngFor="let item of datastoreservice.filter_all_booking.slice().reverse(); let i = index" >
 
         <ion-card class="booking_card" id="bookingcard" [routerLink]="['detailbooking']" (click)="sendId(item.bid)">
-          <!-- <img src="../../assets/allbookingcrop2.png" /> -->
           <ion-card-content style="background-color:rgb(241, 240, 250)">
             <ion-grid>
               <ion-row>
@@ -89,12 +132,53 @@
           </ion-card-content>
         </ion-card>
 
-      </div>
+      </div> -->
+
+      <ion-card style=" margin: 0px !important; overflow-x:auto">
+        <ion-card-content>
+          <table class="table table-striped">
+            <thead class="bg-primary text-white text-center">
+              <tr>
+                <th scope="col">Sr. No.                                     </th>
+                <th scope="col">Customer Name                                </th>
+                <th scope="col">Contact No.                               </th>
+                <th scope="col">Building Name                               </th>
+                <th scope="col">Wing                                        </th>
+                <th scope="col">Flat No.                                    </th>
+                <th scope="col">Floor                                    </th>
+                <th scope="col">Agreement Value                                </th>
+                <th scope="col">Booking Date                                </th>
+                <th scope="col">Payment Plan                                </th>
+                <th scope="col">Registration No.                                </th>
+                <th scope="col">Balance Amount                                </th>
+                <th scope="col">Broker Name                                </th>
+              </tr>
+            </thead>
+            <tbody>
+             <tr *ngFor="let item of datastoreservice.filter_all_booking.slice().reverse(); let i = index">
+                <td> {{i + 1}} </td>
+                <td [routerLink]="['detailbooking']" style="color: blue;" (click)="sendId(item.bid)"> {{ item.salutation }} {{ item.first_name }} {{ item.last_name }}</td>
+                <td> {{ item.contact_number }} </td>
+                <td> {{item.buildingName}} </td>
+                <td> {{ item.wingName }} </td>
+                <td> {{ item.flatNo }} </td>
+                <td> {{ item.floor }} </td>
+                <td> &#x20B9;{{ datastoreservice.commaSeprate(item.agreementValue) }} </td>
+                <td> {{ item.booking_date }} </td>
+                <td> {{ item.paymentTermsName }} </td>
+                <td> {{datastoreservice.showZeroForReg(item.registration_number)}} </td>
+                <td> &#x20B9;{{datastoreservice.calTotalBalance(item.agreementValue, item.received)}}  </td>
+                <td> {{datastoreservice.showNan(item.brokerName)}} </td>
+             </tr>
+            </tbody>
+          </table>
+        </ion-card-content>
+      </ion-card><br>
     </div>
-  </div>
+  <!-- </div> -->
 
   <!-- SKELETO CODE IS HERE -->
-  <div *ngIf="!data_status">
+  <!-- <div *ngIf="!data_status">
     <div *ngFor="let item of [].constructor(10)">
       <ion-card class="booking_card" id="bookingcard" [routerLink]="['detailbooking']" (click)="sendId(item.bid)">
         <div style="width: 100%; height: 100px;">
@@ -116,9 +200,10 @@
         </ion-card-content>
       </ion-card>
     </div>
-  </div>
+  </div> -->
   <!-- SKELETON CODE END -->
 
+  <!-- Floating Button Code -->
   <ion-fab class="floating-btn" vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button>
       <ion-icon md="caret-up" ios="chevron-up-circle-outline"></ion-icon>
@@ -132,6 +217,7 @@
       </ion-fab-button>
     </ion-fab-list>
   </ion-fab>
+  <!-- Floating Button Code End -->
 
 
 </ion-content>

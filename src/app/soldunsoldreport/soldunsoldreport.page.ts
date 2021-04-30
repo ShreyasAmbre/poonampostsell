@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import {FiltersoldunsoldPage} from './filtersoldunsold/filtersoldunsold.page';
 import {DatastoreService} from '../datastore.service';
 import { Observable, forkJoin } from 'rxjs';
+import {FiltermodalPage} from '../component/filtermodal/filtermodal.page'
 
 
 @Component({
@@ -12,21 +12,23 @@ import { Observable, forkJoin } from 'rxjs';
   styleUrls: ['./soldunsoldreport.page.scss'],
 })
 export class SoldunsoldreportPage implements OnInit{
-
+  searchTerm:string = ""
   data_status = false
 
   constructor(private http:HttpClient, public modalCtrl: ModalController, public datastoreservice:DatastoreService) { }
 
   async showFilterSoldUnsold() {
-    
+
     const modal = await this.modalCtrl.create({
-      component: FiltersoldunsoldPage,
-      cssClass: 'my-customfilter-modal'
+      component: FiltermodalPage,
+      cssClass: 'my-customfilter-modal',
+      componentProps: {'filterName': 'Sold/Unsold Report Filter'}
     });
     return await modal.present();
   }
 
   ngOnInit() {
+
   }
 
   filterItems(searchTerm) {

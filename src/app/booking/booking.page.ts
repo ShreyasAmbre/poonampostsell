@@ -140,7 +140,7 @@ export class BookingPage implements OnInit {
 
 
 
-  constructor(public http: HttpClient, public alertController: AlertController, 
+  constructor(public http: HttpClient, public alertController: AlertController,
               public datastoreservice: DatastoreService, public router:Router) { }
 
   async contactExsitAlert() {
@@ -220,7 +220,7 @@ export class BookingPage implements OnInit {
     this.terms_arr = []
   }
 
- 
+
   // Below Methods is Used to Prepare 4 Array to Submit this Form DATA TO DATABASE
   addcoapplicant(data){
     console.log(typeof(data.value))
@@ -262,7 +262,7 @@ export class BookingPage implements OnInit {
     }
 
     console.log("CO APPLICANT Data from Array ", this.coApplicantsDetails)
-    
+
     data.resetForm()
   }
   sendapplicantsDetails(data){
@@ -278,7 +278,7 @@ export class BookingPage implements OnInit {
   }
   sendpaymentDetails(data){
     var demandon_val = data.value.demand_on
-    this.paymentDetails = 
+    this.paymentDetails =
       {
         additionalDescription: this.additionalDescription,
         additionalProperty: this.additionalProperty,
@@ -329,7 +329,7 @@ export class BookingPage implements OnInit {
     console.log(data.value.selected_broker, "VALLl")
 
     if(data.value.selected_broker === undefined){
-      this.brokerDetails = 
+      this.brokerDetails =
       {
         bookingBy: "",
         bookingDate: "",
@@ -368,7 +368,7 @@ export class BookingPage implements OnInit {
       }
     }else{
 
-      this.brokerDetails = 
+      this.brokerDetails =
       {
         bookingBy: this.booking_by,
         bookingDate: data.value.booking_date,
@@ -408,13 +408,13 @@ export class BookingPage implements OnInit {
       }
 
     }
-    
-    
 
-      
+
+
+
   }
   submiBooking(){
-    
+
     var customisedTermsVue: {
       customisedDemand: "",
       defaultDate: "",
@@ -427,7 +427,7 @@ export class BookingPage implements OnInit {
     var coApplicantsDetails = this.coApplicantsDetails
     var paymentDetails = this.paymentDetails
     var brokerDetails = this.brokerDetails
-    this.http.post("https://software.poonamdevelopers.in/Apis/createBooking", 
+    this.http.post("https://software.poonamdevelopers.in/Apis/createBooking",
     {applicantsDetails, brokerDetails, coApplicantsDetails, customisedTermsVue, paymentDetails  })
     .subscribe((response:any)=>{
       console.log(response.data, "RESPONSE OF SUBMIT DATA")
@@ -459,7 +459,7 @@ export class BookingPage implements OnInit {
     this.additionalPropertyData.splice(index, 1);
   }
   caladditionalrate(){
-    this.additionalPropertyRate = String(Number(this.additionalPropertyAmount) * 20) 
+    this.additionalPropertyRate = String(Number(this.additionalPropertyAmount) * 20)
   }
   calAge(dob){
     console.log(dob, "DOB")
@@ -473,11 +473,11 @@ export class BookingPage implements OnInit {
     // console.log(ndob, "MYAGE")
 
     var diff_ms = Date.now() - ndob;
-    var age_dt = new Date(diff_ms); 
-  
+    var age_dt = new Date(diff_ms);
+
     this.age = Math.abs(age_dt.getUTCFullYear() - 1970);
     console.log(this.age)
-    
+
   }
   cocalAge(codob){
     console.log(codob, "DOB")
@@ -485,11 +485,11 @@ export class BookingPage implements OnInit {
     var ndob = new Date(codob).getTime()
 
     var diff_ms = Date.now() - ndob;
-    var age_dt = new Date(diff_ms); 
-  
+    var age_dt = new Date(diff_ms);
+
     this.coage = Math.abs(age_dt.getUTCFullYear() - 1970);
     console.log(this.coage)
-    
+
   }
 
   // Below Method Is Used to ADD or DELETE method for CO-APPLICANT
@@ -620,7 +620,7 @@ export class BookingPage implements OnInit {
 
       console.log(this.project_master_api, "PROJECT MASTER API")
       console.log(this.package_deal_api, "PACKAGE DEAL API")
-      
+
       this.definedGst = this.project_master_api["gst"]
       this.definedStampduty = this.project_master_api['stampduty']
       this.definedRegistration = this.project_master_api['registration']
@@ -628,7 +628,7 @@ export class BookingPage implements OnInit {
       const serviceValue = this.package_deal_api.map(e => e.name).indexOf("Service Charges");
       this.service_charge = this.package_deal_api[serviceValue]["office"]
 
-      // // When API GOT CHANGE TO TEST 
+      // // When API GOT CHANGE TO TEST
       // this.service_charge = 0
 
       // console.log(this.gst)
@@ -730,7 +730,7 @@ export class BookingPage implements OnInit {
       console.log(this.gst + this.reg + this.sd, "This is caluclation of GST and REG")
 
       this.customerTotalConsideration = this.gst + this.reg + this.sd + Number(this.service_charge) + Number(this.generator_charges) +
-                                        Number(this.other_charges) + Number(this.round_off) + Number(this.basicFlatCost) 
+                                        Number(this.other_charges) + Number(this.round_off) + Number(this.basicFlatCost)
                                         + Number(this.totalAmount)
       console.log(this.customerTotalConsideration, "This is Customer Agreement Value")
 
@@ -739,7 +739,7 @@ export class BookingPage implements OnInit {
       const flatCostIndes = this.package_deal_api.map(e => e.name).indexOf("Basic Flat Cost");
       this.package_deal_api[flatCostIndes]["office"] = String(Number(this.basicFlatCost) + Number(this.service_charge) + Number(this.round_off)) || 0;
       this.package_deal_api[flatCostIndes]["customer"] = String(Number(this.basicFlatCost) + Number(this.service_charge + Number(this.round_off))) || 0;
-      
+
       //GST
       const gstIndex = this.package_deal_api.map(e => e.name).indexOf("GST");
       this.package_deal_api[gstIndex]["office"] = this.gst || 0;
@@ -824,9 +824,9 @@ export class BookingPage implements OnInit {
 
       console.log(this.gst + this.reg + this.sd, "This is caluclation of GST and REG")
 
-      this.customerTotalConsideration =Number(this.customerAgreementValue) + Number(this.service_charge) + 
+      this.customerTotalConsideration =Number(this.customerAgreementValue) + Number(this.service_charge) +
                                       Number(this.other_charges) + Number(this.round_off) + Number(this.totalAmount)
-    
+
 
 
       // Basic Flat COst
@@ -1023,7 +1023,7 @@ export class BookingPage implements OnInit {
     this.total_brokerage_value = this.total_brokerage_value +  this.brokerage_value
   }
   add_percentage_broker_list(){
-    
+
     if(this.broker_type == "percentage"){
       let obj = {
         "broker_id": this.selected_broker.broker_id,
@@ -1042,7 +1042,7 @@ export class BookingPage implements OnInit {
 
     }
     if(this.broker_type == "sqft"){
-  
+
 
       let obj = {
         "brokername": this.selected_broker.brokerName,

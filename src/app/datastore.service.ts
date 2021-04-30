@@ -8,10 +8,14 @@ import * as moment from 'moment';
 })
 export class DatastoreService {
   service_booking_id:string = ""
+
   all_bookings = []
   filter_all_booking = []
+  all_booking_status = false
+
   outstandingbooking_apidata = []
   filter_outstandingbooking_apidata = []
+
   othercharges_apidata = []
   filter_othercharges_apidata = []
 
@@ -24,6 +28,7 @@ export class DatastoreService {
 
   // Filter Variables
   filter_selected_project = [];
+  filter_projectname = []
   filter_selected_wing = [];
   filter_selected_floor = [];
   filter_selected_unit = [];
@@ -39,6 +44,10 @@ export class DatastoreService {
   gstBalanceDetailBooking = ""
   balanceDueDetailBooking = ""
   rate = ""
+  totalBasicAmountOfPaymentReceipt = ""
+  totalBasicAmountOfPaymentScheme = ""
+  totalAmountReceivedPaymentScheme = ""
+  totalDuePaymentScheme = ""
 
   constructor(public http:HttpClient) { }
 
@@ -83,12 +92,12 @@ export class DatastoreService {
   // For OutStanding Report
   add(a, b){
     this.totalDue = String(Number(a) + Number(b))
-    return this.totalDue
+    return this.totalDue.replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ',')
   }
 // For OutStanding Report
   sub(a){
     this.dueReceived = String(Number(this.totalDue) - Number(a))
-    return this.dueReceived
+    return this.dueReceived.replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ',')
   }
   // For OutStanding Report
   calbalanceDue(totalAmount){
@@ -101,21 +110,25 @@ export class DatastoreService {
 
   }
   // For Outstanding Report
-  calgstBalance(agreementValue, totalAmount){
-    if(agreementValue != undefined && totalAmount != undefined){
+  calgstBalance(agreementValue, gstAmount){
+    if(agreementValue != undefined && gstAmount != undefined){
       agreementValue = agreementValue.replace(/,/g, "")
-      totalAmount = totalAmount.replace(/,/g, "")
+      gstAmount = gstAmount.replace(/,/g, "")
       var onepercentAgreementValue = Number(agreementValue) * (1 / 100)
-      this.gstBalance = String(Number(onepercentAgreementValue) - Number(totalAmount))
+      this.gstBalance = String(onepercentAgreementValue - Number(gstAmount))
       return this.gstBalance.replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ',')
     }
+  }
 
+  onePercentAgreementVal(agreementValue){
+    var onepercent = String(Number(agreementValue) * (1 / 100))
+    return onepercent.replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ',')
   }
 
 
   // For Unregistered Report
-  checkRegisterStatus(status){
-    if(status === "1"){
+  checkRegisterStatus(current_stage){
+    if(current_stage === "3"){
       return "Unregistered"
     }else{
       return "Registered"
@@ -194,7 +207,7 @@ export class DatastoreService {
     if(val == null){
       return "0.00"
     }else{
-      return val
+      return val.replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ',');
     }
   }
 
@@ -210,7 +223,21 @@ export class DatastoreService {
     return val.replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ',');
   }
 
+  totalBasicAmountPaymentReceiptCal(){
+    return this.totalBasicAmountOfPaymentReceipt.replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ',');
+  }
 
+  totalBasicAmountOfPaymentSchemeCal(){
+    return this.totalBasicAmountOfPaymentScheme.replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ',');
+  }
+
+  totalAmountReceivedPaymentSchemeCal(){
+    return this.totalBasicAmountOfPaymentScheme.replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ',');
+  }
+
+  totalDuePaymentSchemeCal(){
+    return this.totalDuePaymentScheme.replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ',');
+  }
 
 
 }

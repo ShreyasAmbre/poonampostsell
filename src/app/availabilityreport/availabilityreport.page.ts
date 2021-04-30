@@ -23,7 +23,7 @@ export class AvailabilityreportPage implements OnInit {
   }
 
   ngOnInit() {
-    
+
   }
 
 }

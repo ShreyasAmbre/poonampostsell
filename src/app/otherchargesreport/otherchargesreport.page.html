@@ -16,6 +16,13 @@
 
 <ion-content>
   <ion-searchbar [(ngModel)]="searchTerm" (ionChange)="filterItems(searchTerm)" placeholder="Search Bookings"></ion-searchbar>
+  <div class="ion-text-center">
+    <h3 style="color:#0077BD">{{datastoreservice.filter_projectname}} {{datastoreservice.filter_selected_wing}}
+                                {{datastoreservice.filter_selected_floor}} {{datastoreservice.filter_selected_unit}}</h3>
+  </div>
+  <div *ngIf="!this.datastoreservice.all_booking_status">
+    <ion-progress-bar type="indeterminate"></ion-progress-bar>
+  </div>
 
 
   <ion-card style=" margin: 0px !important; overflow-x:auto">
@@ -63,11 +70,11 @@
           </tr>
         </thead>
         <tbody style="text-align: center;">
-         <tr *ngFor="let item of datastoreservice.othercharges_apidata; let i = index">
+         <tr *ngFor="let item of datastoreservice.othercharges_apidata.slice().reverse(); let i = index">
            <td> {{i}} </td>
-           <td [routerLink]="['detailothercharges']" style="color: blue;" (click)="sendId(item.bid)"> {{ item.salutation }} {{ item.first_name }} {{ item.last_name }}</td>
-           <td> {{ item.agreementValue }} </td>
-           <td> {{ item.totalAmount }} </td>
+           <td [routerLink]="['detailbooking']" style="color: blue;" (click)="sendId(item.bid)"> {{ item.salutation }} {{ item.first_name }} {{ item.last_name }}</td>
+           <td> {{ datastoreservice.commaSeprate(item.agreementValue) }} </td>
+           <td> {{ datastoreservice.showZeroForReg(item.totalAmount)}} </td>
 
 
            <td> Due </td>
@@ -75,7 +82,7 @@
 
            <td> {{ item.paymentTermsName }} </td>
 
-           <td> {{ item.registration_number }} </td>
+           <td> {{ datastoreservice.showNan(item.registration_number)}} </td>
 
            <td> {{ item.booking_date }} </td>
 
@@ -88,19 +95,32 @@
            <td> {{ item.unit_type }} </td>
            <td> {{ item.saleableArea }} </td>
            <td> {{ item.reraArea }} </td>
-           <td> {{ item.paymentMode }} </td>
+           <td> {{ datastoreservice.showNan(item.paymentMode)}} </td>
 
            <td> {{ datastoreservice.calRate(item.basicFlatCost, item.saleableArea) }} </td>
-           <td> {{ item.basicFlatCost }} </td>
-           <td> {{ item.totalConsideration }} </td>
-           <td> {{ item.gstValue }} </td>
-           <td> {{ item.registrationValue }} </td>
-           <td> {{ item.brokerName }} </td>
-           <td> {{ item.gstAmount }} </td>
-           <td> GST :- {{ datastoreservice.calgstBalance(item.agreementValue, item.gstAmount) }} <br>
+           <td> {{ datastoreservice.showZeroForReg(item.basicFlatCost)}} </td>
+           <td> {{  datastoreservice.showZeroForReg(item.totalConsideration) }} </td>
+           <td> {{  datastoreservice.showZeroForReg( item.gstValue)  }} </td>
+           <td> {{  datastoreservice.showZeroForReg( item.registrationValue )  }} </td>
+           <td> {{ datastoreservice.showNan(item.brokerName)}} </td>
+           <td> {{  datastoreservice.showZeroForReg( item.gstAmount) }} </td>
+           <!-- <td> GST :- {{ datastoreservice.calgstBalance(item.agreementValue, item.gstAmount) }} <br>
                 Base :- {{ datastoreservice.calotherchargesbalance(item.totalAmount, item.basicFlatCost) }}
-          </td>
+          </td> -->
+          <div *ngIf="item.gstAmount === null">
+            <td>
+              <tr>GST:-{{ datastoreservice.onePercentAgreementVal(item.agreementValue) }}</tr>
+              <tr>Base:- {{ datastoreservice.calotherchargesbalance(item.totalAmount, item.basicFlatCost) }}</tr>
+            </td>
+          </div>
+          <div *ngIf="item.gstAmount !== null">
+            <td>
+              <tr>GST:-{{ datastoreservice.calgstBalance(item.agreementValue, item.gstAmount) }}</tr>
+              <tr>Base:- {{ datastoreservice.calotherchargesbalance(item.totalAmount, item.basicFlatCost) }}</tr>
+            </td>
+          </div>
          </tr>
+
         </tbody>
       </table>
     </ion-card-content>

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
-import {HttpClient, HttpHeaders} from "@angular/common/http"
+import {HttpClient} from "@angular/common/http"
 import { Router } from '@angular/router';
 import{SessionStorageService} from 'ngx-webstorage';
-import { forkJoin } from 'rxjs';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +16,8 @@ export class LoginPage implements OnInit {
   role="admin";
 
   constructor(private http:HttpClient, public alertController: AlertController,
-              private router: Router, private sessionST:SessionStorageService,) { }
+              private router: Router, private sessionST:SessionStorageService,
+              public loadingController: LoadingController) { }
 
   async successmsgAlert(msg) {
     const alert = await this.alertController.create({
@@ -40,8 +41,19 @@ export class LoginPage implements OnInit {
     await alert.present();
   }
 
+  async presentLoading() {
+    const loading = await this.loadingController.create({
+      cssClass: 'my-custom-class',
+      message: 'Please wait...',
+      duration: 2000
+    });
+    await loading.present();
+
+    const { role, data } = await loading.onDidDismiss();
+    console.log('Loading dismissed!');
+  }
+
   ngOnInit() {
-    // this.getWeather()
     let sessionData = this.sessionST.retrieve("logged-in");
     console.log(sessionData)
     if(sessionData){
@@ -51,6 +63,7 @@ export class LoginPage implements OnInit {
 
 
   login(data){
+    this.presentLoading()
     console.log(data.username)
     console.log(data.password)
     let postdata = {
@@ -67,6 +80,7 @@ export class LoginPage implements OnInit {
       if(response.errCode === -1){
         this.sessionST.store("Logged-in", this.userData);
         // this.dataservice.setData(this.userData)
+        this.loadingController.dismiss()
         this.router.navigateByUrl('/dashboard')
       }else{
         this.ErrormsgAlert("User Not Present")
@@ -76,7 +90,7 @@ export class LoginPage implements OnInit {
     })
   }
 
-  
+
 
 
   // getWeather(){

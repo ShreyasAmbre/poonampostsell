@@ -9,12 +9,8 @@ const routes: Routes = [
     component: OutstandingreportPage
   },
   {
-    path: 'filteroutstandingreport',
-    loadChildren: () => import('./filteroutstandingreport/filteroutstandingreport.module').then( m => m.FilteroutstandingreportPageModule)
-  },
-  {
-    path: 'detailoutstanding',
-    loadChildren: () => import('./detailoutstanding/detailoutstanding.module').then( m => m.DetailoutstandingPageModule)
+    path: 'detailbooking',
+    loadChildren: () => import('../allbooking/detailbooking//detailbooking.module').then( m => m.DetailbookingPageModule)
   },
   // {
   //   path: 'tab1',

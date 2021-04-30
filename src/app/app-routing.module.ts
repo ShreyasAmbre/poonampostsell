@@ -54,7 +54,11 @@ const routes: Routes = [
   {
     path: 'unregisteredreport',
     loadChildren: () => import('./unregisteredreport/unregisteredreport.module').then( m => m.UnregisteredreportPageModule)
+  },  {
+    path: 'filtermodal',
+    loadChildren: () => import('./component/filtermodal/filtermodal.module').then( m => m.FiltermodalPageModule)
   },
+
 ];
 
 @NgModule({

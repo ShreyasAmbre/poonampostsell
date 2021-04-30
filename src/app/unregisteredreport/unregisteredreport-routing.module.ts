@@ -9,12 +9,8 @@ const routes: Routes = [
     component: UnregisteredreportPage
   },
   {
-    path: 'filterunregisteredreport',
-    loadChildren: () => import('./filterunregisteredreport/filterunregisteredreport.module').then( m => m.FilterunregisteredreportPageModule)
-  },
-  {
-    path: 'detailunregistered',
-    loadChildren: () => import('./detailunregistered/detailunregistered.module').then( m => m.DetailunregisteredPageModule)
+    path: 'detailbooking',
+    loadChildren: () => import('../allbooking/detailbooking//detailbooking.module').then( m => m.DetailbookingPageModule)
   },
   // {
   //   path: 'tab1',

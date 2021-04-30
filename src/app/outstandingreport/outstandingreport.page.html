@@ -16,7 +16,13 @@
 
 <ion-content>
   <ion-searchbar [(ngModel)]="searchTerm" (ionChange)="filterItems(searchTerm)" placeholder="Search Bookings"></ion-searchbar>
-
+  <div class="ion-text-center">
+    <h3 style="color:#0077BD">{{datastoreservice.filter_projectname}} {{datastoreservice.filter_selected_wing}}
+                                {{datastoreservice.filter_selected_floor}} {{datastoreservice.filter_selected_unit}}</h3>
+  </div>
+  <div *ngIf="!this.datastoreservice.all_booking_status">
+    <ion-progress-bar type="indeterminate"></ion-progress-bar>
+  </div>
 
   <ion-card style=" margin: 0px !important; overflow-x:auto">
     <ion-card-content>
@@ -37,33 +43,37 @@
             <th scope="col">GST Value                                </th>
             <th scope="col">Total Received                                </th>
             <th scope="col">Total Due                                </th>
-            <!-- <th scope="col">Due Received                                </th> -->
             <th scope="col">GST Received                                </th>
             <th scope="col">GST Balance                                </th>
             <th scope="col">Balance Due                                </th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let item of datastoreservice.outstandingbooking_apidata; let i = index">
+          <tr *ngFor="let item of datastoreservice.outstandingbooking_apidata.slice().reverse(); let i = index">
             <td> {{i}} {{item.bid}}</td>
             <td> {{ item.wingName }} </td>
             <td> {{ item.flatNo }} </td>
             <!-- <td> Status ? </td> -->
             <!-- <td> From Days ? </td> -->
-            <td [routerLink]="['detailoutstanding']" style="color: blue;" (click)="sendId(item.bid)"> {{ item.salutation }} {{ item.first_name }} {{ item.last_name }}</td>
+            <td [routerLink]="['detailbooking']" style="color: blue;" (click)="sendId(item.bid)"> {{ item.salutation }} {{ item.first_name }} {{ item.last_name }}</td>
             <td> {{ item.contact_number }} </td>
             <td> {{ item.booking_date }} </td>
             <td> {{ item.paymentTermsName }} </td>
-            <td> {{ item.agreementValue }} </td>
-            <td> {{ item.gstValue }} </td>
-            <td> {{ item.totalAmount }} </td>
+            <td> &#x20B9; {{ datastoreservice.commaSeprate(item.agreementValue)}} </td>
+            <td> &#x20B9;{{ datastoreservice.commaSeprate(item.gstValue) }} </td>
+            <td> &#x20B9;{{ datastoreservice.showZeroForReg(item.totalAmount)}} </td>
 
-            <td> {{ datastoreservice.add(item.totalDues, item.totalAmount) }} </td>
+            <td> &#x20B9;{{ datastoreservice.add(item.totalDues, item.totalAmount) }} </td>
             <!-- <td> {{ datastoreservice.sub(item.totalDues) }} </td> -->
 
-            <td> {{item.gstAmount}} </td>
-            <td> {{ datastoreservice.calgstBalance(item.agreementValue, item.gstAmount) }} </td>
-            <td> {{ datastoreservice.calbalanceDue(item.totalAmount) }} </td>
+            <td> &#x20B9;{{datastoreservice.showZeroForReg(item.gstAmount)}} </td>
+            <div *ngIf="item.gstAmount === null">
+              <td> &#x20B9;{{datastoreservice.onePercentAgreementVal(item.agreementValue)}} </td>
+            </div>
+            <div *ngIf="item.gstAmount !== null">
+              <td> &#x20B9;{{ datastoreservice.calgstBalance(item.agreementValue, item.gstAmount) }}</td>
+            </div>
+            <td> &#x20B9;{{ datastoreservice.calbalanceDue(item.totalAmount) }} </td>
           </tr>
         </tbody>
       </table>

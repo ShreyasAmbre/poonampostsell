@@ -14,31 +14,47 @@ import {FiltersummaryPage} from './filtersummary/filtersummary.page'
 export class SummaryreportPage implements OnInit {
   // barChart = new Chart(barChartOptions);
 
-   type = 'ColumnChart';
+  //  type = 'ColumnChart';
 
+  //  data = [
+  //   ["Ready", 500, 0, 0, 0],
+  //   ["Pending", 0, 360, 0, 0],
+  //   ["Deployed", 0, 0, 410, 0],
+  // ];
+
+  // columns = ['Status', 'Ready', 'Pending', 'Deployed', 'Other'];
+
+  // //  columns = ['count', 'count', {role: 'style', type: 'string'}];
+  //  options = {'bars':   'horizontal',
+  //             'width': 350,
+  //             'height': 400,
+  //             'chartArea': {'width': '75%', 'height': '80%'},
+  //             'legend': {'position': 'bottom' },
+  //             hAxis: {
+  //               title: 'Status'
+  //             },
+  //             vAxis: {
+  //               minValue: 0
+  //             },
+  //             isStacked: true,
+  //             colors: ['#5cb85c', '#f0ad4e', '#d9534f']
+  //           };
+
+  title = 'Browser market shares at a specific website, 2014';
+   type = 'PieChart';
    data = [
-    ["Ready", 500, 0, 0, 0],
-    ["Pending", 0, 360, 0, 0],
-    ["Deployed", 0, 0, 410, 0],
-  ];
-
-  columns = ['Status', 'Ready', 'Pending', 'Deployed', 'Other'];
-
-  //  columns = ['count', 'count', {role: 'style', type: 'string'}];
-   options = {'bars':   'horizontal',
-              'width': 350,
-              'height': 400,
-              'chartArea': {'width': '75%', 'height': '80%'},
-              'legend': {'position': 'bottom' },
-              hAxis: {
-                title: 'Status'
-              },
-              vAxis: {
-                minValue: 0
-              },
-              isStacked: true,
-              colors: ['#5cb85c', '#f0ad4e', '#d9534f']
-            };
+      ['Firefox', 45.0],
+      ['IE', 26.8],
+      ['Chrome', 12.8],
+      ['Safari', 8.5],
+      ['Opera', 6.2],
+      ['Others', 0.7]
+   ];
+   columns = ['Browser', 'Percentage'];
+   options = {
+   };
+   width = 550;
+   height = 400;
 
   project_master = []
   selected_project = []

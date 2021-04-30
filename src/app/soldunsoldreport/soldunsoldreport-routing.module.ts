@@ -8,13 +8,10 @@ const routes: Routes = [
     path: '',
     component: SoldunsoldreportPage
   },
+
   {
-    path: 'filtersoldunsold',
-    loadChildren: () => import('./filtersoldunsold/filtersoldunsold.module').then( m => m.FiltersoldunsoldPageModule)
-  },
-  {
-    path: 'detailstatus',
-    loadChildren: () => import('./detailstatus/detailstatus.module').then( m => m.DetailstatusPageModule)
+    path: 'detailbooking',
+    loadChildren: () => import('../allbooking/detailbooking//detailbooking.module').then( m => m.DetailbookingPageModule)
   },
   // {
   //   path: 'tab1',

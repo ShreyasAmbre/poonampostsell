@@ -1,0 +1,126 @@
+{
+  "project_info": {
+    "project_number": "545715963364",
+    "project_id": "poonam2-663e0",
+    "storage_bucket": "poonam2-663e0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:545715963364:android:ca7f153f7b03ceab3bf3f1",
+        "android_client_info": {
+          "package_name": "com.ionicapp.pushNot"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "545715963364-oer8b5u8sbrvla4am8l13jm6ed01bvft.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBRjlKZHePFxRvxRv55yJjxjqvn1qCS-RY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "545715963364-oer8b5u8sbrvla4am8l13jm6ed01bvft.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:545715963364:android:1e2dd9a70e14fcd03bf3f1",
+        "android_client_info": {
+          "package_name": "io.ionic.starter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "545715963364-oer8b5u8sbrvla4am8l13jm6ed01bvft.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBRjlKZHePFxRvxRv55yJjxjqvn1qCS-RY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "545715963364-oer8b5u8sbrvla4am8l13jm6ed01bvft.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:545715963364:android:5c2daf3fd232c00e3bf3f1",
+        "android_client_info": {
+          "package_name": "io.poonam.poonampostsell"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "545715963364-oer8b5u8sbrvla4am8l13jm6ed01bvft.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBRjlKZHePFxRvxRv55yJjxjqvn1qCS-RY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "545715963364-oer8b5u8sbrvla4am8l13jm6ed01bvft.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:545715963364:android:573d511e17d4b61e3bf3f1",
+        "android_client_info": {
+          "package_name": "io.poonamcrm.poonamapp3"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "545715963364-oer8b5u8sbrvla4am8l13jm6ed01bvft.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBRjlKZHePFxRvxRv55yJjxjqvn1qCS-RY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "545715963364-oer8b5u8sbrvla4am8l13jm6ed01bvft.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

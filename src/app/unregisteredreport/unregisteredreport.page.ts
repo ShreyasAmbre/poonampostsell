@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import {FilterunregisteredreportPage} from './filterunregisteredreport/filterunregisteredreport.page';
 import {DatastoreService} from '../datastore.service';
 import { Observable, forkJoin } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import {FiltermodalPage} from '../component/filtermodal/filtermodal.page'
+
 
 @Component({
   selector: 'app-unregisteredreport',
@@ -11,19 +12,23 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./unregisteredreport.page.scss'],
 })
 export class UnregisteredreportPage implements OnInit {
+  searchTerm:string = ""
+
 
   constructor(private http:HttpClient, public modalCtrl: ModalController, public datastoreservice:DatastoreService) { }
 
   async showFilterUnregistered() {
-    
+
     const modal = await this.modalCtrl.create({
-      component: FilterunregisteredreportPage,
-      cssClass: 'my-customfilter-modal'
+      component: FiltermodalPage,
+      cssClass: 'my-customfilter-modal',
+      componentProps: {'filterName': 'Unregister Report Filter'}
     });
     return await modal.present();
   }
 
   ngOnInit() {
+
   }
 
   filterItems(searchTerm) {

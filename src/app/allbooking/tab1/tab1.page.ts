@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {DatastoreService} from '../../datastore.service';
 import {HttpClient} from '@angular/common/http';
 import { Observable, forkJoin } from 'rxjs';
-
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab1',
@@ -27,9 +27,12 @@ export class Tab1Page implements OnInit {
   constructor(public datastoreservice:DatastoreService, public http:HttpClient) { }
 
   ngOnInit() {
+    this.datastoreservice.all_booking_status = true
+
     var id = Number(this.datastoreservice.get_booking_id())
     console.log(id, "THIS IS BOOKING ID SELECTED")
     this.getAllApi(id)
+
   }
 
   getAllApi(id){

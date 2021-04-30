@@ -16,7 +16,13 @@
 
 <ion-content>
   <ion-searchbar [(ngModel)]="searchTerm" (ionChange)="filterItems(searchTerm)" placeholder="Search Bookings"></ion-searchbar>
-
+  <div class="ion-text-center">
+    <h3 style="color:#0077BD">{{datastoreservice.filter_projectname}} {{datastoreservice.filter_selected_wing}}
+                                {{datastoreservice.filter_selected_floor}} {{datastoreservice.filter_selected_unit}}</h3>
+  </div>
+  <div *ngIf="!this.datastoreservice.all_booking_status">
+    <ion-progress-bar type="indeterminate"></ion-progress-bar>
+  </div>
 
   <ion-card style=" margin: 0px !important; overflow-x:auto">
     <ion-card-content>
@@ -45,25 +51,26 @@
           </tr>
         </thead>
         <tbody>
-         <tr *ngFor="let item of datastoreservice.outstandingbooking_apidata; let i = index">
-           <td> {{i}} </td>
-           <td> {{ item.wingName }} </td>
-           <td> {{ item.flatNo }} </td>
-           <td> {{ datastoreservice.checkRegisterStatus(item.status)}}</td>
-           <td> {{ datastoreservice.calFromDays(item.booking_date)}} </td>
-           <td [routerLink]="['detailunregistered']" style="color: blue;" (click)="sendId(item.bid)"> {{ item.salutation }} {{ item.first_name }} {{ item.last_name }}</td>
-           <td> {{ item.contact_number }} </td>
-           <td> {{ item.booking_date }} </td>
-           <td> {{ item.paymentTermsName }} </td>
+         <tr *ngFor="let item of datastoreservice.outstandingbooking_apidata.slice().reverse(); let i = index">
+            <td> {{i}} </td>
+            <td> {{ item.wingName }} </td>
+            <td> {{ item.flatNo }} </td>
+            <td> {{ datastoreservice.checkRegisterStatus(item.current_stage)}}</td>
+            <td> {{ datastoreservice.calFromDays(item.booking_date)}} </td>
+            <td [routerLink]="['detailbooking']" style="color: blue;" (click)="sendId(item.bid)"> {{ item.salutation }} {{ item.first_name }} {{ item.last_name }}</td>
+            <td> {{ item.contact_number }} </td>
+            <td> {{ item.booking_date }} </td>
+            <td> {{ item.paymentTermsName }} </td>
 
-           <td> {{ item.agreementValue }} </td>
+            <td> {{ datastoreservice.commaSeprate(item.agreementValue) }} </td>
 
-           <td> {{ item.gstValue }} </td>
-           <td> {{ item.totalAmount }} </td>
-           <td> {{ datastoreservice.add(item.totalDues, item.totalAmount) }} </td>
-           <td> {{ datastoreservice.sub(item.totalDues) }} </td>
-           <td> {{ item.gstAmount }} </td>
-           <td> {{ datastoreservice.calgstBalance(item.agreementValue, item.gstAmount) }} </td>
+
+            <td> {{  datastoreservice.showZeroForReg( item.gstValue)  }} </td>
+            <td> {{ datastoreservice.showZeroForReg(item.totalAmount)}} </td>
+            <td> {{ datastoreservice.add(item.totalDues, item.totalAmount) }} </td>
+            <td> {{ datastoreservice.sub(item.totalDues) }} </td>
+            <td> {{  datastoreservice.showZeroForReg( item.gstAmount) }} </td>
+            <td> {{ datastoreservice.calgstBalance(item.agreementValue, item.gstAmount) }} </td>
             <td> {{ datastoreservice.calbalanceDue(item.totalAmount) }} </td>
          </tr>
         </tbody>

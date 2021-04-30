@@ -10,7 +10,8 @@ import {NotificationModule} from '../component/notification/notification.module'
 import { AllbookingPage } from './allbooking.page';
 
 import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
-import {SearchmodalPageModule} from './searchmodal/searchmodal.module'
+
+import {FiltermodalPageModule} from '../component/filtermodal/filtermodal.module'
 
 @NgModule({
   imports: [
@@ -19,8 +20,8 @@ import {SearchmodalPageModule} from './searchmodal/searchmodal.module'
     IonicModule,
     AllbookingPageRoutingModule,
     MatBottomSheetModule,
-    SearchmodalPageModule,
     NotificationModule,
+    FiltermodalPageModule
   ],
   declarations: [AllbookingPage]
 })

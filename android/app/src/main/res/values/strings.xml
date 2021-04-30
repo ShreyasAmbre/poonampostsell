@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">poonampostsell</string>
+    <string name="title_activity_main">poonampostsell</string>
+    <string name="package_name">io.poonam.poonampostsell</string>
+    <string name="custom_url_scheme">io.poonam.poonampostsell</string>
+</resources>

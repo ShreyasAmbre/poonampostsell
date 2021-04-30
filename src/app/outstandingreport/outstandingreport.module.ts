@@ -8,6 +8,8 @@ import { OutstandingreportPageRoutingModule } from './outstandingreport-routing.
 
 import { OutstandingreportPage } from './outstandingreport.page';
 import {NotificationModule} from '../component/notification/notification.module';
+import {FiltermodalPageModule} from '../component/filtermodal/filtermodal.module';
+
 
 
 @NgModule({
@@ -16,7 +18,8 @@ import {NotificationModule} from '../component/notification/notification.module'
     FormsModule,
     IonicModule,
     OutstandingreportPageRoutingModule,
-    NotificationModule
+    NotificationModule,
+    FiltermodalPageModule
   ],
   declarations: [OutstandingreportPage]
 })

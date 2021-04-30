@@ -20,7 +20,6 @@ export class Tab2Page implements OnInit {
   totalBasicAmountOfPaymentScheme:string = "0"
   totalAmountReceivedPaymentScheme:string = "0"
   totalDuePaymentScheme:string = "0"
-  totalBasicAmountOfPaymentReceipt:string = "0"
 
 
   constructor(public datastoreservice:DatastoreService, public http:HttpClient) { }
@@ -69,14 +68,11 @@ export class Tab2Page implements OnInit {
 
 
       this.booking_payment_detail_master_api.forEach((value, index, array) => {
-        this.totalBasicAmountOfPaymentScheme = String(Number(this.totalBasicAmountOfPaymentScheme) +
-                                              Number(value.amount))
+        this.datastoreservice.totalBasicAmountOfPaymentScheme = String(Number(this.datastoreservice.totalBasicAmountOfPaymentScheme) + Number(value.amount))
 
-        this.totalAmountReceivedPaymentScheme = String(Number(this.totalAmountReceivedPaymentScheme) +
-                                                Number(value.received))
+        this.datastoreservice.totalAmountReceivedPaymentScheme = String(Number(this.datastoreservice.totalAmountReceivedPaymentScheme) +  Number(value.received))
 
-        this.totalDuePaymentScheme = String(Number(this.totalDuePaymentScheme) +
-                                    Number(value.due_amount))
+        this.datastoreservice.totalDuePaymentScheme = String(Number(this.datastoreservice.totalDuePaymentScheme) + Number(value.due_amount))
 
           if(value.amount != null){
             value.amount = value.amount.replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ',')
@@ -98,8 +94,7 @@ export class Tab2Page implements OnInit {
       });
 
       this.get_all_payments_api.forEach((value, index, array) => {
-        this.totalBasicAmountOfPaymentReceipt = String(Number(this.totalBasicAmountOfPaymentReceipt) +
-                                              Number(value.amount))
+        this.datastoreservice.totalBasicAmountOfPaymentReceipt = String(Number(this.datastoreservice.totalBasicAmountOfPaymentReceipt) + Number(value.amount))
       });
     });
   }

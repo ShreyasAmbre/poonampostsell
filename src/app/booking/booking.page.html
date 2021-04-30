@@ -760,14 +760,14 @@
               <ion-label>Booking By:-</ion-label>
               <ion-select [(ngModel)]="booking_by" name="booking_by" okText="Okay" cancelText="Dismiss">
                 <div *ngFor="let user of user_master_api">
-                  <ion-select-option [value]="user.user_id">{{user.name}}</ion-select-option>
+                  <ion-select-option [value]="user['user_id']">{{user["name"]}}</ion-select-option>
                 </div>
               </ion-select>
             </ion-item>
 
             <ion-select [(ngModel)]="booking_by" name="booking_by" okText="Okay" cancelText="Dismiss">
               <div *ngFor="let user of user_master_api">
-                <ion-select-option [value]="user.user_id">{{user.name}}</ion-select-option>
+                <ion-select-option [value]="user['user_id']">{{user["name"]}}</ion-select-option>
               </div>
             </ion-select>
 

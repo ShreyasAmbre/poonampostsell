@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import {FilterotherchargesPage} from './filterothercharges/filterothercharges.page';
 import {DatastoreService} from '../datastore.service';
 import { Observable, forkJoin } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import {FiltermodalPage} from '../component/filtermodal/filtermodal.page'
 
 @Component({
   selector: 'app-otherchargesreport',
@@ -11,19 +11,23 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./otherchargesreport.page.scss'],
 })
 export class OtherchargesreportPage implements OnInit {
+  searchTerm:string = ""
+
 
   constructor(private http:HttpClient, public modalCtrl: ModalController, public datastoreservice:DatastoreService) { }
 
   async showFilterOthercharges() {
-    
+
     const modal = await this.modalCtrl.create({
-      component: FilterotherchargesPage,
-      cssClass: 'my-customfilter-modal'
+      component: FiltermodalPage,
+      cssClass: 'my-customfilter-modal',
+      componentProps: {'filterName': 'Other Charges Filter'}
     });
     return await modal.present();
   }
 
   ngOnInit() {
+
   }
 
   filterItems(searchTerm) {
