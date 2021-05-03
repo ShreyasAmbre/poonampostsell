@@ -28,29 +28,21 @@
   <ion-card style=" margin: 0px !important; overflow-x:auto">
     <ion-card-content>
       <table class="table table-striped">
-        <thead class="bg-primary text-white text-center">
+        <thead class="bg-primary text-white">
           <tr>
             <th scope="col">Sr. No.                                     </th>
             <th scope="col">Customer Name                                </th>
             <th scope="col">Agreement Value                                </th>
             <th scope="col">Total Received                                </th>
-
             <th scope="col">Due                                </th>
             <th scope="col">Stage                                </th>
-
             <th scope="col">Payment Plan                                </th>
-
             <th scope="col">Registration Number                                </th>
-
             <th scope="col">Booking Date                                </th>
-
             <th scope="col">Project                                </th>
             <th scope="col">Building Name                                </th>
-
-
             <th scope="col">Wing                                        </th>
             <th scope="col">Flat No.                                    </th>
-
             <th scope="col">Unit                                    </th>
             <th scope="col">Saleable                                    </th>
             <th scope="col">Rera Area                                    </th>
@@ -58,13 +50,9 @@
             <th scope="col">Rate                                    </th>
             <th scope="col">Basic Flat Cost                                    </th>
             <th scope="col">Total Consideration                                    </th>
-
             <th scope="col">GST Value                                </th>
-
             <th scope="col">Registration Value                                </th>
             <th scope="col">Broker Detail                                </th>
-
-
             <th scope="col">GST Received                                </th>
             <th scope="col">Balance                                </th>
           </tr>
@@ -107,7 +95,7 @@
            <!-- <td> GST :- {{ datastoreservice.calgstBalance(item.agreementValue, item.gstAmount) }} <br>
                 Base :- {{ datastoreservice.calotherchargesbalance(item.totalAmount, item.basicFlatCost) }}
           </td> -->
-          <div *ngIf="item.gstAmount === null">
+          <!-- <div *ngIf="item.gstAmount === null">
             <td>
               <tr>GST:-{{ datastoreservice.onePercentAgreementVal(item.agreementValue) }}</tr>
               <tr>Base:- {{ datastoreservice.calotherchargesbalance(item.totalAmount, item.basicFlatCost) }}</tr>
@@ -118,7 +106,21 @@
               <tr>GST:-{{ datastoreservice.calgstBalance(item.agreementValue, item.gstAmount) }}</tr>
               <tr>Base:- {{ datastoreservice.calotherchargesbalance(item.totalAmount, item.basicFlatCost) }}</tr>
             </td>
+          </div> -->
+
+          <div *ngIf="item.gstAmount === null; else loggedOut">
+            <td>
+              GST:-{{ datastoreservice.onePercentAgreementVal(item.agreementValue) }}
+              Base:- {{ datastoreservice.calotherchargesbalance(item.totalAmount, item.basicFlatCost) }}
+            </td>
           </div>
+
+          <ng-template #loggedOut>
+            <td>
+              GST:-{{ datastoreservice.calgstBalance(item.agreementValue, item.gstAmount) }}
+              Base:- {{ datastoreservice.calotherchargesbalance(item.totalAmount, item.basicFlatCost) }}
+            </td>
+          </ng-template>
          </tr>
 
         </tbody>

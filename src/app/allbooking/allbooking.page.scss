@@ -42,6 +42,30 @@ ion-searchbar{
 
 
 
+tbody {
+  display: block;
+  overflow: auto;
+  height: 600px;
+  width: auto;
+}
+
+thead tr {
+  display: table;
+  width: 1400px;
+  table-layout: fixed;
+}
+
+thead, tbody tr {
+  display: table;
+  width: 1400px;
+  table-layout: fixed;
+}
+
+thead {
+  width: calc( 100% - 1em )
+}
+
+
 
 
 

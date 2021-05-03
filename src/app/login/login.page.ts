@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertController } from '@ionic/angular';
+import { AlertController, Platform } from '@ionic/angular';
 import {HttpClient} from "@angular/common/http"
 import { Router } from '@angular/router';
 import{SessionStorageService} from 'ngx-webstorage';
 import { LoadingController } from '@ionic/angular';
+import { Storage } from '@ionic/storage-angular';
+
 
 @Component({
   selector: 'app-login',
@@ -11,13 +13,13 @@ import { LoadingController } from '@ionic/angular';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
+  _storage: Storage | null = null;
 
   userData={}
   role="admin";
 
-  constructor(private http:HttpClient, public alertController: AlertController,
-              private router: Router, private sessionST:SessionStorageService,
-              public loadingController: LoadingController) { }
+  constructor(private http:HttpClient, public alertController: AlertController, private router: Router, private sessionST:SessionStorageService,
+              public loadingController: LoadingController, public storage: Storage) { }
 
   async successmsgAlert(msg) {
     const alert = await this.alertController.create({
@@ -53,14 +55,21 @@ export class LoginPage implements OnInit {
     console.log('Loading dismissed!');
   }
 
-  ngOnInit() {
-    let sessionData = this.sessionST.retrieve("logged-in");
-    console.log(sessionData)
-    if(sessionData){
-      this.router.navigateByUrl('/dashboard')
+  async ngOnInit() {
+    // let sessionData = this.sessionST.retrieve("logged-in");
+    // console.log(sessionData)
+    this.storage.create();
+
+    const ionicdata = await this.storage.get('username');
+    console.log(ionicdata)
+    if (ionicdata) {
+      this.router.navigateByUrl('/dashboard');
     }
   }
 
+  public set(key: string, value: any) {
+    this._storage?.set(key, value);
+  }
 
   login(data){
     this.presentLoading()
@@ -78,8 +87,11 @@ export class LoginPage implements OnInit {
       this.userData = response
 
       if(response.errCode === -1){
-        this.sessionST.store("Logged-in", this.userData);
+        // this.sessionST.store("Logged-in", this.userData);
+        this.storage.set('username', data.username);
         // this.dataservice.setData(this.userData)
+        let ionicData = this.storage.get('username')
+        console.log(ionicData)
         this.loadingController.dismiss()
         this.router.navigateByUrl('/dashboard')
       }else{

@@ -11,13 +11,14 @@ import {NgxWebstorageModule} from 'ngx-webstorage';
 import {NavmenuModule} from './component/navmenu/navmenu.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GoogleChartsModule } from 'angular-google-charts';
+import { IonicStorageModule } from '@ionic/storage-angular';
 
 
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [ GoogleChartsModule,  BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule,
+  imports: [IonicStorageModule.forRoot(), GoogleChartsModule,  BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule,
             NgxWebstorageModule.forRoot(), NavmenuModule, BrowserAnimationsModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

@@ -64,24 +64,24 @@
             <table class="table table-striped">
               <thead class="bg-primary text-white text-center">
                 <tr>
-                  <th scope="col">Sr. No.                                     </th>
-                  <th scope="col">Customer Name                                </th>
-                  <th scope="col">Contact No.                               </th>
-                  <th scope="col">Building Name                               </th>
-                  <th scope="col">Wing                                        </th>
-                  <th scope="col">Flat No.                                    </th>
-                  <th scope="col">Floor                                    </th>
-                  <th scope="col">Agreement Value                                </th>
-                  <th scope="col">Booking Date                                </th>
-                  <th scope="col">Payment Plan                                </th>
-                  <th scope="col">Registration No.                                </th>
-                  <th scope="col">Balance Amount                                </th>
-                  <th scope="col">Broker Name                                </th>
+                  <!-- <th scope="col" style="position: sticky !important; top: 15px !important; z-index: 9999 !important;">Sr. No.                                     </th> -->
+                  <th scope="col" >Customer Name                                </th>
+                  <th scope="col" >Contact No.                               </th>
+                  <th scope="col" >Building Name                               </th>
+                  <th scope="col" >Wing                                        </th>
+                  <th scope="col" >Flat No.                                    </th>
+                  <th scope="col" >Floor                                    </th>
+                  <th scope="col" >Agreement Value                                </th>
+                  <th scope="col" >Booking Date                                </th>
+                  <th scope="col" >Payment Plan                                </th>
+                  <th scope="col" >Registration No.                                </th>
+                  <th scope="col" >Balance Amount                                </th>
+                  <th scope="col" >Broker Name                                </th>
                 </tr>
               </thead>
               <tbody>
                <tr *ngFor="let item of datastoreservice.all_bookings.slice().reverse(); let i = index">
-                  <td> {{i + 1}} </td>
+                  <!-- <td> {{i + 1}} </td> -->
                   <td [routerLink]="['detailbooking']" style="color: blue;" (click)="sendId(item.bid)"> {{ item.salutation }} {{ item.first_name }} {{ item.last_name }}</td>
                   <td> {{ item.contact_number }} </td>
                   <td> {{item.buildingName}} </td>

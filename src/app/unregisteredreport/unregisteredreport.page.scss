@@ -2,9 +2,32 @@
 .toolbar{
     border-bottom-left-radius:20px;
     border-bottom-right-radius:20px;
-  
+
   }
   ion-toolbar{
     --background: #0077BD;
     --color: white;
+  }
+
+  tbody {
+    display: block;
+    overflow: auto;
+    height: 600px;
+    width: auto;
+  }
+
+  thead tr {
+    display: table;
+    width: 1400px;
+    table-layout: fixed;
+  }
+
+  thead, tbody tr {
+    display: table;
+    width: 1400px;
+    table-layout: fixed;
+  }
+
+  thead {
+    width: calc( 100% - 1em )
   }

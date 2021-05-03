@@ -120,60 +120,54 @@ export class DashboardPage implements OnInit {
     // // this.setValue()
     // // this.getNotiCount()
 
-//     if(this.platform.is("android")){
-//       console.log("PlatForm is Android")
-//       // Request permission to use push notifications
-//       // iOS will prompt user and return if they granted permission or not
-//       // Android will just grant without prompting
-//       PushNotifications.requestPermission().then( result => {
-//         if (result.granted) {
-//           // Register with Apple / Google to receive push via APNS/FCM
-//           PushNotifications.register();
-//         } else {
-//           this.alert("Push Registration", "Google Service need to add")
-//         }
-//       });
+    if(this.platform.is("android")){
+      console.log("PlatForm is Android")
+      // Request permission to use push notifications
+      // iOS will prompt user and return if they granted permission or not
+      // Android will just grant without prompting
+      PushNotifications.requestPermission().then( result => {
+        if (result.granted) {
+          // Register with Apple / Google to receive push via APNS/FCM
+          PushNotifications.register();
+        } else {
+          this.alert("Push Registration", "Google Service need to add")
+        }
+      });
 
-// =======
-// >>>>>>> 5bafc4ec3ad3cfcf393cab69e7975554743f3f50
-//       // On success, we should be able to receive notifications
-//       PushNotifications.addListener('registration',
-//         (token: PushNotificationToken) => {
-//           this.success('Push registration success, token: ', token.value)
-//         }
-//       );
+      // On success, we should be able to receive notifications
+      PushNotifications.addListener('registration',
+        (token: PushNotificationToken) => {
+          this.success('Push registration success, token: ', token.value)
+        }
+      );
 
-//       // Some issue with our setup and push will not work
-//       PushNotifications.addListener('registrationError',
-//         (error: any) => {
-//           alert('Error on registration: ' + JSON.stringify(error));
-//         }
-//       );
+      // Some issue with our setup and push will not work
+      PushNotifications.addListener('registrationError',
+        (error: any) => {
+          alert('Error on registration: ' + JSON.stringify(error));
+        }
+      );
 
-//       // Show us the notification payload if the app is open on our device
-//       PushNotifications.addListener('pushNotificationReceived',
-//         (notification: PushNotification) => {
-//           alert('Push received: ' + JSON.stringify(notification));
-//           this.noti.setNotification(JSON.stringify(notification));
-//         }
-//       );
+      // Show us the notification payload if the app is open on our device
+      PushNotifications.addListener('pushNotificationReceived',
+        (notification: PushNotification) => {
+          alert('Push received: ' + JSON.stringify(notification));
+          this.noti.setNotification(JSON.stringify(notification));
+        }
+      );
 
 
-//       // Method called when tapping on a notification
-//       PushNotifications.addListener('pushNotificationActionPerformed',
-//         (notification: PushNotificationActionPerformed) => {
-//           alert('Push action performed: ' + JSON.stringify(notification));
-//           // this.noti.setNotification(JSON.stringify(notification));
-//         }
-//       );
-//     }else{
-// <<<<<<< HEAD
-//       console.log("Platform is WEB")
-//     }
+      // Method called when tapping on a notification
+      PushNotifications.addListener('pushNotificationActionPerformed',
+        (notification: PushNotificationActionPerformed) => {
+          alert('Push action performed: ' + JSON.stringify(notification));
+          // this.noti.setNotification(JSON.stringify(notification));
+        }
+      );
+    }else{
+      console.log("Platform is WEB")
+    }
 
-// =======
-//       console.log("Platform Is Web")
-//     }
 }
 
   // getNoti(){

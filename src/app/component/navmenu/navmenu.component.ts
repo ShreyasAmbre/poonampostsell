@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Storage } from '@ionic/storage-angular';
+
 
 @Component({
   selector: 'app-navmenu',
@@ -8,7 +11,7 @@ import { Component, OnInit } from '@angular/core';
 export class NavmenuComponent implements OnInit {
   navigate: any;
 
-  constructor() { }
+  constructor( public storage: Storage, public router:Router) { }
 
   ngOnInit() {
     this.sideMenu();
@@ -90,9 +93,15 @@ export class NavmenuComponent implements OnInit {
       },
       {
         title : "Logout",
-        url   : "/home",
+        url   : "/",
         icon  : "log-out-outline"
       },
     ]
+  }
+
+  async logout(){
+    this.storage.create();
+    await this.storage.remove("username");
+    this.router.navigateByUrl("/")
   }
 }
