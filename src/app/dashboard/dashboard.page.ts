@@ -14,6 +14,7 @@ import { ModalController } from '@ionic/angular';
 import {FiltermodalPage} from './filtermodal/filtermodal.page';
 import * as moment from 'moment';
 import { AlertController } from '@ionic/angular';
+import {Platform} from '@ionic/angular';
 
 const { PushNotifications } = Plugins;
 
@@ -53,7 +54,8 @@ export class DashboardPage implements OnInit {
 
   noti_data;
 
-  constructor(private noti:NotificationService, private http:HttpClient, public modalCtrl: ModalController, public alertController: AlertController) { }
+  constructor(private noti:NotificationService, private http:HttpClient, public modalCtrl: ModalController, public alertController: AlertController,
+              public platform: Platform) { }
 
   async alert(subtitle, msg) {
     const alert = await this.alertController.create({
@@ -120,49 +122,54 @@ export class DashboardPage implements OnInit {
     // // this.setValue()
     // // this.getNotiCount()
 
+    if(this.platform.is('android')){
+      console.log("Platform is android")
 
-    // Request permission to use push notifications
-    // iOS will prompt user and return if they granted permission or not
-    // Android will just grant without prompting
-    PushNotifications.requestPermission().then( result => {
-      if (result.granted) {
-        // Register with Apple / Google to receive push via APNS/FCM
-        PushNotifications.register();
-      } else {
-        this.alert("Push Registration", "Google Service need to add")
-      }
-    });
+      // Request permission to use push notifications
+      // iOS will prompt user and return if they granted permission or not
+      // Android will just grant without prompting
+      PushNotifications.requestPermission().then( result => {
+        if (result.granted) {
+          // Register with Apple / Google to receive push via APNS/FCM
+          PushNotifications.register();
+        } else {
+          this.alert("Push Registration", "Google Service need to add")
+        }
+      });
 
-    // On success, we should be able to receive notifications
-    PushNotifications.addListener('registration',
-      (token: PushNotificationToken) => {
-        this.success('Push registration success, token: ', token.value)
-      }
-    );
+      // On success, we should be able to receive notifications
+      PushNotifications.addListener('registration',
+        (token: PushNotificationToken) => {
+          this.success('Push registration success, token: ', token.value)
+        }
+      );
 
-    // Some issue with our setup and push will not work
-    PushNotifications.addListener('registrationError',
-      (error: any) => {
-        alert('Error on registration: ' + JSON.stringify(error));
-      }
-    );
+      // Some issue with our setup and push will not work
+      PushNotifications.addListener('registrationError',
+        (error: any) => {
+          alert('Error on registration: ' + JSON.stringify(error));
+        }
+      );
 
-    // Show us the notification payload if the app is open on our device
-    PushNotifications.addListener('pushNotificationReceived',
-      (notification: PushNotification) => {
-        alert('Push received: ' + JSON.stringify(notification));
-        this.noti.setNotification(JSON.stringify(notification));
-      }
-    );
+      // Show us the notification payload if the app is open on our device
+      PushNotifications.addListener('pushNotificationReceived',
+        (notification: PushNotification) => {
+          alert('Push received: ' + JSON.stringify(notification));
+          this.noti.setNotification(JSON.stringify(notification));
+        }
+      );
 
 
-    // Method called when tapping on a notification
-    PushNotifications.addListener('pushNotificationActionPerformed',
-      (notification: PushNotificationActionPerformed) => {
-        alert('Push action performed: ' + JSON.stringify(notification));
-        // this.noti.setNotification(JSON.stringify(notification));
-      }
-    );
+      // Method called when tapping on a notification
+      PushNotifications.addListener('pushNotificationActionPerformed',
+        (notification: PushNotificationActionPerformed) => {
+          alert('Push action performed: ' + JSON.stringify(notification));
+          // this.noti.setNotification(JSON.stringify(notification));
+        }
+      );
+    }else{
+      console.log("Platform Is Web")
+    }
   }
 
   // getNoti(){
