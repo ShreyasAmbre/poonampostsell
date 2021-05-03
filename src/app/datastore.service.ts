@@ -48,6 +48,10 @@ export class DatastoreService {
   totalBasicAmountOfPaymentScheme = ""
   totalAmountReceivedPaymentScheme = ""
   totalDuePaymentScheme = ""
+  cgstOnBasic = ""
+  sgstOnBasic = ""
+  gstOnBasic = ""
+  basicOnBasic = ""
 
   constructor(public http:HttpClient) { }
 
@@ -237,6 +241,21 @@ export class DatastoreService {
 
   totalDuePaymentSchemeCal(){
     return this.totalDuePaymentScheme.replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ',');
+  }
+
+  amountOnDemandType(demand_type, amountpaid){
+    if(demand_type == 'GST'){
+      this.cgstOnBasic = String(Number(amountpaid) / 2)
+      this.sgstOnBasic = String(Number(amountpaid) / 2)
+      this.gstOnBasic = amountpaid
+      return this.basicOnBasic = "-"
+    }else{
+      this.cgstOnBasic = "-"
+      this.sgstOnBasic = "-"
+      this.gstOnBasic = "-"
+      return this.basicOnBasic = amountpaid
+
+    }
   }
 
 

@@ -94,10 +94,23 @@
           <td>{{datastoreservice.showZeroForDate(item["cheque_date"])}}</td>
           <td>{{datastoreservice.showNan(item["cheque_number"])}}</td>
           <td>{{item["bankName"]}}</td>
-          <td>&#x20B9; {{datastoreservice.commaSeprate(item["amount"])}}</td>
+          <!-- <td>&#x20B9; {{datastoreservice.amountOnDemandType( item["demand_type"], item["amount"])}}</td>
           <td>-</td>
           <td>-</td>
-          <td>-</td>
+          <td>-</td> -->
+
+          <div *ngIf="item['bankName'] === 'GST'; else elseBlock">
+            <td>&#x20B9; {{datastoreservice.amountOnDemandType( item["demand_type"], item["amount"])}}</td>
+            <td>{{datastoreservice.cgstOnBasic}}</td>
+            <td>{{datastoreservice.sgstOnBasic}}</td>
+            <td>{{datastoreservice.gstOnBasic}}</td>
+          </div>
+          <ng-template #elseBlock>
+            <td>&#x20B9; {{datastoreservice.amountOnDemandType( item["demand_type"], item["amount"])}}</td>
+            <td>{{datastoreservice.cgstOnBasic}}</td>
+            <td>{{datastoreservice.sgstOnBasic}}</td>
+            <td>{{datastoreservice.gstOnBasic}}</td>
+          </ng-template>
           <td>{{datastoreservice.showZeroForDate(item["printDate"])}}</td>
           <td>{{datastoreservice.showZeroForDate(item["notes"])}}</td>
          </tr>

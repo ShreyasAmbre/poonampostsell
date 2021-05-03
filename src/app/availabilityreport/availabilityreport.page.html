@@ -23,12 +23,12 @@
         </div>
       </ion-col>
       <ion-col>
-        <div class="reportcount" style="border: 2px solid greenyellow; color:greenyellow">
+        <div class="reportcount" style="border: 2px solid #10b759 ; color:#10b759 ">
           <p>100</p>Sold
         </div>
       </ion-col>
       <ion-col>
-        <div class="reportcount" style="border: 2px solid blueviolet; color:blueviolet">
+        <div class="reportcount" style="border: 2px solid #00b8d4 ; color:#00b8d4 ">
           <p>100</p>Avail
         </div>
       </ion-col>
@@ -58,11 +58,14 @@
     <h3 class="ion-text-center" style="color:rgb(0, 132, 255)" >Floor 1</h3>
     <div class="wrapper">
       <div  class="item" *ngFor="let item of datastoreservice.availability_floorData['1']">
-        <div *ngIf="item.astatus == 1" style="border: 2px solid red;">
-          <p><b>{{item.floor}} </b></p> <p>{{item.saleableArea}} <br> {{item.unit_type}}</p>
+        <div *ngIf="item.astatus == 1" style="border: 2px solid #00b8d4;">
+          <p><b>{{item.flatNo}} </b></p> <p>{{item.saleableArea}} <br> {{item.unit_type}}</p>
         </div>
-        <div *ngIf="item.astatus == 2" style="border: 2px solid green;">
-          <p><b>{{item.floor}} </b></p> <p>{{item.saleableArea}} <br> {{item.unit_type}}</p>
+        <div *ngIf="item.astatus == 2" style="border: 2px solid #10b759;">
+          <p><b>{{item.flatNo}} </b></p> <p>{{item.saleableArea}} <br> {{item.unit_type}}</p>
+        </div>
+        <div *ngIf="item.astatus == 3" style="border: 2px solid red;">
+          <p><b>{{item.flatNo}} </b></p> <p>{{item.saleableArea}} <br> {{item.unit_type}}</p>
         </div>
       </div>
     </div>
@@ -71,11 +74,14 @@
     <h3 class="ion-text-center" style="color:rgb(0, 132, 255)" >Floor 2</h3>
     <div class="wrapper">
       <div  class="item" *ngFor="let item of datastoreservice.availability_floorData['2']">
-        <div *ngIf="item.astatus == 1" style="border: 2px solid red;">
-          <p><b>{{item.floor}} </b></p> <p>{{item.saleableArea}} <br> {{item.unit_type}}</p>
+        <div *ngIf="item.astatus == 1" style="border: 2px solid #00b8d4;">
+          <p><b>{{item.flatNo}} </b></p> <p>{{item.saleableArea}} <br> {{item.unit_type}}</p>
         </div>
-        <div *ngIf="item.astatus == 2" style="border: 2px solid green;">
-          <p><b>{{item.floor}} </b></p> <p>{{item.saleableArea}} <br> {{item.unit_type}}</p>
+        <div *ngIf="item.astatus == 2" style="border: 2px solid #10b759;">
+          <p><b>{{item.flatNo}} </b></p> <p>{{item.saleableArea}} <br> {{item.unit_type}}</p>
+        </div>
+        <div *ngIf="item.astatus == 3" style="border: 2px solid red;">
+          <p><b>{{item.flatNo}} </b></p> <p>{{item.saleableArea}} <br> {{item.unit_type}}</p>
         </div>
       </div>
     </div>
@@ -84,14 +90,338 @@
     <h3 class="ion-text-center" style="color:rgb(0, 132, 255)" >Floor 3</h3>
     <div class="wrapper">
       <div  class="item" *ngFor="let item of datastoreservice.availability_floorData['3']">
-        <div *ngIf="item.astatus == 1" style="border: 2px solid red;">
-          <p><b>{{item.floor}} </b></p> <p>{{item.saleableArea}} <br> {{item.unit_type}}</p>
+        <div *ngIf="item.astatus == 1" style="border: 2px solid #00b8d4;">
+          <p><b>{{item.flatNo}} </b></p> <p>{{item.saleableArea}} <br> {{item.unit_type}}</p>
         </div>
-        <div *ngIf="item.astatus == 2" style="border: 2px solid green;">
-          <p><b>{{item.floor}} </b></p> <p>{{item.saleableArea}} <br> {{item.unit_type}}</p>
+        <div *ngIf="item.astatus == 2" style="border: 2px solid #10b759;">
+          <p><b>{{item.flatNo}} </b></p> <p>{{item.saleableArea}} <br> {{item.unit_type}}</p>
+        </div>
+        <div *ngIf="item.astatus == 3" style="border: 2px solid red;">
+          <p><b>{{item.flatNo}} </b></p> <p>{{item.saleableArea}} <br> {{item.unit_type}}</p>
         </div>
       </div>
     </div>
+
+    <h3 class="ion-text-center" style="color:rgb(0, 132, 255)" >Floor 4</h3>
+    <div class="wrapper">
+      <div  class="item" *ngFor="let item of datastoreservice.availability_floorData['4']">
+        <div *ngIf="item.astatus == 1" style="border: 2px solid #00b8d4;">
+          <p><b>{{item.flatNo}} </b></p> <p>{{item.saleableArea}} <br> {{item.unit_type}}</p>
+        </div>
+        <div *ngIf="item.astatus == 2" style="border: 2px solid #10b759;">
+          <p><b>{{item.flatNo}} </b></p> <p>{{item.saleableArea}} <br> {{item.unit_type}}</p>
+        </div>
+        <div *ngIf="item.astatus == 3" style="border: 2px solid red;">
+          <p><b>{{item.flatNo}} </b></p> <p>{{item.saleableArea}} <br> {{item.unit_type}}</p>
+        </div>
+      </div>
+    </div>
+
+
+    <h3 class="ion-text-center" style="color:rgb(0, 132, 255)" >Floor 5</h3>
+    <div class="wrapper">
+      <div  class="item" *ngFor="let item of datastoreservice.availability_floorData['5']">
+        <div *ngIf="item.astatus == 1" style="border: 2px solid #00b8d4;">
+          <p><b>{{item.flatNo}} </b></p> <p>{{item.saleableArea}} <br> {{item.unit_type}}</p>
+        </div>
+        <div *ngIf="item.astatus == 2" style="border: 2px solid #10b759;">
+          <p><b>{{item.flatNo}} </b></p> <p>{{item.saleableArea}} <br> {{item.unit_type}}</p>
+        </div>
+        <div *ngIf="item.astatus == 3" style="border: 2px solid red;">
+          <p><b>{{item.flatNo}} </b></p> <p>{{item.saleableArea}} <br> {{item.unit_type}}</p>
+        </div>
+      </div>
+    </div>
+
+
+    <h3 class="ion-text-center" style="color:rgb(0, 132, 255)" >Floor 6</h3>
+    <div class="wrapper">
+      <div  class="item" *ngFor="let item of datastoreservice.availability_floorData['6']">
+        <div *ngIf="item.astatus == 1" style="border: 2px solid #00b8d4;">
+          <p><b>{{item.flatNo}} </b></p> <p>{{item.saleableArea}} <br> {{item.unit_type}}</p>
+        </div>
+        <div *ngIf="item.astatus == 2" style="border: 2px solid #10b759;">
+          <p><b>{{item.flatNo}} </b></p> <p>{{item.saleableArea}} <br> {{item.unit_type}}</p>
+        </div>
+        <div *ngIf="item.astatus == 3" style="border: 2px solid red;">
+          <p><b>{{item.flatNo}} </b></p> <p>{{item.saleableArea}} <br> {{item.unit_type}}</p>
+        </div>
+      </div>
+    </div>
+
+
+    <h3 class="ion-text-center" style="color:rgb(0, 132, 255)" >Floor 7</h3>
+    <div class="wrapper">
+      <div  class="item" *ngFor="let item of datastoreservice.availability_floorData['7']">
+        <div *ngIf="item.astatus == 1" style="border: 2px solid #00b8d4;">
+          <p><b>{{item.flatNo}} </b></p> <p>{{item.saleableArea}} <br> {{item.unit_type}}</p>
+        </div>
+        <div *ngIf="item.astatus == 2" style="border: 2px solid #10b759;">
+          <p><b>{{item.flatNo}} </b></p> <p>{{item.saleableArea}} <br> {{item.unit_type}}</p>
+        </div>
+        <div *ngIf="item.astatus == 3" style="border: 2px solid red;">
+          <p><b>{{item.flatNo}} </b></p> <p>{{item.saleableArea}} <br> {{item.unit_type}}</p>
+        </div>
+      </div>
+    </div>
+
+
+    <h3 class="ion-text-center" style="color:rgb(0, 132, 255)" >Floor 8</h3>
+    <div class="wrapper">
+      <div  class="item" *ngFor="let item of datastoreservice.availability_floorData['8']">
+        <div *ngIf="item.astatus == 1" style="border: 2px solid #00b8d4;">
+          <p><b>{{item.flatNo}} </b></p> <p>{{item.saleableArea}} <br> {{item.unit_type}}</p>
+        </div>
+        <div *ngIf="item.astatus == 2" style="border: 2px solid #10b759;">
+          <p><b>{{item.flatNo}} </b></p> <p>{{item.saleableArea}} <br> {{item.unit_type}}</p>
+        </div>
+        <div *ngIf="item.astatus == 3" style="border: 2px solid red;">
+          <p><b>{{item.flatNo}} </b></p> <p>{{item.saleableArea}} <br> {{item.unit_type}}</p>
+        </div>
+      </div>
+    </div>
+
+
+    <h3 class="ion-text-center" style="color:rgb(0, 132, 255)" >Floor 9</h3>
+    <div class="wrapper">
+      <div  class="item" *ngFor="let item of datastoreservice.availability_floorData['9']">
+        <div *ngIf="item.astatus == 1" style="border: 2px solid #00b8d4;">
+          <p><b>{{item.flatNo}} </b></p> <p>{{item.saleableArea}} <br> {{item.unit_type}}</p>
+        </div>
+        <div *ngIf="item.astatus == 2" style="border: 2px solid #10b759;">
+          <p><b>{{item.flatNo}} </b></p> <p>{{item.saleableArea}} <br> {{item.unit_type}}</p>
+        </div>
+        <div *ngIf="item.astatus == 3" style="border: 2px solid red;">
+          <p><b>{{item.flatNo}} </b></p> <p>{{item.saleableArea}} <br> {{item.unit_type}}</p>
+        </div>
+      </div>
+    </div>
+
+
+    <h3 class="ion-text-center" style="color:rgb(0, 132, 255)" >Floor 10</h3>
+    <div class="wrapper">
+      <div  class="item" *ngFor="let item of datastoreservice.availability_floorData['10']">
+        <div *ngIf="item.astatus == 1" style="border: 2px solid #00b8d4;">
+          <p><b>{{item.flatNo}} </b></p> <p>{{item.saleableArea}} <br> {{item.unit_type}}</p>
+        </div>
+        <div *ngIf="item.astatus == 2" style="border: 2px solid #10b759;">
+          <p><b>{{item.flatNo}} </b></p> <p>{{item.saleableArea}} <br> {{item.unit_type}}</p>
+        </div>
+        <div *ngIf="item.astatus == 3" style="border: 2px solid red;">
+          <p><b>{{item.flatNo}} </b></p> <p>{{item.saleableArea}} <br> {{item.unit_type}}</p>
+        </div>
+      </div>
+    </div>
+
+
+    <h3 class="ion-text-center" style="color:rgb(0, 132, 255)" >Floor 11</h3>
+    <div class="wrapper">
+      <div  class="item" *ngFor="let item of datastoreservice.availability_floorData['11']">
+        <div *ngIf="item.astatus == 1" style="border: 2px solid #00b8d4;">
+          <p><b>{{item.flatNo}} </b></p> <p>{{item.saleableArea}} <br> {{item.unit_type}}</p>
+        </div>
+        <div *ngIf="item.astatus == 2" style="border: 2px solid #10b759;">
+          <p><b>{{item.flatNo}} </b></p> <p>{{item.saleableArea}} <br> {{item.unit_type}}</p>
+        </div>
+        <div *ngIf="item.astatus == 3" style="border: 2px solid red;">
+          <p><b>{{item.flatNo}} </b></p> <p>{{item.saleableArea}} <br> {{item.unit_type}}</p>
+        </div>
+      </div>
+    </div>
+
+
+    <h3 class="ion-text-center" style="color:rgb(0, 132, 255)" >Floor 12</h3>
+    <div class="wrapper">
+      <div  class="item" *ngFor="let item of datastoreservice.availability_floorData['12']">
+        <div *ngIf="item.astatus == 1" style="border: 2px solid #00b8d4;">
+          <p><b>{{item.flatNo}} </b></p> <p>{{item.saleableArea}} <br> {{item.unit_type}}</p>
+        </div>
+        <div *ngIf="item.astatus == 2" style="border: 2px solid #10b759;">
+          <p><b>{{item.flatNo}} </b></p> <p>{{item.saleableArea}} <br> {{item.unit_type}}</p>
+        </div>
+        <div *ngIf="item.astatus == 3" style="border: 2px solid red;">
+          <p><b>{{item.flatNo}} </b></p> <p>{{item.saleableArea}} <br> {{item.unit_type}}</p>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="ion-text-center" style="color:rgb(0, 132, 255)" >Floor 13</h3>
+    <div class="wrapper">
+      <div  class="item" *ngFor="let item of datastoreservice.availability_floorData['13']">
+        <div *ngIf="item.astatus == 1" style="border: 2px solid #00b8d4;">
+          <p><b>{{item.flatNo}} </b></p> <p>{{item.saleableArea}} <br> {{item.unit_type}}</p>
+        </div>
+        <div *ngIf="item.astatus == 2" style="border: 2px solid #10b759;">
+          <p><b>{{item.flatNo}} </b></p> <p>{{item.saleableArea}} <br> {{item.unit_type}}</p>
+        </div>
+        <div *ngIf="item.astatus == 3" style="border: 2px solid red;">
+          <p><b>{{item.flatNo}} </b></p> <p>{{item.saleableArea}} <br> {{item.unit_type}}</p>
+        </div>
+      </div>
+    </div>
+
+
+    <h3 class="ion-text-center" style="color:rgb(0, 132, 255)" >Floor 14</h3>
+    <div class="wrapper">
+      <div  class="item" *ngFor="let item of datastoreservice.availability_floorData['14']">
+        <div *ngIf="item.astatus == 1" style="border: 2px solid #00b8d4;">
+          <p><b>{{item.flatNo}} </b></p> <p>{{item.saleableArea}} <br> {{item.unit_type}}</p>
+        </div>
+        <div *ngIf="item.astatus == 2" style="border: 2px solid #10b759;">
+          <p><b>{{item.flatNo}} </b></p> <p>{{item.saleableArea}} <br> {{item.unit_type}}</p>
+        </div>
+        <div *ngIf="item.astatus == 3" style="border: 2px solid red;">
+          <p><b>{{item.flatNo}} </b></p> <p>{{item.saleableArea}} <br> {{item.unit_type}}</p>
+        </div>
+      </div>
+    </div>
+
+
+    <h3 class="ion-text-center" style="color:rgb(0, 132, 255)" >Floor 15</h3>
+    <div class="wrapper">
+      <div  class="item" *ngFor="let item of datastoreservice.availability_floorData['15']">
+        <div *ngIf="item.astatus == 1" style="border: 2px solid #00b8d4;">
+          <p><b>{{item.flatNo}} </b></p> <p>{{item.saleableArea}} <br> {{item.unit_type}}</p>
+        </div>
+        <div *ngIf="item.astatus == 2" style="border: 2px solid #10b759;">
+          <p><b>{{item.flatNo}} </b></p> <p>{{item.saleableArea}} <br> {{item.unit_type}}</p>
+        </div>
+        <div *ngIf="item.astatus == 3" style="border: 2px solid red;">
+          <p><b>{{item.flatNo}} </b></p> <p>{{item.saleableArea}} <br> {{item.unit_type}}</p>
+        </div>
+      </div>
+    </div>
+
+
+    <h3 class="ion-text-center" style="color:rgb(0, 132, 255)" >Floor 16</h3>
+    <div class="wrapper">
+      <div  class="item" *ngFor="let item of datastoreservice.availability_floorData['16']">
+        <div *ngIf="item.astatus == 1" style="border: 2px solid #00b8d4;">
+          <p><b>{{item.flatNo}} </b></p> <p>{{item.saleableArea}} <br> {{item.unit_type}}</p>
+        </div>
+        <div *ngIf="item.astatus == 2" style="border: 2px solid #10b759;">
+          <p><b>{{item.flatNo}} </b></p> <p>{{item.saleableArea}} <br> {{item.unit_type}}</p>
+        </div>
+        <div *ngIf="item.astatus == 3" style="border: 2px solid red;">
+          <p><b>{{item.flatNo}} </b></p> <p>{{item.saleableArea}} <br> {{item.unit_type}}</p>
+        </div>
+      </div>
+    </div>
+
+
+    <h3 class="ion-text-center" style="color:rgb(0, 132, 255)" >Floor 17</h3>
+    <div class="wrapper">
+      <div  class="item" *ngFor="let item of datastoreservice.availability_floorData['17']">
+        <div *ngIf="item.astatus == 1" style="border: 2px solid #00b8d4;">
+          <p><b>{{item.flatNo}} </b></p> <p>{{item.saleableArea}} <br> {{item.unit_type}}</p>
+        </div>
+        <div *ngIf="item.astatus == 2" style="border: 2px solid #10b759;">
+          <p><b>{{item.flatNo}} </b></p> <p>{{item.saleableArea}} <br> {{item.unit_type}}</p>
+        </div>
+        <div *ngIf="item.astatus == 3" style="border: 2px solid red;">
+          <p><b>{{item.flatNo}} </b></p> <p>{{item.saleableArea}} <br> {{item.unit_type}}</p>
+        </div>
+      </div>
+    </div>
+
+
+    <h3 class="ion-text-center" style="color:rgb(0, 132, 255)" >Floor 18</h3>
+    <div class="wrapper">
+      <div  class="item" *ngFor="let item of datastoreservice.availability_floorData['18']">
+        <div *ngIf="item.astatus == 1" style="border: 2px solid #00b8d4;">
+          <p><b>{{item.flatNo}} </b></p> <p>{{item.saleableArea}} <br> {{item.unit_type}}</p>
+        </div>
+        <div *ngIf="item.astatus == 2" style="border: 2px solid #10b759;">
+          <p><b>{{item.flatNo}} </b></p> <p>{{item.saleableArea}} <br> {{item.unit_type}}</p>
+        </div>
+        <div *ngIf="item.astatus == 3" style="border: 2px solid red;">
+          <p><b>{{item.flatNo}} </b></p> <p>{{item.saleableArea}} <br> {{item.unit_type}}</p>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="ion-text-center" style="color:rgb(0, 132, 255)" >Floor 19</h3>
+    <div class="wrapper">
+      <div  class="item" *ngFor="let item of datastoreservice.availability_floorData['19']">
+        <div *ngIf="item.astatus == 1" style="border: 2px solid #00b8d4;">
+          <p><b>{{item.flatNo}} </b></p> <p>{{item.saleableArea}} <br> {{item.unit_type}}</p>
+        </div>
+        <div *ngIf="item.astatus == 2" style="border: 2px solid #10b759;">
+          <p><b>{{item.flatNo}} </b></p> <p>{{item.saleableArea}} <br> {{item.unit_type}}</p>
+        </div>
+        <div *ngIf="item.astatus == 3" style="border: 2px solid red;">
+          <p><b>{{item.flatNo}} </b></p> <p>{{item.saleableArea}} <br> {{item.unit_type}}</p>
+        </div>
+      </div>
+    </div>
+
+
+    <h3 class="ion-text-center" style="color:rgb(0, 132, 255)" >Floor 20</h3>
+    <div class="wrapper">
+      <div  class="item" *ngFor="let item of datastoreservice.availability_floorData['20']">
+        <div *ngIf="item.astatus == 1" style="border: 2px solid #00b8d4;">
+          <p><b>{{item.flatNo}} </b></p> <p>{{item.saleableArea}} <br> {{item.unit_type}}</p>
+        </div>
+        <div *ngIf="item.astatus == 2" style="border: 2px solid #10b759;">
+          <p><b>{{item.flatNo}} </b></p> <p>{{item.saleableArea}} <br> {{item.unit_type}}</p>
+        </div>
+        <div *ngIf="item.astatus == 3" style="border: 2px solid red;">
+          <p><b>{{item.flatNo}} </b></p> <p>{{item.saleableArea}} <br> {{item.unit_type}}</p>
+        </div>
+      </div>
+    </div>
+
+
+    <h3 class="ion-text-center" style="color:rgb(0, 132, 255)" >Floor 21</h3>
+    <div class="wrapper">
+      <div  class="item" *ngFor="let item of datastoreservice.availability_floorData['21']">
+        <div *ngIf="item.astatus == 1" style="border: 2px solid #00b8d4;">
+          <p><b>{{item.flatNo}} </b></p> <p>{{item.saleableArea}} <br> {{item.unit_type}}</p>
+        </div>
+        <div *ngIf="item.astatus == 2" style="border: 2px solid #10b759;">
+          <p><b>{{item.flatNo}} </b></p> <p>{{item.saleableArea}} <br> {{item.unit_type}}</p>
+        </div>
+        <div *ngIf="item.astatus == 3" style="border: 2px solid red;">
+          <p><b>{{item.flatNo}} </b></p> <p>{{item.saleableArea}} <br> {{item.unit_type}}</p>
+        </div>
+      </div>
+    </div>
+
+
+    <h3 class="ion-text-center" style="color:rgb(0, 132, 255)" >Floor 22</h3>
+    <div class="wrapper">
+      <div  class="item" *ngFor="let item of datastoreservice.availability_floorData['22']">
+        <div *ngIf="item.astatus == 1" style="border: 2px solid #00b8d4;">
+          <p><b>{{item.flatNo}} </b></p> <p>{{item.saleableArea}} <br> {{item.unit_type}}</p>
+        </div>
+        <div *ngIf="item.astatus == 2" style="border: 2px solid #10b759;">
+          <p><b>{{item.flatNo}} </b></p> <p>{{item.saleableArea}} <br> {{item.unit_type}}</p>
+        </div>
+        <div *ngIf="item.astatus == 3" style="border: 2px solid red;">
+          <p><b>{{item.flatNo}} </b></p> <p>{{item.saleableArea}} <br> {{item.unit_type}}</p>
+        </div>
+      </div>
+    </div>
+
+
+    <h3 class="ion-text-center" style="color:rgb(0, 132, 255)" >Floor No.:</h3>
+    <div class="wrapper">
+      <div  class="item" *ngFor="let item of datastoreservice.availability_floorData['23']">
+        <div *ngIf="item.astatus == 1" style="border: 2px solid #00b8d4;">
+          <p><b>{{item.flatNo}} </b></p> <p>{{item.saleableArea}} <br> {{item.unit_type}}</p>
+        </div>
+        <div *ngIf="item.astatus == 2" style="border: 2px solid #10b759;">
+          <p><b>{{item.flatNo}} </b></p> <p>{{item.saleableArea}} <br> {{item.unit_type}}</p>
+        </div>
+        <div *ngIf="item.astatus == 3" style="border: 2px solid red;">
+          <p><b>{{item.flatNo}} </b></p> <p>{{item.saleableArea}} <br> {{item.unit_type}}</p>
+        </div>
+      </div>
+    </div>
+
+
+
+
 
   </div>
 

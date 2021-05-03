@@ -45,3 +45,15 @@
 
   color: #0077BD;
 }
+
+.errorAlert .alert-wrapper{
+  .alert-head{
+    background: red;
+    color: white;
+    margin-bottom: 15px;
+
+    h2{
+      color:white
+    }
+  }
+}

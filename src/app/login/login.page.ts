@@ -32,9 +32,9 @@ export class LoginPage implements OnInit {
 
   async ErrormsgAlert(msg) {
     const alert = await this.alertController.create({
-      cssClass: 'my-custom-class',
+      cssClass: 'errorAlert',
       header: 'Error',
-      message: msg,
+      message: `<b>${msg}</b>`,
       buttons: ['OK']
     });
 
@@ -83,7 +83,7 @@ export class LoginPage implements OnInit {
         this.loadingController.dismiss()
         this.router.navigateByUrl('/dashboard')
       }else{
-        this.ErrormsgAlert("User Not Present")
+        this.ErrormsgAlert("Invalid User Credential")
       }
       }, (errors) => {
       this.ErrormsgAlert("Server Issue Or Invalid Credentials")
