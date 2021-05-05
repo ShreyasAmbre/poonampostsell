@@ -53,6 +53,13 @@ export class DatastoreService {
   gstOnBasic = ""
   basicOnBasic = ""
 
+
+  // Availability Report
+  all_count = 0
+  sold_count = 0
+  availability_count = this.all_count - this.sold_count
+  block_count = 0
+
   constructor(public http:HttpClient) { }
 
   set_booking_id(id){

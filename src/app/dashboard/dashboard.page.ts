@@ -116,7 +116,7 @@ export class DashboardPage implements OnInit {
 
     // this.getProjectMaster()
     console.log('Initializing HomePage');
-    this.getProjectDashboard()
+    // this.getProjectDashboard()
     // // this.setValue()
     // // this.getNotiCount()
 

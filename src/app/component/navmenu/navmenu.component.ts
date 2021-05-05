@@ -87,11 +87,6 @@ export class NavmenuComponent implements OnInit {
         ]
       },
       {
-        title : "Login",
-        url   : "/login",
-        icon  : "log-in-outline"
-      },
-      {
         title : "Logout",
         url   : "/",
         icon  : "log-out-outline"

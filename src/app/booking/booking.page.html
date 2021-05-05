@@ -56,7 +56,8 @@
             <span *ngIf="whatsapp_no.invalid" class="error"><b>Only Numbers</b></span>
           </ion-item>
           <ion-item class="formfields">
-            <ion-input type="email" ngModel name="email" placeholder="Email "></ion-input>
+            <ion-input type="email" #emailvalid="ngModel" ngModel name="email"  pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})" placeholder="Email "></ion-input>
+            <span *ngIf="emailvalid.invalid" class="error"><b>Invalid Email</b></span>
           </ion-item>
           <ion-item class="formfields">
             <ion-input type="text" ngModel name="pancard" placeholder="Pan Card Number  "></ion-input>
@@ -65,7 +66,7 @@
             <ion-input type="text" ngModel name="aadharCard" placeholder="Aadhar Card Number  "></ion-input>
           </ion-item>
           <ion-item class="formfields">
-            <ion-datetime value="1900-01-1" [(ngModel)]="dob" name="dob" placeholder="Enter DOB" (ionChange)="calAge(dob)"></ion-datetime>
+            <ion-datetime value="1900-01-1" [(ngModel)]="dob" name="dob" min="1981" max="2020" placeholder="Enter DOB" (ionChange)="calAge(dob)"></ion-datetime>
             <ion-icon slot="end" name="calendar-number-outline"></ion-icon>
           </ion-item>
           <ion-item class="formfields">
@@ -91,7 +92,8 @@
             <ion-textarea type="text" [(ngModel)]="permanentAddressLine1" name="permanentAddressLine1" placeholder="Enter Address *"></ion-textarea>
           </ion-item>
           <ion-item class="formfields">
-            <ion-input type="text" [(ngModel)]="permanentCity" name="permanentCity" placeholder="Enter City *"></ion-input>
+            <ion-input type="text" #pcity="ngModel" [pattern]="'[a-zA-Z ]*'"  [(ngModel)]="permanentCity" name="permanentCity" placeholder="Enter City *"></ion-input>
+            <span *ngIf="pcity.invalid" class="error"><b>Only Alphabet</b></span>
           </ion-item>
           <ion-item class="formfields">
             <ion-input type="text"  #vstate="ngModel" [pattern]="'[a-zA-Z ]*'" [(ngModel)]="permanentState" name="permanentState" placeholder="Enter State *"></ion-input>
@@ -107,7 +109,8 @@
             <ion-textarea type="text" [(ngModel)]="correspondenceAddressLine1" name="correspondenceAddressLine1" placeholder="Enter Address "></ion-textarea>
           </ion-item>
           <ion-item class="formfields">
-            <ion-input type="text" [(ngModel)]="correspondenceCity" name="correspondenceCity" placeholder="Enter City "></ion-input>
+            <ion-input type="text" #ccity="ngModel" [pattern]="'[a-zA-Z ]*'"  [(ngModel)]="correspondenceCity" name="correspondenceCity" placeholder="Enter City "></ion-input>
+            <span *ngIf="ccity.invalid" class="error"><b>Only Alphabet</b></span>
           </ion-item>
           <ion-item class="formfields">
             <ion-input type="text" #vcstate="ngModel" [pattern]="'[a-zA-Z ]*'" [(ngModel)]="correspondenceState" name="correspondenceState" placeholder="Enter State "></ion-input>
@@ -163,7 +166,8 @@
               <span *ngIf="cwhatsapp_no.invalid" class="error"><b>Only Numbers</b></span>
             </ion-item>
             <ion-item class="formfields">
-              <ion-input type="email" ngModel name="email" placeholder="Email "></ion-input>
+              <ion-input type="email" #cemailvalid="ngModel" ngModel name="email" pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})" placeholder="Email "></ion-input>
+              <span *ngIf="cemailvalid.invalid" class="error"><b>Invalid Email</b></span>
             </ion-item>
             <ion-item class="formfields">
               <ion-input type="text" ngModel name="pancard" placeholder="Pan Card Number  "></ion-input>
@@ -172,7 +176,7 @@
               <ion-input type="text" ngModel name="aadharCard" placeholder="Aadhar Card Number  "></ion-input>
             </ion-item>
             <ion-item class="formfields">
-              <ion-datetime value="1900-01-1" [(ngModel)]="codob" name="codob" (ionChange)="cocalAge(codob)" placeholder="Enter DOB"></ion-datetime>
+              <ion-datetime value="1900-01-1" [(ngModel)]="codob" name="codob" min="1981" max="2020" (ionChange)="cocalAge(codob)" placeholder="Enter DOB"></ion-datetime>
               <ion-icon slot="end" name="calendar-number-outline"></ion-icon>
             </ion-item>
             <ion-item class="formfields">
@@ -198,7 +202,8 @@
               <ion-textarea type="text" ngModel name="permanentAddressLine1" placeholder="Enter Address *"></ion-textarea>
             </ion-item>
             <ion-item class="formfields">
-              <ion-input type="text" ngModel name="permanentCity" placeholder="Enter City *"></ion-input>
+              <ion-input type="text" #cpcity="ngModel" [pattern]="'[a-zA-Z ]*'"  ngModel name="permanentCity" placeholder="Enter City *"></ion-input>
+              <span *ngIf="cpcity.invalid" class="error"><b>Only Alphabet</b></span>
             </ion-item>
             <ion-item class="formfields">
               <ion-input type="text" #ccstate="ngModel" [pattern]="'[a-zA-Z ]*'" ngModel name="permanentState" placeholder="Enter State *"></ion-input>
@@ -214,7 +219,8 @@
               <ion-textarea type="text" ngModel name="correspondenceAddressLine1" placeholder="Enter Address *"></ion-textarea>
             </ion-item>
             <ion-item class="formfields">
-              <ion-input type="text" ngModel name="correspondenceCity" placeholder="Enter City *"></ion-input>
+              <ion-input type="text" #cccity="ngModel" [pattern]="'[a-zA-Z ]*'"  ngModel name="correspondenceCity" placeholder="Enter City *"></ion-input>
+              <span *ngIf="cccity.invalid" class="error"><b>Only Alphabet</b></span>
             </ion-item>
             <ion-item class="formfields">
               <ion-input type="text" #cccstate="ngModel" [pattern]="'[a-zA-Z ]*'" ngModel name="correspondenceState" placeholder="Enter State *"></ion-input>
@@ -227,17 +233,17 @@
 
           <div style="text-align: center;">
             <button class="backbutton" mat-button matStepperPrevious type="button">Back</button>
-            <button class="addbutton" type="submit"  [disabled]="bookingForm.invalid" >Add</button>
+            <button class="addbutton" type="submit"  [disabled]="co_applicantForm.invalid" >Add</button>
             <button class="nextbutton" mat-button matStepperNext type="submit"  [disabled]="bookingForm.invalid">Next</button>
           </div>
-      </form>
+        </form>
 
         <div *ngFor="let co_applicant of co_applicants;  let c = index">
 
           <ion-card id="bookingcard">
             <ion-item>
               <ion-avatar slot="start">
-                <img src="../../assets/icon/avatar.png">
+                <img src="../../assets/icon/avatar2.jpg">
               </ion-avatar>
               <ion-label><b>{{co_applicant.firstName}} {{co_applicant.lastName}}</b></ion-label>
               <ion-icon (click)="edit_co_applicant(c, co_applicantForm)" name="pencil-outline" slot="end" style="color: blue;"></ion-icon>
@@ -287,15 +293,15 @@
 
       <mat-step label="Payment" completed="true">`
       <form #addPaymentDetail="ngForm" (ngSubmit)="sendpaymentDetails(addPaymentDetail);">
-        <div>
-          <h4 style="color:#0077BD; text-align: center;"><u>Rate Details</u></h4>
+          <div>
+            <h4 style="color:#0077BD; text-align: center;"><u>Rate Details</u></h4>
 
-          <ion-item class="formfields">
-            <ion-label>Package:-</ion-label>
-            <ion-select [(ngModel)]="type" name="type" okText="Okay" cancelText="Dismiss">
-            <ion-select-option value="package">Package</ion-select-option>
-            <ion-select-option value="manual">Manual</ion-select-option>
-            </ion-select>
+            <ion-item class="formfields">
+              <ion-label>Package:-</ion-label>
+              <ion-select [(ngModel)]="type" name="type" okText="Okay" cancelText="Dismiss">
+              <ion-select-option value="package">Package</ion-select-option>
+              <ion-select-option value="manual">Manual</ion-select-option>
+              </ion-select>
             </ion-item>
 
             <div *ngIf="type == 'package'">
@@ -310,12 +316,23 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <th>421</th>
-                      <td>0.00</td>
-                      <td>625</td>
-                      <td>0.00</td>
-                    </tr>
+                    <div *ngIf="!this.selected_property; else loggedOut">
+                      <tr>
+                        <th></th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                    </div>
+
+                    <ng-template #loggedOut>
+                      <tr>
+                        <th>{{ this.selected_property.reraCarpet}}</th>
+                        <td>0.00</td>
+                        <td>{{ this.selected_property.saleableArea}}</td>
+                        <td>0.00</td>
+                      </tr>
+                    </ng-template>
                   </tbody>
                 </table>
               </ion-item>
@@ -620,9 +637,7 @@
               </table>
             </ion-card-content>
             </ion-card>
-
-
-        </div>
+          </div>
         <div>
           <button class="backbutton" mat-button matStepperPrevious type="button">Back</button>
           <button class="nextbutton" mat-button matStepperNext type="submit">Next</button>

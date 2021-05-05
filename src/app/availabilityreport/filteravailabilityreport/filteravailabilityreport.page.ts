@@ -90,7 +90,12 @@ export class FilteravailabilityreportPage implements OnInit {
     }
 
     forkJoin([availabilityData]).subscribe(results => {
+      this.datastoreservice.all_count = 0
+      this.datastoreservice.sold_count = 0
+      this.datastoreservice.availability_count = 0
+      this.datastoreservice.block_count = 0
       var apiData = results[0]["data"]
+      this.datastoreservice.all_count = apiData.length
       // console.log(apiData)
 
 
@@ -99,18 +104,28 @@ export class FilteravailabilityreportPage implements OnInit {
       // if(val in floors_data){
       //   console.log("present")
       // }
-
-      apiData.forEach(myFunction);
-
-      function myFunction(item, index) {
+      apiData.forEach((item, index, array) => {
         var index_place = item.floor
+
+        if(item.astatus !== null){
+          // if(item.astatus === "1"){
+          //   this.datastoreservice.availability_count =this.datastoreservice.availability_count + 1
+          // }
+          if(item.astatus === "2"){
+            this.datastoreservice.sold_count =this.datastoreservice.sold_count + 1
+          }
+          if(item.astatus === "3"){
+            this.datastoreservice.block_count =this.datastoreservice.block_count + 1
+          }
+        }
         // console.log(index_place)
 
         if(index_place in floors_data){
           floors_data[index_place].push(item);
         }
-      }
 
+      });
+      this.datastoreservice.availability_count = this.datastoreservice.all_count - this.datastoreservice.sold_count
     });
 
     this.datastoreservice.availability_floorData = floors_data

@@ -231,6 +231,12 @@ export class BookingPage implements OnInit {
     this.coApplicantsDetails = data.value
 
     this.co_applicants.push(this.coApplicantsDetails)
+    for(let i=0; i <= this.co_applicants.length - 1; i++){
+      if(this.co_applicants[i]["firstName"] === null){
+        this.co_applicants.splice(i)
+      }
+    }
+    console.log(this.co_applicants, "CO APPL")
 
     var coApplicantData = data.value
     this.coApplicantsDetails = {

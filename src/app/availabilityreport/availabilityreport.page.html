@@ -19,42 +19,34 @@
     <ion-row >
       <ion-col>
         <div class="reportcount" style="border: 2px solid blue; color:blue">
-          <p>100</p>All
+          <p>{{this.datastoreservice.all_count}}</p>All
         </div>
       </ion-col>
       <ion-col>
         <div class="reportcount" style="border: 2px solid #10b759 ; color:#10b759 ">
-          <p>100</p>Sold
+          <p>{{this.datastoreservice.sold_count}}</p>Sold
         </div>
       </ion-col>
       <ion-col>
         <div class="reportcount" style="border: 2px solid #00b8d4 ; color:#00b8d4 ">
-          <p>100</p>Avail
+          <p>{{this.datastoreservice.availability_count}}</p>Avail
         </div>
       </ion-col>
-      <ion-col>
+      <!-- <ion-col>
         <div class="reportcount" style="border: 2px solid gold; color:gold">
           <p>100</p>Hold
         </div>
-      </ion-col>
+      </ion-col> -->
       <ion-col>
         <div  class="reportcount" style="border: 2px solid red; color:red">
-          <p>100</p>Block
+          <p>{{this.datastoreservice.block_count}}</p>Block
         </div>
       </ion-col>
     </ion-row>
   </ion-grid><br><br>
 
-  <!-- <h3 class="ion-text-center" style="color:rgb(0, 132, 255)" >Floor 11</h3>
-  <div class="wrapper" >
-    <div class="item" *ngFor="let item of datastoreservice.availability_apiData" style="border: 2px solid blueviolet;">
-      <p><b>{{item.floor}}</b></p> <p>Jai Tiwari <br>{{item.unit_type}}</p>
-    </div>
-  </div> -->
-
 
   <div *ngIf="datastoreservice.availability_dataStatus">
-
     <h3 class="ion-text-center" style="color:rgb(0, 132, 255)" >Floor 1</h3>
     <div class="wrapper">
       <div  class="item" *ngFor="let item of datastoreservice.availability_floorData['1']">
@@ -418,11 +410,6 @@
         </div>
       </div>
     </div>
-
-
-
-
-
   </div>
 
 

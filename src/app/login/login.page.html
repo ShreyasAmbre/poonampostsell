@@ -1,13 +1,7 @@
-<!-- <ion-header>
-  <ion-toolbar color="primary" slots="start">
-    <ion-title>Login</ion-title>
-  </ion-toolbar>
-</ion-header> -->
-
 <ion-content>
 
   <div class="container">
-    <img src="../../assets/login2.png" alt="">
+    <img src="../../assets/login3.png" alt="">
   </div>
   <div class="loginsection">
     <ion-grid>
@@ -17,16 +11,11 @@
 
               <ion-input class="inputfield" size="small" type="text" ngModel name="username" placeholder="Username *"></ion-input>
 
-              <ion-input class="inputfield" size="large"  type="password" ngModel name="password" placeholder="Password *"></ion-input>
+              <ion-input class="inputfield" enterkeyhint="send" (keyup.enter)="login(loginForm.value)" size="large"  type="password" ngModel name="password" placeholder="Password *"></ion-input>
               <br>
 
-              <ion-button type="submit"  size="large" id="sign-in-button" expand="block"
+              <ion-button type="submit" size="large" id="sign-in-button" expand="block"
               solid large ion-margin-vertical="20px">Login</ion-button><br>
-
-            <!-- <div  class="ion-text-center">
-              <p style="color:#002D47">Don't have a Account? <b style="color:white">Sign Up</b></p>
-              <a routerLink="/dashboard">Dashboard</a>
-            </div> -->
           </form>
 
         </ion-col>
@@ -35,106 +24,5 @@
             <img src="../../assets/loginf.png" alt="">
       </ion-row>
     </ion-grid>
-
   </div>
-
-
-
-  <!-- <div class="container" style="height: 100%; background-color: aqua;">
-    <div class="row align-items-start" style="height: 80px; background-color:azure;">
-      <div class="col">
-        One of three columns
-      </div>
-      <div class="col">
-        One of three columns
-      </div>
-      <div class="col">
-        One of three columns
-      </div>
-    </div>
-
-    <div class="row align-items-center" style="height: 80px; background-color:blanchedalmond">
-      <div class="col">
-        One of three columns
-      </div>
-      <div class="col">
-        One of three columns
-      </div>
-      <div class="col">
-        One of three columns
-      </div>
-    </div>
-
-    <div class="row align-items-end" style="height: 80px; background-color:coral" style="position: fixed; bottom: 0%;">
-      <div class="col">
-        One of three columns
-      </div>
-      <div class="col">
-        One of three columns
-      </div>
-      <div class="col">
-        One of three columns
-      </div>
-    </div>
-  </div> -->
-
-
-  <!-- <div id="container">
-    <ion-grid class="ion-margin">
-      <ion-row >
-        <ion-col>
-          <ion-img src="./assets/icon/Poonamlogo.png" style="height:100px; width:auto; margin:10px"></ion-img>
-        </ion-col>
-      </ion-row><br><br>
-      <ion-row>
-        <ion-col>
-          <form #loginForm="ngForm" (ngSubmit)="login(loginForm.value)">
-
-            <ion-item>
-              <ion-input type="text" ngModel name="name" placeholder="Usernmae *"></ion-input>
-            </ion-item>
-
-            <ion-item>
-              <ion-input type="password" ngModel name="password" placeholder="Password *"></ion-input>
-            </ion-item><br>
-
-            <ion-button type="submit" id="sign-in-button" expand="block"
-            solid large ion-margin-vertical="20px">Login</ion-button><br>
-
-            <div  class="ion-text-center">
-              <a routerLink="/dashboard">Dashboard</a>
-            </div>
-          </form>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </div> -->
-
-
-
-
-
-
-
-  <!-- Below is Signup Code -->
-  <!-- <ion-card style="margin-top:100px">
-    <ion-card-content>
-      <ion-img src="./assets/icon/Poonamlogo.png" width="auto" height="10px"></ion-img><br><br>
-      <form #loginForm="ngForm" (ngSubmit)="login(loginForm.value)">
-        <ion-item>
-          <ion-input type="text" ngModel name="username" placeholder="Username *"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-input type="password" ngModel name="password" placeholder="Password *"></ion-input>
-        </ion-item><br>
-
-        <ion-button type="submit" expand="block" solid large ion-margin-vertical="20px">Login</ion-button><br>
-        <ion-button type="submit" expand="block" fill="outline" routerLink="/signup" solid large ion-margin-vertical="20px">SignUp</ion-button><br>
-
-        <div  class="ion-text-center">
-          <a routerLink="/dashboard">Dashboard</a>
-        </div>
-      </form>
-    </ion-card-content>
-  </ion-card> -->
 </ion-content>
